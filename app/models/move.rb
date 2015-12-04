@@ -19,7 +19,8 @@ class Move < ActiveRecord::Base
 
   def calculate_elemental(enemy_element)
     opponent = Element.where(name: enemy_element)[0]
-    puts opponent.name
+    # puts opponent.name
+    # binding.pry;''
     multiplier = 1
     if opponent.weak_to.include? element.name
       multiplier = 2
