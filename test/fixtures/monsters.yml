@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  element_id: 1
+  move_id: 1
+  image_front: MyString
+  image_back: MyString
+  strike_sound: MyString
+  hurt_sound: MyString
+  hp: 1
+
+two:
+  name: MyString
+  element_id: 1
+  move_id: 1
+  image_front: MyString
+  image_back: MyString
+  strike_sound: MyString
+  hurt_sound: MyString
+  hp: 1
