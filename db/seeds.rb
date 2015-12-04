@@ -38,6 +38,10 @@ blizzard = Move.create!(name: 'blizzard', strength: 70, special: false, remainin
 blizzard.element = ice
 blizzard.save
 
+nuke = Move.create!(name: 'nuke', strength: 90, special: true, remaining_uses: 1)
+nuke.element = ice
+nuke.save
+
 #graeme if you have any images to add to monsters, URL's can go in the strings here
 ## -- MONSTERS
 char = Monster.create!(name: 'charizard', image_front: nil, image_back: nil, strike_sound: nil, hurt_sound: nil)
