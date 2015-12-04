@@ -6,11 +6,23 @@ class Move < ActiveRecord::Base
     if special
       damage = special_move * calculate_elemental(enemy_element)
     else
-      acc = 101 - strength
-      puts "acc = #{acc}"
-      damage = (strength * calculate_elemental(enemy_element)) if rand(100) > acc
+      accuracy = 101 - strength
+      damage = (strength * calculate_elemental(enemy_element)) * attack_strength(accuracy)
     end
     return damage
+  end
+
+  def attack_strength(accuracy)
+    randomizer = rand(100)
+    if randomizer < accuracy/2
+      puts "miss"
+      return 0
+    elsif randomizer > 95
+      puts "CRITICAL!!"
+      return 2
+    else
+      return 1
+    end
   end
 
   def special_move
