@@ -39,6 +39,7 @@ blizzard.element = ice
 blizzard.save
 
 #graeme if you have any images to add to monsters, URL's can go in the strings here
+## -- MONSTERS
 char = Monster.create!(name: 'charizard', image_front: nil, image_back: nil, strike_sound: nil, hurt_sound: nil)
 char.element = fire
 char.moves << [flame, explode, punch]
