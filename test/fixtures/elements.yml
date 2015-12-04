@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  strong_to: MyString
+  weak_to: MyString
+  neutral: MyString
+  immune: MyString
+
+two:
+  name: MyString
+  strong_to: MyString
+  weak_to: MyString
+  neutral: MyString
+  immune: MyString
