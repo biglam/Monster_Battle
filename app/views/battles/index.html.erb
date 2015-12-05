@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <table>
+    <tr>
+    <th>ID</th>
+    <th>Player1</th>
+    <th>player2</th>
+    <th>Open</th>
+    <th>Delete</th>
+    <th>Edit</th>
+  </tr>
+  <% @battles.each do |battle| %>
+  <tr>
+    <td>battle.player_1</td>
+    <td>battle.player_2</td>
+  </tr>
+  <% end %>
+</table>
+</body>
+</html>
