@@ -5,10 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+User.delete_all
 Monster.delete_all
 Element.delete_all
 Move.delete_all
 
+User.create!(email: "pikachu@example.example", password:"password", name:"pikachu")
+User.create!(email: "pichu@example.example", password:"password", name:"pichu")
 
 #nevin - can you please add the rest of the data in this way?--
 ## -- ELEMENTS
