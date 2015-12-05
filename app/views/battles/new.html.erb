@@ -1,2 +1,8 @@
 <h2>Challenge</h2>
 
+<%= form_for @battle do |f| %>
+<%= f.hidden_field :player1_id, :value => current_user.id %>
+<%= f.label :player2_id %>
+<%= f.collection_select :player2_id, User.where.not(id: current_user.id), :id, :name, :selected => params['player2_id'] %>
+<%= f.submit 'FIGHT!' %>
+<% end %>
