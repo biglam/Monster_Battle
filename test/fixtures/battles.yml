@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  player1_id: 1
+  player2_id: 1
+  p1_monsters: MyString
+  p2_monsters: MyString
+  winner_id: 1
+  stadium_id: 1
+
+two:
+  player1_id: 1
+  player2_id: 1
+  p1_monsters: MyString
+  p2_monsters: MyString
+  winner_id: 1
+  stadium_id: 1
