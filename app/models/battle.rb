@@ -1,7 +1,6 @@
 class Battle < ActiveRecord::Base
 
   def cl_setup(p1_id, p2_id)
-    
     @p1_id = p1_id
     @p2_id = p2_id
     @turn = [1,2]
@@ -28,8 +27,10 @@ class Battle < ActiveRecord::Base
       end
       if @p1_monsters[0][:hp] <= 1 
         loser = @p1_monsters.shift
+        winner_id = @p1_id 
       elsif @p2_monsters[0][:hp] <= 1 
         loser =@p2_monsters.shift
+        winner_id = @p2_id
       end
       puts "#{loser[:name]} has been defeated!"
     end
