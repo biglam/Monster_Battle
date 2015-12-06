@@ -3,6 +3,7 @@ class Move < ActiveRecord::Base
   has_and_belongs_to_many :monsters
 
   def attack(enemy_element)
+    puts "Attacking with #{self.name}"
     if special
       damage = special_move * calculate_elemental(enemy_element)
     else

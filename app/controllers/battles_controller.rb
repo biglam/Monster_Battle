@@ -1,7 +1,9 @@
 class BattlesController < ApplicationController
+  respond_to :html, :js
 
   def index
     @battles = Battle.all
+    # render @battles, layout: false if request.xhr?
   end
 
   def new
@@ -15,6 +17,9 @@ class BattlesController < ApplicationController
 
   def edit
     @battle = Battle.find(params[:id])
+    @message = "Ajax!" if request.xhr?
+    # render @battle, layout: false if request.xhr?
+
   end
 
   private

@@ -4,4 +4,6 @@
   Battle text here
 </div>
 
-<button id='update'>Update</button>
+<%= form_tag battles_path, method: :get, id: :updater, remote: true do %>
+<%= submit_tag "update", :name => nil, :id => "update" %>
+<% end %>

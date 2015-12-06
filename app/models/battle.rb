@@ -3,7 +3,7 @@ class Battle < ActiveRecord::Base
   belongs_to :player1, class_name: 'User'
   belongs_to :player2, class_name: 'User'
 
-  def cl_setup(p1_id, p2_id)
+  def cl_setup(p1_id, p2_id) #command line only
     @p1_id = p1_id
     @p2_id = p2_id
     @turn = [1,2]
@@ -18,8 +18,8 @@ class Battle < ActiveRecord::Base
       puts "Name: #{m[:name]} - HP Remaining: #{m[:hp]} - Element #{m[:element]}"
     end
     # binding.pry;''
-    until @p1_monsters.length == 0 || @p2_monsters.length == 0
-      until @p1_monsters[0][:hp] <= 1 || @p2_monsters[0][:hp] <= 1
+    until @p1_monsters.length == 0 || @p2_monsters.length == 0 #all monsters defeated
+      until @p1_monsters[0][:hp] <= 1 || @p2_monsters[0][:hp] <= 1 #1 moster defeated
         if @turn[0] == 1
           fight_monsters(@p1_monsters[0], @p2_monsters[0])
         else
@@ -73,11 +73,23 @@ class Battle < ActiveRecord::Base
 
   def fight_monsters(monster1, monster2)
     puts "Select a move"
+    available_moves = [0]
     Move.all.each do |move|
       puts "#{move.id} - #{move.name}"
+      available_moves << move.id
     end
-    movechoice = gets.chomp.to_i
-    damage = Move.find(movechoice).attack(monster2[:element])
+    movechoice = nil
+    # binding.pry;''
+    until available_moves.include? movechoice
+      puts 'Enter a valid move number or 0 for random'
+      movechoice = gets.chomp.to_i
+    end
+    if movechoice == 0
+      available_moves.shift
+      damage = Move.find(available_moves.sample).attack(monster2[:element])
+    else
+      damage = Move.find(movechoice).attack(monster2[:element])
+    end
     puts damage
     monster2[:hp] -= damage
     rotate_turn

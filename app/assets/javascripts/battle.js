@@ -4,9 +4,8 @@ var test = function(val) {
   $('#menu').append("Test Working - id is " + val + "<br>")
 }
 
-$('#update').on("click", function(e) {
-   e.preventDefault();
-   alert('clicked');
+$('#updater').on('ajax:success', function(evt, data, status, xhr) {
+   console.log(data);
  });
 
 });
