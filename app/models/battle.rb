@@ -8,7 +8,7 @@ class Battle < ActiveRecord::Base
     @p2_id = p2_id
     @turn = [1,2]
     @p1_monsters = set_monster_list
-    @p2_monsters = set_monster_list
+    @p2_monsters = select_random_monsters
     puts "Player1 Monsters - "
     @p1_monsters.each do |m|
       puts "Name: #{m[:name]} - HP Remaining: #{m[:hp]} - Element #{m[:element]}"
@@ -56,6 +56,16 @@ class Battle < ActiveRecord::Base
     return list
   end
 
+  def select_random_monsters
+    list = []
+    available_monsters = Monster.all.map { |mon| mon.id }
+    4.times do |mon|
+      selection = Monster.find(available_monsters.sample)
+      list[mon] = {name: selection.name, id: selection.id, hp: selection.hp, element: selection.element.name}
+    end
+    return list
+  end
+
   def rotate_turn
     @turn.reverse!
     return @turn[0]
@@ -71,6 +81,10 @@ class Battle < ActiveRecord::Base
     puts damage
     monster2[:hp] -= damage
     rotate_turn
+  end
+
+  def battle_model_return_test
+    return "Battle Test from Ruby"
   end
 
 end
