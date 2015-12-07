@@ -82,12 +82,41 @@ class BattlesController < ApplicationController
       damage = move.move.attack(reciever_element)
       #take damage from reciever
       reciever.hp -= damage
+      if reciever.hp < 1
+        reciever.hp = 0
+      end
       # binding.pry;''
       #take 1 from remaining moves
       #save
       reciever.save
-      #redirect
-      redirect_to(edit_battle_path(@battle))
+      #redirect after checking damage
+      # binding.pry;''
+      if game_won 
+        flash[:notice] = "WINNER"
+        redirect_to(battle_path(@battle))
+      else
+        flash[:notice] = "Damage #{damage}"
+        redirect_to(edit_battle_path(@battle))
+      end
+    end
+
+    def game_won
+      # binding.pry;''
+      if (@battle.p1_battle_monsters.map {|x| x.hp }.inject{|sum, x| sum + x} < 1 )
+        @battle.winner_id = @battle.player2_id 
+        @battle.save
+        return true
+      elsif (@battle.p2_battle_monsters.map {|x| x.hp }.inject{|sum, x| sum + x} < 1)
+        @battle.winner_id = @battle.player1_id
+        @battle.save
+        return true
+    else
+      return false
+    end
+    end
+
+    def show
+      @battle = Battle.find(params[:id])
     end
 
     private

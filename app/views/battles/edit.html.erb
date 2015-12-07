@@ -8,9 +8,9 @@
   <%= f.hidden_field :player, :value => 1 %>
   <li><%= monster.monster.name %> - <%= monster.hp %> 
     <%= select("move", "monster(#{monster.id})", monster.battle_monster_moves.map {|p| [ p.move.name, p.id ] }) unless monster.hp < 1 %>
-  <%= select("move", "opponent", @battle.p2_battle_monsters.map {|m| [ m.monster.name, m.id] }) %>
+  <%= select("move", "opponent", @battle.p2_battle_monsters.where("hp > 0").map {|m| [ m.monster.name, m.id] }) unless monster.hp < 1 %>
   
-  <%= f.submit 'Make move' %></li>
+  <%= f.submit 'Make move' unless monster.hp < 1  %></li>
 <% end %>
 <% end %>
 </ul>
@@ -21,9 +21,9 @@
   <%= f.hidden_field :player, :value => 2 %>
   <li><%= monster.monster.name %> - <%= monster.hp %> 
     <%= select("move", "monster(#{monster.id})", monster.battle_monster_moves.map {|p| [ p.move.name, p.id ] }) unless monster.hp < 1 %>
-  <%= select("move", "opponent", @battle.p1_battle_monsters.map {|m| [ m.monster.name, m.id] }) %>
+  <%= select("move", "opponent", @battle.p1_battle_monsters.where("hp > 0").map {|m| [ m.monster.name, m.id] }) unless monster.hp < 1 %>
   
-  <%= f.submit 'Make move' %></li>
+  <%= f.submit 'Make move' unless monster.hp < 1 %></li>
 <% end %>
 <% end %>
 </ul>
