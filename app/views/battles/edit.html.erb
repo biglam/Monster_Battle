@@ -5,8 +5,10 @@
 </div>
 
 <div>Player 1 - Remaining monsters :-
+<script type="text/javascript">var p1monsters = [];</script>
   <% @p1_monsters.each do |monster| %>
   <p><strong>Name</strong> <%= monster[:name] %> <strong>HP - </strong> <%= monster[:hp] %></p>
+  <script>p1monsters.push({name:"<%= monster[:name] %>", hp:"<%= monster[:hp] %>", element:"<%= monster[:element] %>"})</script>
   <% end %>
 </div>
 

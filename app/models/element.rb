@@ -1,5 +1,6 @@
 class Element < ActiveRecord::Base
-  belongs_to :monster
+  has_many :monsters
+  has_many :moves
 
   
 end
