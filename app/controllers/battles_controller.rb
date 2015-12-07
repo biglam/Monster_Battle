@@ -13,7 +13,10 @@ class BattlesController < ApplicationController
   def create
     # binding.pry;''
     @battle = Battle.create(battle_params)
-    
+    @battle.player1.played += 1
+    @battle.player2.played += 1
+    @battle.player1.save
+    @battle.player2.save
     params[:p1_monsters].each { |x, y|  
       @battle.p1_battle_monsters.create monster: (Monster.find(y)), hp: Monster.find(y).hp
     }
@@ -101,7 +104,7 @@ class BattlesController < ApplicationController
     end
 
     def game_won
-      # binding.pry;''
+      # binding.pry;'' 
       if (@battle.p1_battle_monsters.map {|x| x.hp }.inject{|sum, x| sum + x} < 1 )
         @battle.winner_id = @battle.player2_id 
         @battle.player2.wins += 1
