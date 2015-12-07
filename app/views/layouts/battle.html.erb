@@ -1,4 +1,3 @@
-<link id="dynamic_css" rel="stylesheet" type="text/css" href="app/assets/stylesheets/style_stadium.css">
 
 <div class="main-container" id="background">
 
@@ -74,25 +73,41 @@
 
 
 
+____________________________________MAIN GAME CONTROLS
 
 
+<h2>FIGHT</h2>
+<%# binding.pry;'' %>
+<%= "Battle #{@battle.id}" %>
+<p>Player 1</p>
+<ul>
+<% @battle.p1_battle_monsters.each do |monster| %>
+<%= form_for @battle,  url: { action: 'submit_move' }, :method => :POST do |f| %>
+  <%= f.hidden_field :player, :value => 1 %>
+  <li><%= monster.monster.name %> - <%= monster.hp %> 
+    <%= select("move", "monster(#{monster.id})", monster.battle_monster_moves.map {|p| [ p.move.name, p.id ] }) unless monster.hp < 1 %>
+  <%= select("move", "opponent", @battle.p2_battle_monsters.where("hp > 0").map {|m| [ m.monster.name, m.id] }) unless monster.hp < 1 %>
+  
+  <%= f.submit 'Make move' unless monster.hp < 1  %></li>
+<% end %>
+<% end %>
+</ul>
+<p>Player 2</p>
+<ul>
+<% @battle.p2_battle_monsters.each do |monster| %>
+<%= form_for @battle,  url: { action: 'submit_move' }, :method => :POST do |f| %>
+  <%= f.hidden_field :player, :value => 2 %>
+  <li><%= monster.monster.name %> - <%= monster.hp %> 
+    <%= select("move", "monster(#{monster.id})", monster.battle_monster_moves.map {|p| [ p.move.name, p.id ] }) unless monster.hp < 1 %>
+  <%= select("move", "opponent", @battle.p1_battle_monsters.where("hp > 0").map {|m| [ m.monster.name, m.id] }) unless monster.hp < 1 %>
+  
+  <%= f.submit 'Make move' unless monster.hp < 1 %></li>
+<% end %>
+<% end %>
+</ul>
 
 
-
-
-
-
-
-
-
-
-
-
-
-    <p>This is where the main controllers for the game will go</p>
-
-
-
+________________________END OF MAIN GAME CONTROLS
 
 
 
@@ -266,6 +281,9 @@
 <img class="trainer-avatar" src="http://cdn.bulbagarden.net/upload/e/e7/XY_Schoolgirl.png">
 
 </div>
+
+</body>
+</html>
 
 
 
