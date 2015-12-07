@@ -1,5 +1,5 @@
 <h2>Challenge</h2>
-
+<% binding.pry;'' %>
 <%= form_for @battle do |f| %>
 <%= f.hidden_field :player1_id, :value => current_user.id %>
 <%= f.label :player2_id %>
@@ -8,6 +8,14 @@
 <% 4.times do |x| %>
 <%= select("p1_monsters", x, Monster.all.collect {|p| [ p.name, p.id ] }) %>
   <br>
-<% end %>
+<%end %>
+
+<p>Player 2 monsters:</p>
+<p>Select your monsters: -</p>
+<% 4.times do |x| %>
+<%= select("p2_monsters", x, Monster.all.collect {|p| [ p.name, p.id ] }) %>
+  <br>
+<%end %>
+
 <%= f.submit 'FIGHT!' %>
 <% end %>

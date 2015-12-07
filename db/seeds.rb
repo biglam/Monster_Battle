@@ -16,9 +16,24 @@ User.create!(email: "pichu@example.example", password:"password", name:"pichu")
 #nevin - can you please add the rest of the data in this way?--
 ## -- ELEMENTS
 noelem = Element.create!(name: 'non-elemental', strong_to: '', weak_to: '', neutral: '', immune: '')
-fire = Element.create!(name: 'fire', strong_to: 'ice', weak_to: 'water', neutral: '', immune: 'fire')
-ice = Element.create!(name: 'ice', strong_to: 'water', weak_to: 'fire', neutral: '', immune: 'ice')
-lightning = Element.create!(name: 'lightning', strong_to: 'fire', weak_to: 'water', neutral: '', immune: 'lightning')
+# fire = Element.create!(name: 'fire', strong_to: 'ice', weak_to: 'water', neutral: '', immune: 'fire')
+# ice = Element.create!(name: 'ice', strong_to: 'water', weak_to: 'fire', neutral: '', immune: 'ice')
+# lightning = Element.create!(name: 'lightning', strong_to: 'fire', weak_to: 'water', neutral: '', immune: 'lightning')
+energy = Element.create!(name: 'energy' 'non-elemental', strong_to: 'metal', weak_to: 'water', neutral: '', immune: '')
+fire = Element.create!(name: 'fire', strong_to: ['fire', 'water', 'earth'], weak_to: ['ice', 'air', 'metal'], neutral: '', immune: '')
+water = Element.create!(name: 'water', strong_to: ['water', 'earth'], weak_to: ['energy', 'fire'], neutral: '', immune: '')
+wood = Element.create!(name: 'wood', strong_to: 'metal', weak_to: 'earth', neutral: '', immune: '')
+lightning = Element.create!(name: 'lightning', strong_to: 'air', weak_to: 'earth', neutral: '', immune: '')
+ice = Element.create!(name: 'ice', strong_to: 'ice', weak_to: 'fire', neutral: '', immune: '')
+
+earth = Element.create!(name: 'earth', strong_to: ['wood', 'lightning', 'earth'], weak_to: ['fire', 'water', 'metal'], neutral: '', immune: '')
+
+air = Element.create!(name: 'air', strong_to: ['fire', 'metal'], weak_to: ['lightning', 'earth'], neutral: '', immune: '')
+death = Element.create!(name: 'death', strong_to: ['energy', 'light'], weak_to: ['metal', 'life'], neutral: '', immune: '')
+dark = Element.create!(name: 'dark', strong_to: 'dark', weak_to: 'light', neutral: '', immune: '')
+metal = Element.create!(name: 'metal', strong_to: 'fire', weak_to: 'wood', neutral: '', immune: '')
+light = Element.create!(name: 'light', strong_to: 'death', weak_to: 'dark', neutral: '', immune: '')
+life = Element.create!(name: 'life', strong_to: 'life', weak_to: 'death', neutral: '', immune: '')
 
 ## -- MOVES
 punch = Move.create!(name: 'punch', strength: 50, special: false, remaining_uses: 10)
