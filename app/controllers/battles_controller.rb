@@ -104,10 +104,16 @@ class BattlesController < ApplicationController
       # binding.pry;''
       if (@battle.p1_battle_monsters.map {|x| x.hp }.inject{|sum, x| sum + x} < 1 )
         @battle.winner_id = @battle.player2_id 
+        @battle.player2.wins += 1
+        @battle.player2.points += 3
+        @battle.player2.save
         @battle.save
         return true
       elsif (@battle.p2_battle_monsters.map {|x| x.hp }.inject{|sum, x| sum + x} < 1)
         @battle.winner_id = @battle.player1_id
+        @battle.player1.wins += 1
+        @battle.player1.points += 3
+        @battle.player1.save
         @battle.save
         return true
     else
