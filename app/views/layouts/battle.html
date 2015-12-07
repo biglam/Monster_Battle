@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Layout file</title>
+	<link id="dynamic_css" rel="stylesheet" type="text/css" href="style_stadium.css">
+
+
+
+</head>
+<body>
+
+<div class="main-container" id="background">
+
+    <div class="health1">
+         <h4>HP:</h4>
+         <div class="player1health" id="player1health">
+         <progress id="health1" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
+         </div>
+         
+    </div>
+
+    <div class="health2">
+        <h4>:HP</h4>
+        <div class="player2health" id="player2health">
+        <progress id="health2" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
+        </div>
+    </div>
+
+    <div class="player1-name">
+        <h2 id="player1-name">Player 1</h2>
+    </div>
+
+      <div class="player2-name">
+        <h2 id="player2-name">Player 2</h2>
+    </div>
+
+    <div class="big-monster big-monster-left" id="big-1">
+        <img src="http://www.psypokes.com/dex/picdex/globallink/300/006.png
+        ">
+    </div>
+
+    <div class="anim-monster anim-monster-left" id="monster1">
+        <img src="http://www.psypokes.com/dex/picdex/xy_animated/back/006.gif">
+    </div>
+
+     <div class="big-monster big-monster-right" id="big2">
+      <img src="http://www.psypokes.com/dex/picdex/globallink/300/009.png">
+    </div>
+
+    <div class="anim-monster anim-monster-right" id="monster2">
+        <img src="http://www.psypokes.com/dex/picdex/xy_animated/front/009_mega.gif">
+    </div>
+
+    <div class="attack" id="attack">
+        <img src="images/attacks/electric.png">
+    </div>
+
+    <div class="p2-damage" id="p2-damage">
+        <img src="images/damage/explosion.gif">
+    </div>
+
+    <div class="p1-damage" id="p2-damage">
+        <img src="images/damage/explosion.gif">
+    </div>
+
+     <div class="sphere sphere-left">
+        <img src="images/UI/sphere.png">
+    </div>
+
+     <div class="sphere sphere-right">
+        <img src="images/UI/sphere.png">
+    </div>
+
+     <div class="screen">
+        <img src="images/UI/logo2.png" style="width:260px; height:auto;">
+    </div>
+
+    <div class="menu">
+    <button class="start-button" id="style">Change Venue</button>
+    <button class="button" id="damage1">Damage player 1</button>
+    <button class="button" id="damage2">Damage player 2</button>
+    <button class="button" id="play-video">Play Winner Video</button>
+    <p>This is where the main controllers for the game will go</p>
+    </div>
+
+    <div class="avatar1">
+        <img class="trainer-avatar" src="http://cdn.bulbagarden.net/upload/thumb/6/61/Black_2_White_2_Nate.png/200px-Black_2_White_2_Nate.png">
+    </div>
+
+     <div class="avatar2">
+        <img class="trainer-avatar" src="http://cdn.bulbagarden.net/upload/f/f7/Ruby_Sapphire_May.png">
+    </div>
+    <div class="videoWrapper" id="wrapper">
+        <video id="vid1" autoplay>
+            <source src="videos/charizard-flame.mp4">
+            <!-- <source src="videos/vid1.ogv"> -->
+        </video>
+    </div>
+
+</div>
+
+
+
+
+
+
+<div>
+<h1>Charizard - Fire  HP</h1>
+<img src="images/UI/healthBar.gif">
+<br>
+
+<br>
+<img src="http://www.psypokes.com/dex/picdex/sugimori/kalos/006_ymega.png">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/back/006_ymega.gif">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/front/006_ymega.gif">
+
+
+<img src="http://www.psypokes.com/dex/picdex/sugimori/hoenn/006.png">
+<img src="http://www.psypokes.com/dex/picdex/globallink/300/006.png">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/back/006.gif">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/front/006.gif">
+<img src="http://www.psypokes.com/dex/picdex/bw/006.png">
+
+
+<br>
+<h1>Blastoise - Water</h1>
+<img src="http://www.psypokes.com/dex/picdex/sugimori/kalos/009_mega.png">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/back/009_mega.gif">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/front/009_mega.gif">
+
+<img src="http://www.psypokes.com/dex/picdex/globallink/300/009.png">
+<img src="http://www.psypokes.com/dex/picdex/sugimori/hoenn/009.png">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/back/009.gif">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/front/009.gif">
+<img src="http://www.psypokes.com/dex/picdex/bw/009.png">
+<br>
+
+
+<h1>Lugia - Sky</h1>
+<img src="http://www.psypokes.com/dex/picdex/sugimori/sinnoh/249.png">
+<img src="http://www.psypokes.com/dex/picdex/globallink/300/249.png">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/back/249.gif">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/front/249.gif">
+<img src="http://www.psypokes.com/dex/picdex/bw/249.png">
+
+
+
+
+<br>
+<h1>Dragonite - Wind</h1>
+<img src="http://www.psypokes.com/dex/picdex/sugimori/hoenn/149.png">
+<img src="http://www.psypokes.com/dex/picdex/globallink/300/149.png">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/back/149.gif">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/front/149.gif">
+<img src="http://www.psypokes.com/dex/picdex/bw/149.png">
+
+<h1>Lucario - Metal</h1>
+<img src="http://www.psypokes.com/dex/picdex/sugimori/kalos/448_mega.png">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/back/448_mega.gif">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/front/448_mega.gif">
+<img src="http://www.psypokes.com/dex/picdex/sugimori/sinnoh/448.png">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/back/448.gif">
+<img src="http://www.psypokes.com/dex/picdex/bw/448.png">
+
+<h1>Tyranitar - Earth</h1>
+<img src="http://www.psypokes.com/dex/picdex/sugimori/sinnoh/248.png">
+<img src="http://www.psypokes.com/dex/picdex/globallink/300/248.png">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/back/248.gif">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/front/248.gif">
+<img src="http://www.psypokes.com/dex/picdex/bw/248.png">
+
+<h1>Zapdos - Lightning</h1>
+<img src="http://www.psypokes.com/dex/picdex/sugimori/hoenn/145.png">
+<img src="http://www.psypokes.com/dex/picdex/globallink/300/145.png">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/back/145.gif">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/front/145.gif">
+<img src="http://www.psypokes.com/dex/picdex/bw/145.png">
+
+<h1>Articuno - Ice</h1>
+<img src="http://www.psypokes.com/dex/picdex/sugimori/hoenn/144.png">
+<img src="http://www.psypokes.com/dex/picdex/globallink/300/144.png">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/back/144.gif">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/front/144.gif">
+<img src="http://www.psypokes.com/dex/picdex/bw/144.png">
+
+<h1>Bulbasaur</h1>
+<img src="http://www.psypokes.com/dex/picdex/sugimori/hoenn/001.png">
+<img src="http://www.psypokes.com/dex/picdex/globallink/300/001.png">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/back/001.gif">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/front/001.gif">
+<img src="http://www.psypokes.com/dex/picdex/bw/001.png">
+
+
+<h1>Pikachu - Thunder</h1>
+<img src="http://www.psypokes.com/dex/picdex/sugimori/hoenn/025.png">
+<img src="http://www.psypokes.com/dex/picdex/globallink/300/025.png">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/back/025.gif">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/front/025.gif">
+<img src="http://www.psypokes.com/dex/picdex/bw/025.png">
+
+<h1>Cleferry - Light</h1>
+<img src="http://www.psypokes.com/dex/picdex/sugimori/hoenn/035.png">
+<img src="http://www.psypokes.com/dex/picdex/globallink/300/035.png">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/back/035.gif">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/front/035.gif">
+<img src="http://www.psypokes.com/dex/picdex/bw/035.png">
+
+<h1>Mew - Energy</h1>
+<img src="http://www.psypokes.com/dex/picdex/sugimori/hoenn/151.png">
+<img src="http://www.psypokes.com/dex/picdex/globallink/300/151.png">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/back/151.gif">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/front/151.gif">
+<img src="http://www.psypokes.com/dex/picdex/bw/151.png">
+
+<br>
+<h1>Latios - Air</h1>
+<img src="http://www.psypokes.com/dex/picdex/sugimori/kalos/381_mega.png">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/back/381_mega.gif">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/front/381_mega.gif">
+
+<img src="http://www.psypokes.com/dex/picdex/sugimori/hoenn/381.png">
+<img src="http://www.psypokes.com/dex/picdex/globallink/300/381.png">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/back/381.gif">
+<img src="http://www.psypokes.com/dex/picdex/xy_animated/front/381.gif">
+<img src="http://www.psypokes.com/dex/picdex/bw/381.png">
+
+
+<h1>TRAINERS</h1>
+<h2>Boys</h2>
+<img class="trainer-avatar" src="http://cdn.bulbagarden.net/upload/thumb/6/61/Black_2_White_2_Nate.png/200px-Black_2_White_2_Nate.png">
+<img class="trainer-avatar" src="http://img-cache.cdn.gaiaonline.com/9589e04b9674af3347c054ed396364b0/http://i38.photobucket.com/albums/e135/ShadowBankotsu/Pokemon/Pokemon_Trainer_Brendan_Emerald.png">
+<img class="trainer-avatar" src="http://cdn.bulbagarden.net/upload/thumb/f/f1/Omega_Ruby_Alpha_Sapphire_Brendan.png/200px-Omega_Ruby_Alpha_Sapphire_Brendan.png">
+<img class="trainer-avatar" src="http://cdn.bulbagarden.net/upload/thumb/2/2f/Platinum_Lucas.png/220px-Platinum_Lucas.png">
+<img class="trainer-avatar" src="http://cdn.bulbagarden.net/upload/thumb/4/48/XY_Calem.png/150px-XY_Calem.png">
+<img class="trainer-avatar" src="http://orig15.deviantart.net/64a8/f/2012/140/0/9/cool_trainer_scott_by_stormgale-d50htvr.png">
+<img class="trainer-avatar" src="http://vignette2.wikia.nocookie.net/es.pokemon/images/4/4f/Ni%C3%B1o_bien_ROZA.png/revision/latest?cb=20150417002457">
+
+<h2>Girls</h2>
+<img class="trainer-avatar" src="http://cdn.bulbagarden.net/upload/thumb/6/6f/XY_Ace_Trainer_F.png/138px-XY_Ace_Trainer_F.png">
+<img class="trainer-avatar" src="http://vignette4.wikia.nocookie.net/pokemon/images/8/8e/Dawn.png/revision/latest?cb=20110906113053">
+<img class="trainer-avatar" src="http://i.imgur.com/5yo729C.png">
+
+
+<img class="trainer-avatar" src="http://cdn.bulbagarden.net/upload/thumb/6/6f/Platinum_Dawn.png/250px-Platinum_Dawn.png">
+<img class="trainer-avatar" src="http://cdn.bulbagarden.net/upload/f/f7/Ruby_Sapphire_May.png">
+
+<img class="trainer-avatar" src="http://cdn.bulbagarden.net/upload/5/52/XY_Psychic.png">
+<img class="trainer-avatar" src="http://cdn.bulbagarden.net/upload/thumb/8/80/HeartGold_SoulSilver_Will.png/200px-HeartGold_SoulSilver_Will.png">
+<img class="trainer-avatar" src="http://cdn.bulbagarden.net/upload/3/3f/XY_Punk_Girl.png">
+<img class="trainer-avatar" src="http://cdn.bulbagarden.net/upload/e/e7/XY_Schoolgirl.png">
+
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+<script src="game.js"></script>
+
+</body>
+</html>

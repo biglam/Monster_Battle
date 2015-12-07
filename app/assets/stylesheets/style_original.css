@@ -1,0 +1,235 @@
+body {
+	background-color: white;
+}
+
+@font-face { 
+	font-family: pokemonA; src: url('fonts/PokemonA.ttf'); 
+} 
+@font-face { 
+	font-family: pokemonB; src: url('fonts/PokemonB.ttf'); 
+} 
+@font-face { 
+	font-family: pokemonC; src: url('fonts/PokemonC.ttf'); 
+} 
+@font-face { 
+	font-family: pokemonD; src: url('fonts/PokemonD.ttf'); 
+} 
+
+
+
+
+.main-container {
+/*background-color: grey;*/
+position: relative;
+background-image: url("images/backgrounds/original2.png");
+width: 1200px;
+height: 600px;
+margin: auto;
+	/*margin-left: auto;
+	margin-right: auto;*/
+}
+
+.trainer-avatar {
+width: auto;
+height: 185px;
+}
+
+.big-monster-left {
+
+left: -40px;
+}
+
+.big-monster-right {
+
+right: -40px;
+
+}
+
+.big-monster {
+position: absolute;
+        width: 297px;
+    height: auto;
+    bottom: -31px;
+    display: inline-block;
+    z-index:7;
+}
+
+.anim-monster {
+position: absolute;
+
+}
+
+.anim-monster-left {
+	    left: 438px;
+    bottom: 305px;
+	z-index:1;
+}
+
+.anim-monster-right {
+	right: 419px;
+    bottom: 411px;
+}
+
+
+
+.big-monster img {
+	width: 100%;
+	height: auto;
+}
+
+.attack {
+	position: absolute;
+	left:475px;
+	bottom:166px;
+}
+
+
+
+.sphere-left {
+	position: absolute;
+    width: 200px;
+    height: 200px;
+    top: 70px;
+    left: 37px;
+    opacity: 0.9;
+    z-index: 6;
+    display:none;
+}
+
+.sphere-left img {
+	width:200px;
+	height: 200px;
+}
+
+.sphere-right img {
+	width:200px;
+	height: 200px;
+}
+
+.sphere-right {
+	position: absolute;
+    width: 200px;
+    height: 200px;
+    top: 70px;
+    right: 37px;
+    opacity: 0.9;
+    z-index: 6;
+    display:none;
+}
+
+.screen {
+	    width: 274px;
+    height: 144px;
+    background-color: black;
+    position: absolute;
+    top: 82px;
+    left: 127px;
+    display:none;
+
+}
+
+.p2-damage {
+	    position: absolute;
+        left: 686px;
+    bottom: 394px;
+}
+
+.p1-damage {
+	    position: absolute;
+        left: 525px;
+    bottom: 299px;
+    z-index: 0;
+}
+.player1health {
+
+	position: absolute;
+    width: 202px;
+    height: 10px;
+    top: 20px;
+    left: 45px;
+    z-index: 2;
+}
+.player2health {
+
+	position: absolute;
+    width: 202px;
+    height: 10px;
+    top: 20px;
+    right: 45px;
+    z-index: 2;
+}
+.health1 {
+	position: absolute;
+    left: 31px;
+    width: 300px;
+    height: auto;
+    top: 11px;
+
+}
+
+.health2 {
+	position: absolute;
+    right: 31px;
+    width: 300px;
+    height: auto;
+    top: 11px;
+    text-align: right;
+	
+}
+.start-button {
+	position:absolute;
+	bottom: 50px;
+	margin-left:auto;
+	margin-right: auto;
+	z-index: 3;
+}
+
+.menu {
+	    position: absolute;
+    background-color: white;
+    width: 740px;
+    height: 220px;
+    bottom: 20px;
+    left: 230px;
+    opacity: 0.8;
+}
+
+.avatar1 {
+	position:absolute;
+	    left: 13px;
+    bottom: 353px;
+
+}
+.avatar2 {
+	position:absolute;
+	    right: 13px;
+    bottom: 353px;
+}
+
+h1, h2, h3, h4 {
+	font-family: PokemonA;
+}
+
+.player1-name {
+	position: absolute;
+	top: -15px;
+    left: 31px;
+
+}
+
+.player2-name {
+
+	position: absolute;
+	top: -15px;
+    right: 31px;
+
+}
+.videoWrapper {
+	position: absolute;
+    width: 854px;
+    height: 480px;
+    top: 55px;
+    left: 174px;
+    background-color: blue;
+    z-index: 5;
+}
