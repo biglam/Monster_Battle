@@ -21,26 +21,34 @@ class BattlesController < ApplicationController
       @battle.p2_battle_monsters.create monster: (Monster.find(y))
     }
     binding.pry;''
-    # @battle.p1_monsters = params[:p1_monsters].map {|k,v| v.to_i}.join(' ')
-    # @battle.p2_monsters = @battle.select_random_monsters.map {|k, v| k[:id] }.join(' ')
-    # @battle.save
-    redirect_to(edit_battle_path(@battle.id))
+    redirect_to(monster_moves_battle_path(@battle))
+  end
+
+  def pick_monster_moves
+    @battle = Battle.find(params[:id])
+
   end
 
   def edit
     @battle = Battle.find(params[:id])
-    # @p1_monsters = (@battle.p1_monsters.split.map { |x| x.to_i }).map { |a| b =Monster.find(a); {name: b.name, id: b.id, hp: b.hp, element: b.element.name} }
-    # @p2_monsters = (@battle.p2_monsters.split.map { |x| x.to_i }).map { |a| b =Monster.find(a); {name: b.name, id: b.id, hp: b.hp, element: b.element.name} }
     @p1_monsters = 
     @turn = [1,2]
-    # @message = "Ajax!" if request.xhr?
-
-    # render @battle, layout: false i#request.xhr?
   end
 
-  # def fight
-  #   a = "string".to_json
-  # end
+  def update
+    
+    @battle = Battle.find(params['battle']['battle_id'].to_i)
+    if params["p1_monstermoves0"] != nil
+
+      @battle.p1_battle_monsters.each_with_index { |monster, i|
+        params["p1_monstermoves#{i}"].map { |x, y| 
+        monster.battle_monster_moves.create move: Move.find(y) }
+      }
+      binding.pry;''
+      
+    end
+  end
+
 
   private
   def battle_params

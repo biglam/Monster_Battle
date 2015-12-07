@@ -1,0 +1,17 @@
+<%# binding.pry;'' %>
+<h2>Select your moves</h2>
+<%= form_for @battle do |f| %>
+<%= f.hidden_field :battle_id, :value => @battle.id %>
+<% @battle.p1_battle_monsters.each do |p1_monster| %>
+<%= p1_monster.monster.name %> - <%# binding.pry;'' %><% 4.times do |m| %><%= select("p1_monstermoves#{m}", p1_monster.id, p1_monster.monster.moves.map {|p| [ p.name, p.id ] }) %> <% end %> <br>
+<% end %>
+
+<h2>Player 2</h2>
+
+<% @battle.p2_battle_monsters.each do |p2_monster| %>
+<%= p2_monster.monster.name %> - <%# binding.pry;'' %><% 4.times do |m| %><%= select("p2_monstermoves", p2_monster.id, p2_monster.monster.moves.map {|p| [ p.name, p.id ] }) %> <% end %> <br>
+<% end %>
+
+
+<%= f.submit %>
+<% end %>
