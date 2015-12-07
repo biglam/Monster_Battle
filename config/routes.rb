@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :battles do
        member do
         get 'monster_moves', to: 'battles#pick_monster_moves'
+        post 'submit_move', to: 'battles#submit_move'
       end
     end
 

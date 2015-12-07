@@ -1,25 +1,29 @@
 <h2>FIGHT</h2>
-<% binding.pry;'' %>
-
+<%# binding.pry;'' %>
+<%= "Battle #{@battle.id}" %>
 <p>Player 1</p>
 <ul>
 <% @battle.p1_battle_monsters.each do |monster| %>
-<%= form_for @battle do |f| %>
+<%= form_for @battle,  url: { action: 'submit_move' }, :method => :POST do |f| %>
+  <%= f.hidden_field :player, :value => 1 %>
   <li><%= monster.monster.name %> - <%= monster.hp %> 
-  <%# binding.pry;'' %>
-  <%= select("move", "monster(#{monster.id})", monster.battle_monster_moves.map {|p| [ p.move.name, p.id ] }) %>
-  <%= f.submit 'Make move' %></li> <%# binding.pry;'' %> 
+    <%= select("move", "monster(#{monster.id})", monster.battle_monster_moves.map {|p| [ p.move.name, p.id ] }) unless monster.hp < 1 %>
+  <%= select("move", "opponent", @battle.p2_battle_monsters.map {|m| [ m.monster.name, m.id] }) %>
+  
+  <%= f.submit 'Make move' %></li>
 <% end %>
 <% end %>
 </ul>
 <p>Player 2</p>
 <ul>
 <% @battle.p2_battle_monsters.each do |monster| %>
-<%= form_for @battle do |f| %>
+<%= form_for @battle,  url: { action: 'submit_move' }, :method => :POST do |f| %>
+  <%= f.hidden_field :player, :value => 2 %>
   <li><%= monster.monster.name %> - <%= monster.hp %> 
-  <%# binding.pry;'' %>
-  <%= select("move", "monster(#{monster.id})", monster.battle_monster_moves.map {|p| [ p.move.name, p.id ] }) %>
-  <%= f.submit 'Make move' %></li> <%# binding.pry;'' %> 
+    <%= select("move", "monster(#{monster.id})", monster.battle_monster_moves.map {|p| [ p.move.name, p.id ] }) unless monster.hp < 1 %>
+  <%= select("move", "opponent", @battle.p2_battle_monsters.map {|m| [ m.monster.name, m.id] }) %>
+  
+  <%= f.submit 'Make move' %></li>
 <% end %>
 <% end %>
 </ul>

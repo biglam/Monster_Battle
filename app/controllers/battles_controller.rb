@@ -36,8 +36,9 @@ class BattlesController < ApplicationController
   end
 
   def update
-    @battle = Battle.find(params['battle']['battle_id'].to_i)
+    
     if  params['battle']['page'] == "moves"
+      @battle = Battle.find(params['battle']['battle_id'].to_i)
       @battle.p1_battle_monsters.each do |monster|
         mid = monster.id
         params['p1_battle_monsters'][mid.to_s].each do |k, v|
@@ -60,6 +61,11 @@ class BattlesController < ApplicationController
       redirect_to(edit_battle_path(@battle))
     end
 
+    def submit_move
+      @battle = Battle.find(params[:id])
+      # binding.pry;''
+      redirect_to(edit_battle_path(@battle))
+    end
 
     private
     def battle_params
