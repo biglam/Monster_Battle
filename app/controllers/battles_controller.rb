@@ -64,6 +64,29 @@ class BattlesController < ApplicationController
     def submit_move
       @battle = Battle.find(params[:id])
       # binding.pry;''
+      attacking_monster_id = params['move'].map { |k,v| k[/\d+/] }[0].to_i
+      #get attacking move
+      attacking_move_id = params['move'].map { |k,v| v }[0].to_i
+      #get recievers element
+      if params['battle']['player'] == "1"
+        attacker = @battle.p1_battle_monsters.find(attacking_monster_id)
+        reciever = @battle.p2_battle_monsters.find(params['move']['opponent'].to_i)
+      elsif params['battle']['player'] == "2"
+        # binding.pry;''
+        attacker = @battle.p2_battle_monsters.find(attacking_monster_id)
+        reciever = @battle.p1_battle_monsters.find(params['move']['opponent'].to_i)
+      end
+      move = attacker.battle_monster_moves.find(attacking_move_id)
+      reciever_element = reciever.monster.element.name
+      #calculate damage
+      damage = move.move.attack(reciever_element)
+      #take damage from reciever
+      reciever.hp -= damage
+      # binding.pry;''
+      #take 1 from remaining moves
+      #save
+      reciever.save
+      #redirect
       redirect_to(edit_battle_path(@battle))
     end
 
