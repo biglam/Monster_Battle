@@ -4,17 +4,17 @@ class Battle < ActiveRecord::Base
   belongs_to :player2, class_name: 'User'
 
   def cl_setup(p1_id, p2_id) #command line only
-    @p1_id = p1_id
-    @p2_id = p2_id
-    @turn = [1,2]
-    @p1_monsters = set_monster_list
-    @p2_monsters = select_random_monsters
+    @p1_id = p1_id #
+    @p2_id = p2_id#
+    @turn = [1,2]#
+    @p1_monsters = set_monster_list #
+    @p2_monsters = select_random_monsters #
     puts "Player1 Monsters - "
-    @p1_monsters.each do |m|
+    @p1_monsters.each do |m| #ajax?
       puts "Name: #{m[:name]} - HP Remaining: #{m[:hp]} - Element #{m[:element]}"
     end
     puts "Player2 Monsters - "
-    @p2_monsters.each do |m|
+    @p2_monsters.each do |m| #ajax?
       puts "Name: #{m[:name]} - HP Remaining: #{m[:hp]} - Element #{m[:element]}"
     end
     # binding.pry;''
@@ -74,12 +74,11 @@ class Battle < ActiveRecord::Base
   def fight_monsters(monster1, monster2)
     puts "Select a move"
     available_moves = [0]
-    Move.all.each do |move|
+    Monster.find(monster1[:id]).moves.each do |move|
       puts "#{move.id} - #{move.name}"
       available_moves << move.id
     end
     movechoice = nil
-    # binding.pry;''
     until available_moves.include? movechoice
       puts 'Enter a valid move number or 0 for random'
       movechoice = gets.chomp.to_i
