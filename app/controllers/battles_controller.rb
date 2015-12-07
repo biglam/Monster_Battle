@@ -11,20 +11,31 @@ class BattlesController < ApplicationController
   end
 
   def create
+    # binding.pry;''
     @battle = Battle.create(battle_params)
+    @battle.p1_monsters = params[:p1_monsters].map {|k,v| v.to_i}.join(' ')
+    @battle.p2_monsters = @battle.select_random_monsters.map {|k, v| k[:id] }.join(' ')
+    @battle.save
     redirect_to(edit_battle_path(@battle.id))
   end
 
   def edit
     @battle = Battle.find(params[:id])
-    @message = "Ajax!" if request.xhr?
-    # render @battle, layout: false if request.xhr?
+    @p1_monsters = (@battle.p1_monsters.split.map { |x| x.to_i }).map { |a| b =Monster.find(a); {name: b.name, id: b.id, hp: b.hp, element: b.element.name} }
+    @p2_monsters = (@battle.p2_monsters.split.map { |x| x.to_i }).map { |a| b =Monster.find(a); {name: b.name, id: b.id, hp: b.hp, element: b.element.name} }
+    @turn = [1,2]
+    # @message = "Ajax!" if request.xhr?
 
+    # render @battle, layout: false i#request.xhr?
   end
+
+  # def fight
+  #   a = "string".to_json
+  # end
 
   private
   def battle_params
-    params.require(:battle).permit(:player1_id, :player2_id)
+    params.require(:battle).permit(:player1_id, :player2_id, :p1_monsters, :p2_monsters)
   end
   
 end

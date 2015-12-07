@@ -1,8 +1,21 @@
 <h2>FIGHT</h2>
-
+<%# binding.pry;'' %>
 <div id='menu'>
   Battle text here
 </div>
+
+<div>Player 1 - Remaining monsters :-
+  <% @p1_monsters.each do |monster| %>
+  <p><strong>Name</strong> <%= monster[:name] %> <strong>HP - </strong> <%= monster[:hp] %></p>
+  <% end %>
+</div>
+
+<div>Player 2 - Remaining monsters :-
+  <% @p2_monsters.each do |monster| %>
+  <p><strong>Name</strong> <%= monster[:name] %> <strong>HP - </strong> <%= monster[:hp] %></p>
+  <% end %>
+</div>
+
 
 <%= form_tag battles_path, method: :get, id: :updater, remote: true do %>
 <%= submit_tag "update", :name => nil, :id => "update" %>

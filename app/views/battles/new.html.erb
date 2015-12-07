@@ -4,5 +4,10 @@
 <%= f.hidden_field :player1_id, :value => current_user.id %>
 <%= f.label :player2_id %>
 <%= f.collection_select :player2_id, User.where.not(id: current_user.id), :id, :name, :selected => params['player2_id'] %>
+<p>Select your monsters: -</p>
+<% 4.times do |x| %>
+<%= select("p1_monsters", x, Monster.all.collect {|p| [ p.name, p.id ] }) %>
+  <br>
+<% end %>
 <%= f.submit 'FIGHT!' %>
 <% end %>

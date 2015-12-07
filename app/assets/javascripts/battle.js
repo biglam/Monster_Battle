@@ -9,3 +9,7 @@ $('#updater').on('ajax:success', function(evt, data, status, xhr) {
  });
 
 });
+
+// $('#update').on('click', function(e) {
+// alert('click');
+// });

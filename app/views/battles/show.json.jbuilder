@@ -1,0 +1,2 @@
+json.battles do
+end
