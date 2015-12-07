@@ -1,24 +1,25 @@
 <h2>FIGHT</h2>
-<%# binding.pry;'' %>
-<div id='menu'>
-  Battle text here
-</div>
+<% binding.pry;'' %>
 
-<div>Player 1 - Remaining monsters :-
-<script type="text/javascript">var p1monsters = [];</script>
-  <% @p1_monsters.each do |monster| %>
-  <p><strong>Name</strong> <%= monster[:name] %> <strong>HP - </strong> <%= monster[:hp] %></p>
-  <script>p1monsters.push({name:"<%= monster[:name] %>", hp:"<%= monster[:hp] %>", element:"<%= monster[:element] %>"})</script>
-  <% end %>
-</div>
-
-<div>Player 2 - Remaining monsters :-
-  <% @p2_monsters.each do |monster| %>
-  <p><strong>Name</strong> <%= monster[:name] %> <strong>HP - </strong> <%= monster[:hp] %></p>
-  <% end %>
-</div>
-
-
-<%= form_tag battles_path, method: :get, id: :updater, remote: true do %>
-<%= submit_tag "update", :name => nil, :id => "update" %>
+<p>Player 1</p>
+<ul>
+<% @battle.p1_battle_monsters.each do |monster| %>
+<%= form_for @battle do |f| %>
+  <li><%= monster.monster.name %> - <%= monster.hp %> 
+  <%# binding.pry;'' %>
+  <%= select("move", "monster(#{monster.id})", monster.battle_monster_moves.map {|p| [ p.move.name, p.id ] }) %>
+  <%= f.submit 'Make move' %></li> <%# binding.pry;'' %> 
 <% end %>
+<% end %>
+</ul>
+<p>Player 2</p>
+<ul>
+<% @battle.p2_battle_monsters.each do |monster| %>
+<%= form_for @battle do |f| %>
+  <li><%= monster.monster.name %> - <%= monster.hp %> 
+  <%# binding.pry;'' %>
+  <%= select("move", "monster(#{monster.id})", monster.battle_monster_moves.map {|p| [ p.move.name, p.id ] }) %>
+  <%= f.submit 'Make move' %></li> <%# binding.pry;'' %> 
+<% end %>
+<% end %>
+</ul>
