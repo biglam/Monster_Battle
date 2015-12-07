@@ -1,0 +1,5 @@
+a.p1_battle_monsters.first.battle_monster_moves.first.move.attack('fire')
+a.p1_battle_monsters.first.battle_monster_moves.first.move.element
+a.p1_battle_monsters.first.battle_monster_moves.create move: Move.last
+a.p1_battle_monsters.first.battle_monster_moves.create move: Move.first
+a = Battle.last
