@@ -18,7 +18,11 @@ Rails.application.routes.draw do
         get 'monster_moves', to: 'battles#pick_monster_moves'
         post 'submit_move', to: 'battles#submit_move'
       end
+      collection do
+      get 'league', to: 'battles#league_table'
+      end
     end
+
 
   # Example resource route with options:
   #   resources :products do

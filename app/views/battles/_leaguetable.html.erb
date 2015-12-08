@@ -1,0 +1,16 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Games Played</th>
+    <th>Games Won</th>
+    <th>Points</th>
+  </tr>
+  <% @users.each do |user| %>
+  <tr>
+    <td><%= user.name %></td>
+    <td><%= user.played %></td>
+    <td><%= user.wins %></td>
+    <td><%= user.points %></td>
+  </tr>
+  <% end %>
+</table>

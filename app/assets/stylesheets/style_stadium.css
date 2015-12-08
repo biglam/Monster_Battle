@@ -147,6 +147,28 @@ position: absolute;
     z-index: 9;
     display:block;
 }
+.sphere-right1 {
+    top: 70px;
+    right: 37px;
+}
+
+}
+.sphere-right2 {
+    top: 200px;
+    right: 37px;
+}
+
+}
+.sphere-right3 {
+    top: 330px;
+    right: 37px;
+}
+
+}
+.sphere-right4 {
+    top: 460px;
+    right: 37px;
+}
 
 .screen {
 	    width: 274px;
@@ -204,6 +226,43 @@ position: absolute;
    height: 10px;
    top: 490px;
    left: 145px;
+   z-index: 2;
+}
+
+.player2health1 {
+    
+    position: absolute;
+    width: 202px;
+    height: 10px;
+    top: 100px;
+    right: 145px;
+    z-index: 2;
+}
+.player2health2 {
+    
+    position: absolute;
+    width: 202px;
+    height: 10px;
+    top: 230px;
+    right: 145px;
+    z-index: 2;
+}
+.player2health3 {
+    
+    position: absolute;
+    width: 202px;
+    height: 10px;
+    top: 360px;
+    right: 145px;
+    z-index: 2;
+}
+.player2health4 {
+    
+   position: absolute;
+   width: 202px;
+   height: 10px;
+   top: 490px;
+   right: 145px;
    z-index: 2;
 }
 

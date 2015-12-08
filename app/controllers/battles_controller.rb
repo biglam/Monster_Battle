@@ -3,7 +3,6 @@ class BattlesController < ApplicationController
 
   def index
     @battles = Battle.all
-    # render @battles, layout: false if request.xhr?
   end
 
   def new
@@ -11,15 +10,21 @@ class BattlesController < ApplicationController
   end
 
   def create
-    # binding.pry;''
     @battle = Battle.create(battle_params)
-    
+
+    @battle.player1.played += 1
+    @battle.player2.played += 1
+    turn = [@battle.player1.id, @battle.player2.id]
+    @battle.turn = turn.shuffle.join(' ')
+    @battle.player1.save
+    @battle.player2.save
     params[:p1_monsters].each { |x, y|  
       @battle.p1_battle_monsters.create monster: (Monster.find(y)), hp: Monster.find(y).hp
     }
     params[:p2_monsters].each { |x, y|  
       @battle.p2_battle_monsters.create monster: (Monster.find(y)), hp: Monster.find(y).hp
     }
+    @battle.save
     # binding.pry;''
     redirect_to(monster_moves_battle_path(@battle))
   end
@@ -31,24 +36,27 @@ class BattlesController < ApplicationController
 
   def edit
     @battle = Battle.find(params[:id])
-    @p1_monsters = 
-    @turn = [1,2]
+    @turn = @battle.turn.split[0].to_i
   end
 
   def update
     
     if  params['battle']['page'] == "moves"
+
       @battle = Battle.find(params['battle']['battle_id'].to_i)
       @battle.p1_battle_monsters.each do |monster|
         mid = monster.id
         params['p1_battle_monsters'][mid.to_s].each do |k, v|
-          monster.battle_monster_moves.create move: Move.find(v)
+          bmove = Move.find(v)
+          monster.battle_monster_moves.create move: bmove, remaining_uses: bmove.remaining_uses
+
         end
       end
       @battle.p2_battle_monsters.each do |monster|
         mid = monster.id
         params['p2_battle_monsters'][mid.to_s].each do |k, v|
-          monster.battle_monster_moves.create move: Move.find(v)
+          bmove = Move.find(v)
+          monster.battle_monster_moves.create move: bmove, remaining_uses: bmove.remaining_uses
         end
       end
     end
@@ -63,7 +71,6 @@ class BattlesController < ApplicationController
 
     def submit_move
       @battle = Battle.find(params[:id])
-      # binding.pry;''
       attacking_monster_id = params['move'].map { |k,v| k[/\d+/] }[0].to_i
       #get attacking move
       attacking_move_id = params['move'].map { |k,v| v }[0].to_i
@@ -72,25 +79,29 @@ class BattlesController < ApplicationController
         attacker = @battle.p1_battle_monsters.find(attacking_monster_id)
         reciever = @battle.p2_battle_monsters.find(params['move']['opponent'].to_i)
       elsif params['battle']['player'] == "2"
-        # binding.pry;''
         attacker = @battle.p2_battle_monsters.find(attacking_monster_id)
         reciever = @battle.p1_battle_monsters.find(params['move']['opponent'].to_i)
       end
       move = attacker.battle_monster_moves.find(attacking_move_id)
       reciever_element = reciever.monster.element.name
       #calculate damage
-      damage = move.move.attack(reciever_element)
+      if move.remaining_uses > 0
+        damage = move.move.attack(reciever_element)
+        remove_use(attacker, attacking_move_id)
+        change_turn
+      else
+        damage = 0
+        flash[:notice] = "Not enough remaining uses"
+      end
       #take damage from reciever
       reciever.hp -= damage
       if reciever.hp < 1
         reciever.hp = 0
       end
-      # binding.pry;''
       #take 1 from remaining moves
       #save
       reciever.save
       #redirect after checking damage
-      # binding.pry;''
       if game_won 
         flash[:notice] = "WINNER"
         redirect_to(battle_path(@battle))
@@ -100,8 +111,13 @@ class BattlesController < ApplicationController
       end
     end
 
+    def remove_use(attacker, move_id)
+      move = attacker.battle_monster_moves.find(move_id)
+      move.remaining_uses -= 1
+      move.save
+    end
+
     def game_won
-      # binding.pry;''
       if (@battle.p1_battle_monsters.map {|x| x.hp }.inject{|sum, x| sum + x} < 1 )
         @battle.winner_id = @battle.player2_id 
         @battle.player2.wins += 1
@@ -123,6 +139,20 @@ class BattlesController < ApplicationController
 
     def show
       @battle = Battle.find(params[:id])
+    end
+
+    def change_turn
+      # binding.pry;''
+      turn = @battle.turn.split.map {|x| x[/\d+/]}
+      turn.reverse!
+      # binding.pry;''
+      @battle.turn = turn.join(' ')
+      @battle.save
+    end
+
+    def league_table
+      @battles = Battle.all
+      @users = User.order('points DESC').all
     end
 
     private
