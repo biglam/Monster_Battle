@@ -2,8 +2,10 @@ body {
 	background-color: white;
 }
 
+
+
 @font-face { 
-	font-family: pokemonA; src: url('fonts/PokemonA.ttf'); 
+	font-family: pokemonA; src: url('PokemonA.ttf'); 
 } 
 @font-face { 
 	font-family: pokemonB; src: url('fonts/PokemonB.ttf'); 
@@ -21,7 +23,7 @@ body {
 .main-container {
 /*background-color: grey;*/
 position: relative;
-background-image: url("images/backgrounds/stadium1.png");
+background-image: url("backgrounds/stadium1.png");
 width: 1200px;
 height: 600px;
 margin: auto;
@@ -34,8 +36,21 @@ width: auto;
 height: 185px;
 }
 
-.big-monster-left {
+.big-monster-left1 {
+top: 70px;
+left: 37px;
+}
 
+.big-monster-left2 {
+top: 200px;
+left: 37px;
+}
+.big-monster-left3 {
+top: 330px;
+left: 37px;
+}
+.big-monster-left4 {
+top: 460px;
 left: 37px;
 }
 
@@ -47,7 +62,7 @@ right: 37px;
 
 .big-monster {
 position: absolute;
-    width: 200px;
+    width: 100px;
     height: auto;
     bottom: 343px;
     display: inline-block;
@@ -87,19 +102,34 @@ position: absolute;
 
 .sphere-left {
 	position: absolute;
-    width: 200px;
-    height: 200px;
-    top: 70px;
-    left: 37px;
+    width: 100px;
+    height: 100px;
+    
     opacity: 0.9;
     z-index: 9;
     display:block;
 }
 
 .sphere-left img {
-	width:200px;
-	height: 200px;
+	width:100px;
+	height: 100px;
 	
+}
+.sphere-left1 {
+    top: 70px;
+    left: 37px;
+}
+.sphere-left2 {
+    top: 200px;
+    left: 37px;
+}
+.sphere-left3 {
+    top: 330px;
+    left: 37px;
+}
+.sphere-left4 {
+    top: 460px;
+    left: 37px;
 }
 
 .sphere-right img {
@@ -140,24 +170,44 @@ position: absolute;
     bottom: 226px;
     z-index: 0;
 }
-.player1health {
+.player1health1 {
 	
 	position: absolute;
     width: 202px;
     height: 10px;
-    top: 20px;
-    left: 45px;
+    top: 100px;
+    left: 145px;
     z-index: 2;
 }
-.player2health {
+.player1health2 {
+    
+    position: absolute;
+    width: 202px;
+    height: 10px;
+    top: 230px;
+    left: 145px;
+    z-index: 2;
+}
+.player1health3 {
 	
 	position: absolute;
     width: 202px;
     height: 10px;
-    top: 20px;
-    right: 45px;
+    top: 360px;
+    left: 145px;
     z-index: 2;
 }
+.player1health4 {
+    
+   position: absolute;
+   width: 202px;
+   height: 10px;
+   top: 490px;
+   left: 145px;
+   z-index: 2;
+}
+
+
 .health1 {
 	position: absolute;
     left: 31px;
@@ -186,12 +236,19 @@ position: absolute;
 
 .menu {
 	position: absolute;
-	background-color: white;
-	width: 740px;
-	height: 150px;
-	bottom: 20px;
-	left: 230px;
-	opacity: 0.8;
+        background-color: white;
+        width: 550px;
+        height: 150px;
+        bottom: 20px;
+        left: 325px;
+        opacity: 0.8;
+        text-align: center;
+
+
+}
+
+ul {
+    list-style-type: none;
 }
 
 .avatar1 {
@@ -242,6 +299,8 @@ p {
     height: 480px;
     top: 55px;
     left: 174px;
-    background-color: blue;
+    background-color: none;
+    opacity: 0;
     z-index: 8;
+    display: none;
 }
