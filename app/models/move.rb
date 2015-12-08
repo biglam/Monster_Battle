@@ -8,7 +8,7 @@ class Move < ActiveRecord::Base
       damage = special_move * calculate_elemental(enemy_element)
     else
       accuracy = 101 - strength
-      damage = ((strength * calculate_elemental(enemy_element)) * attack_strength(accuracy)) * 2
+      damage = ((strength * calculate_elemental(enemy_element)) * attack_strength(accuracy)) * 3
     end
     return damage
   end
