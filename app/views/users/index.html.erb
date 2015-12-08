@@ -1,0 +1,21 @@
+<h2>Users</h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Games Played</th>
+    <th>Last Active</th>
+    <th>Edit/Delete</th>
+  </tr>
+
+<% @users.each do |user| %>
+<tr>
+  <td>user.name</td>
+  <td>user.email</td>
+  <td>user.played</td>
+  <td>user.last_sign_in_at</td>
+  <td><%=link_to("edit/delete", edit_user_registration_path(user))%></td>
+</tr>
+<% end %>
+</table>

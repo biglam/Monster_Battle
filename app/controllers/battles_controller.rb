@@ -76,7 +76,6 @@ class BattlesController < ApplicationController
   end
 
   def set_monsters(player, mlist)
-    binding.pry;''
     mlist.each { |x, y|  
       @battle.send("#{player}_battle_monsters").create monster: (Monster.find(y)), hp: Monster.find(y).hp
     }
