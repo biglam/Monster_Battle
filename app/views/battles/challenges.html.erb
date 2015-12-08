@@ -1,0 +1,22 @@
+<p>Greetings <%= current_user.name %></p>
+
+<p>You have been challenged by </p>
+
+<table>
+  <tr>
+    <th>Challenger</th>
+    <th>Date Issued</th>
+    <th>Accept?</th>
+  </tr>
+  <% @battles.each do |bat| %>
+  <tr>
+    <td><%= bat.player1.name unless bat.player1 == nil %></td>
+    <td><%= bat.created_at %></td>
+    <td><% if bat.winner_id == nil %>
+    <%= link_to('FIGHTUUUUU!!!', select_monsters_battle_path(bat.id)) %>
+    <% else %>
+    Fin
+    <% end %></td>
+  </tr>
+  <% end %>
+</table>

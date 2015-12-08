@@ -170,6 +170,10 @@ class BattlesController < ApplicationController
     @users = User.order('points DESC').all
   end
 
+  def challenges
+    @battles = Battle.where("Player2_id = #{current_user.id}")
+  end
+
   private
   def battle_params
     params.require(:battle).permit(:player1_id, :player2_id, :p1_monsters, :p2_monsters)
