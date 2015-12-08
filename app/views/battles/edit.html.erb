@@ -1,138 +1,8 @@
+<%= render partial: 'graeme_head' %>
 
-<div class="main-container" id="background">
-
-   
-         <div class="player1health1" id="player1health1">
-         <progress id="health1" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
-         </div>
-         <div class="player1health2" id="player1health2">
-         <progress id="health1" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
-         </div>
-         <div class="player1health3" id="player1health3">
-         <progress id="health1" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
-         </div>
-         <div class="player1health4" id="player1health4">
-         <progress id="health1" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
-         </div>
-         <div class="player2health1" id="player2health1">
-         <progress id="health1" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
-         </div>
-         <div class="player2health2" id="player2health2">
-         <progress id="health1" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
-         </div>
-         <div class="player2health3" id="player2health3">
-         <progress id="health1" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
-         </div>
-         <div class="player2health4" id="player2health4">
-         <progress id="health1" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
-         </div>
-
-
-         
-   
-
-    <div class="health2">
-        <h4>:HP</h4>
-        <div class="player2health" id="player2health">
-        <progress id="health2" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
-        </div>
-    </div>
-
-    <div class="player1-name">
-        <h2 id="player1-name">Player 1</h2>
-    </div>
-
-      <div class="player2-name">
-        <h2 id="player2-name">Player 2</h2>
-    </div>
-
-    <div class="big-monster big-monster-left1" id="big-1">
-        <%= image_tag("monsters/charizard/large.png") %>
-    </div>
-    <div class="big-monster big-monster-left2" id="big-2">
-        <%= image_tag("monsters/charizard/large.png") %>
-    </div>
-    <div class="big-monster big-monster-left3" id="big-3">
-        <%= image_tag("monsters/charizard/large.png") %>
-    </div>
-    <div class="big-monster big-monster-left4" id="big-4">
-        <%= image_tag("monsters/charizard/large.png") %>
-    </div>
-
-     <div class="big-monster big-monster-right" id="big2">
-      <%= image_tag("monsters/blastoise/large.png") %>
-    </div>
-
-    <div class="anim-monster anim-monster-left" id="monster1">
-      <%= image_tag("monsters/charizard/back.gif") %>
-       
-           </div>
-
-    <div class="anim-monster anim-monster-right" id="monster2">
-      <%= image_tag("monsters/blastoise/front.gif") %>
-        
-    </div>
-
-    <div class="attack" id="attack">
-       
-    </div>
-
-    <div class="p2-damage" id="p2-damage">
-        
-    </div>
-
-    <div class="p1-damage" id="p2-damage">
-        
-    </div>
-
-     <div class="sphere-left sphere-left1">
-      <%= image_tag("UI/sphere.png") %>
-    </div>
-     <div class="sphere-left sphere-left2">
-      <%= image_tag("UI/sphere.png") %>
-    </div>
-     <div class="sphere-left sphere-left3">
-      <%= image_tag("UI/sphere.png") %>
-    </div>
-     <div class="sphere-left sphere-left4">
-      <%= image_tag("UI/sphere.png") %>
-    </div>
-
-     <div class="sphere-right sphere-right1">
-      <%= image_tag("UI/sphere.png") %> 
-    </div>
-     <div class="sphere-right sphere-right2">
-      <%= image_tag("UI/sphere.png") %> 
-    </div>
-     <div class="sphere-right sphere-right3">
-      <%= image_tag("UI/sphere.png") %> 
-    </div>
-     <div class="sphere-right sphere-right4">
-      <%= image_tag("UI/sphere.png") %> 
-    </div>
-
-     <div class="screen">
-      <%= image_tag("UI/logo2.png", width: '260', height: 'auto') %>
-
-    </div>
-
-    <div class="menu">
-    <button id="style" style="position:inline;">Change Venue</button>
-    <button id="damage1" style="position:inline;">Damage player 1</button>
-    <button id="damage2" style="position:inline;">Damage player 2</button>
-    <button id="play-video" style="position:inline;">Play Winner Video</button>
-    <br>
-
-
-
-<!-- ____________________________________MAIN GAME CONTROLS -->
-
-
-
-<p>Player 1 - <%= "Battle #{@battle.id}" %></p>
+<p><%= "Battle #{@battle.id}" %></p>
 
 <h2>FIGHT</h2>
-<%# binding.pry;'' %>
 <%= "Battle #{@battle.id}" %>
 <%= "Turn #{@turn}" %>
 <% if @turn.to_i == current_user.id %>
@@ -143,7 +13,10 @@ OPPONENTS TURN
 <p>Player 1</p>
 
 <ul>
-<% @battle.p1_battle_monsters.each do |monster| %>
+<% @battle.p1_battle_monsters.each_with_index do |monster, i| %>
+<script>var m1health<%= i %> = (parseInt('<%= monster.hp.to_f / (monster.monster.hp).to_f * 100 %>')); </script>
+
+
 <%= form_for @battle,  url: { action: 'submit_move' }, :method => :POST do |f| %>
   <%= f.hidden_field :player, :value => 1 %>
   <li><%= monster.monster.name %> - <%= monster.hp %> 
@@ -154,9 +27,10 @@ OPPONENTS TURN
 <% end %>
 <% end %>
 </ul>
-<!-- <p>Player 2</p>
+ <p>Player 2</p>
 <ul>
-<% @battle.p2_battle_monsters.each do |monster| %>
+<% @battle.p2_battle_monsters.each_with_index do |monster, i| %>
+<script>var m2health<%= i %> = (parseInt('<%= monster.hp.to_f / (monster.monster.hp).to_f * 100 %>')); </script>
 <%= form_for @battle,  url: { action: 'submit_move' }, :method => :POST do |f| %>
   <%= f.hidden_field :player, :value => 2 %>
   <li><%= monster.monster.name %> - <%= monster.hp %> 
@@ -166,32 +40,9 @@ OPPONENTS TURN
   <%= f.submit 'Make move' if monster.hp > 0 && @turn.to_i == current_user.id && @battle.player2_id == current_user.id %></li>
 <% end %>
 <% end %>
-</ul> -->
+</ul>
+<script type="text/javascript">healthbar_update();</script>
 
 
 
-
-<!-- ________________________END OF MAIN GAME CONTROLS -->
-
-
-
-
-    </div>
-
-    <div class="avatar1">
-        <img class="trainer-avatar" src="http://cdn.bulbagarden.net/upload/thumb/6/61/Black_2_White_2_Nate.png/200px-Black_2_White_2_Nate.png">
-    </div>
-
-     <div class="avatar2">
-        <img class="trainer-avatar" src="http://cdn.bulbagarden.net/upload/f/f7/Ruby_Sapphire_May.png">
-    </div>
-    <div class="videoWrapper" id="wrapper">
-    <%#= video_tag("/videos/charizard.mp4", height: '854', width: '480') %>
-
-        <!-- <video id="vid1" autoplay> -->
-            <!-- <source src="videos/charizard-flame.mp4"> -->
-            <!-- <source src="videos/vid1.ogv"> -->
-        <!-- </video> -->
-    </div>
-
-</div>
+<%= render partial: 'graeme_foot' %>
