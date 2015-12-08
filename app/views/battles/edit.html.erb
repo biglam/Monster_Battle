@@ -1,6 +1,12 @@
 <h2>FIGHT</h2>
 <%# binding.pry;'' %>
 <%= "Battle #{@battle.id}" %>
+<%= "Turn #{@turn}" %>
+<% if @turn.to_i == current_user.id %>
+YOUR TURN
+<% else %>
+OPPONENTS TURN
+<% end %>
 <p>Player 1</p>
 <ul>
 <% @battle.p1_battle_monsters.each do |monster| %>
@@ -10,7 +16,7 @@
     <%= select("move", "monster(#{monster.id})", monster.battle_monster_moves.map {|p| [ "#{p.move.name}, #{p.remaining_uses}", p.id ] }) unless monster.hp < 1 %>
   <%= select("move", "opponent", @battle.p2_battle_monsters.where("hp > 0").map {|m| [ m.monster.name, m.id] }) unless monster.hp < 1 %>
   
-  <%= f.submit 'Make move' unless monster.hp < 1  %></li>
+  <%= f.submit 'Make move' if monster.hp > 0 && @turn.to_i == current_user.id && @battle.player1_id == current_user.id   %></li>
 <% end %>
 <% end %>
 </ul>
@@ -23,7 +29,7 @@
     <%= select("move", "monster(#{monster.id})", monster.battle_monster_moves.map {|p| [ "#{p.move.name}, #{p.remaining_uses}", p.id ] }) unless monster.hp < 1 %>
   <%= select("move", "opponent", @battle.p1_battle_monsters.where("hp > 0").map {|m| [ m.monster.name, m.id] }) unless monster.hp < 1 %>
   
-  <%= f.submit 'Make move' unless monster.hp < 1  %></li>
+  <%= f.submit 'Make move' if monster.hp > 0 && @turn.to_i == current_user.id && @battle.player2_id == current_user.id %></li>
 <% end %>
 <% end %>
 </ul>

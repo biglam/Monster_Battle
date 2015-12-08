@@ -11,8 +11,11 @@ class BattlesController < ApplicationController
 
   def create
     @battle = Battle.create(battle_params)
+
     @battle.player1.played += 1
     @battle.player2.played += 1
+    turn = [@battle.player1.id, @battle.player2.id]
+    @battle.turn = turn.shuffle.join(' ')
     @battle.player1.save
     @battle.player2.save
     params[:p1_monsters].each { |x, y|  
@@ -21,6 +24,7 @@ class BattlesController < ApplicationController
     params[:p2_monsters].each { |x, y|  
       @battle.p2_battle_monsters.create monster: (Monster.find(y)), hp: Monster.find(y).hp
     }
+    @battle.save
     # binding.pry;''
     redirect_to(monster_moves_battle_path(@battle))
   end
@@ -32,8 +36,7 @@ class BattlesController < ApplicationController
 
   def edit
     @battle = Battle.find(params[:id])
-    @p1_monsters = 
-    @turn = [1,2]
+    @turn = @battle.turn.split[0].to_i
   end
 
   def update
@@ -85,6 +88,7 @@ class BattlesController < ApplicationController
       if move.remaining_uses > 0
         damage = move.move.attack(reciever_element)
         remove_use(attacker, attacking_move_id)
+        change_turn
       else
         damage = 0
         flash[:notice] = "Not enough remaining uses"
@@ -135,6 +139,15 @@ class BattlesController < ApplicationController
 
     def show
       @battle = Battle.find(params[:id])
+    end
+
+    def change_turn
+      # binding.pry;''
+      turn = @battle.turn.split.map {|x| x[/\d+/]}
+      turn.reverse!
+      # binding.pry;''
+      @battle.turn = turn.join(' ')
+      @battle.save
     end
 
     def league_table
