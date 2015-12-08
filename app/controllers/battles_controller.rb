@@ -41,17 +41,21 @@ class BattlesController < ApplicationController
   def update
     
     if  params['battle']['page'] == "moves"
+
       @battle = Battle.find(params['battle']['battle_id'].to_i)
       @battle.p1_battle_monsters.each do |monster|
         mid = monster.id
         params['p1_battle_monsters'][mid.to_s].each do |k, v|
-          monster.battle_monster_moves.create move: Move.find(v)
+          bmove = Move.find(v)
+          monster.battle_monster_moves.create move: bmove, remaining_uses: bmove.remaining_uses
+
         end
       end
       @battle.p2_battle_monsters.each do |monster|
         mid = monster.id
         params['p2_battle_monsters'][mid.to_s].each do |k, v|
-          monster.battle_monster_moves.create move: Move.find(v)
+          bmove = Move.find(v)
+          monster.battle_monster_moves.create move: bmove, remaining_uses: bmove.remaining_uses
         end
       end
     end
@@ -82,12 +86,20 @@ class BattlesController < ApplicationController
       move = attacker.battle_monster_moves.find(attacking_move_id)
       reciever_element = reciever.monster.element.name
       #calculate damage
-      damage = move.move.attack(reciever_element)
+      if move.remaining_uses > 0
+        damage = move.move.attack(reciever_element)
+        remove_use(attacker, attacking_move_id)
+      else
+        damage = 0
+        flash[:notice] = "Not enough remaining uses"
+      end
       #take damage from reciever
       reciever.hp -= damage
       if reciever.hp < 1
         reciever.hp = 0
       end
+      # binding.pry;''
+      
       # binding.pry;''
       #take 1 from remaining moves
       #save
@@ -101,6 +113,12 @@ class BattlesController < ApplicationController
         flash[:notice] = "Damage #{damage}"
         redirect_to(edit_battle_path(@battle))
       end
+    end
+
+    def remove_use(attacker, move_id)
+      move = attacker.battle_monster_moves.find(move_id)
+      move.remaining_uses -= 1
+      move.save
     end
 
     def game_won
