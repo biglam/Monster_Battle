@@ -1,232 +1,49 @@
 
-<div class="main-container" id="background">
+<%= render partial: 'graeme_head' %>
+
+<p><%= "Battle #{@battle.id}" %></p>
+
+<h2>FIGHT</h2>
+<%= "Battle #{@battle.id}" %>
+<%= "Turn #{@turn}" %>
+<% if @turn.to_i == current_user.id %>
+YOUR TURN
+<% else %>
+OPPONENTS TURN
+<% end %>
+<p>Player 1</p>
+
+<ul>
+<% @battle.p1_battle_monsters.each_with_index do |monster, i| %>
+<script>var m1health<%= i %> = (parseInt('<%= monster.hp.to_f / (monster.monster.hp).to_f * 100 %>')); </script>
 
 
-<!-- ____________________PLAYER 1 HEALTH BARS -->
-
-   
-         <div class="player1health1" id="player1health1">
-         <progress id="health1" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
-         </div>
-         <div class="player1health2" id="player1health2">
-         <progress id="health1" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
-         </div>
-         <div class="player1health3" id="player1health3">
-         <progress id="health1" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
-         </div>
-         <div class="player1health4" id="player1health4">
-         <progress id="health1" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
-
-<!-- ____________________PLAYER 2 HEALTH BARS -->
-         </div>
-         <div class="player2health1" id="player2health1">
-         <progress id="health1" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
-         </div>
-         <div class="player2health2" id="player2health2">
-         <progress id="health1" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
-         </div>
-         <div class="player2health3" id="player2health3">
-         <progress id="health1" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
-         </div>
-         <div class="player2health4" id="player2health4">
-         <progress id="health1" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
-         </div>
-
-
-<!-- ____________________PLAYER NAMES -->
-
-    <div class="player1-name">
-        <h2 id="player1-name">Player 1</h2>
-    </div>
-
-      <div class="player2-name">
-        <h2 id="player2-name">Player 2</h2>
-    </div>
-
-
-<!-- _____________________MONSTER LIST LEFT -->
-
-
-    <div class="big-monster big-monster-left1" id="big-1-1">
-        <%= image_tag("monsters/charizard/large.png") %>
-    </div>
-    <div class="big-monster big-monster-left2" id="big-1-2">
-        <%= image_tag("monsters/charizard/large.png") %>
-    </div>
-    <div class="big-monster big-monster-left3" id="big-1-3">
-        <%= image_tag("monsters/charizard/large.png") %>
-    </div>
-    <div class="big-monster big-monster-left4" id="big1--4">
-        <%= image_tag("monsters/charizard/large.png") %>
-    </div>
-
-<!-- ____________________MONSTER LIST RIGHT -->
-
-     <div class="big-monster big-monster-right1" id="big-2-1">
-      <%= image_tag("monsters/blastoise/large.png") %>
-    </div>
-
-     <div class="big-monster big-monster-right2" id="big-2-2">
-      <%= image_tag("monsters/blastoise/large.png") %>
-    </div>
-
-     <div class="big-monster big-monster-right3" id="big-2-3">
-      <%= image_tag("monsters/blastoise/large.png") %>
-    </div>
-
-     <div class="big-monster big-monster-right4" id="big-2-4">
-      <%= image_tag("monsters/blastoise/large.png") %>
-    </div>
-
-<!-- __________________PLAYER 1 MOVE MONSTER -->
-
-    <div class="anim-monster anim-monster-left" id="monster1">
-      <%= image_tag("monsters/charizard/back.gif") %>
-    </div>
-
-<!-- __________________PLAYER 2 MOVE MONSTER -->
-
-
-    <div class="anim-monster anim-monster-right" id="monster2">
-      <%= image_tag("monsters/blastoise/front.gif") %>
-    </div>
-
- <!-- _____________ATTACK AND DAMAGE CONTAINERS    -->
-
-    <div class="attack" id="attack">
-       
-    </div>
-
-    <div class="p2-damage" id="p2-damage">
-        
-    </div>
-
-    <div class="p1-damage" id="p2-damage">
-        
-    </div>
-
-
-<!-- ________________LEFT SIDE SPHERES     -->
-
-     <div class="sphere-left sphere-left1">
-      <%= image_tag("UI/sphere.png") %>
-    </div>
-     <div class="sphere-left sphere-left2">
-      <%= image_tag("UI/sphere.png") %>
-    </div>
-     <div class="sphere-left sphere-left3">
-      <%= image_tag("UI/sphere.png") %>
-    </div>
-     <div class="sphere-left sphere-left4">
-      <%= image_tag("UI/sphere.png") %>
-    </div>
-
-<!-- ________________RIGHT SIDE SPHERES     -->
-
-
-     <div class="sphere-right sphere-right1">
-      <%= image_tag("UI/sphere.png") %> 
-    </div>
-     <div class="sphere-right sphere-right2">
-      <%= image_tag("UI/sphere.png") %> 
-    </div>
-     <div class="sphere-right sphere-right3">
-      <%= image_tag("UI/sphere.png") %> 
-    </div>
-     <div class="sphere-right sphere-right4">
-      <%= image_tag("UI/sphere.png") %> 
-    </div>
-
-<!-- GRAPHICS - SCREEN WITH LOGO AND INFO     -->
-
-     <div class="screen">
-      <%= image_tag("UI/logo2.png", width: '260', height: 'auto') %>
-    </div>
-
-<!-- ___________________MAIN GAME MENU -->
-
-    <div class="menu">
-    <button id="style" style="position:inline;">Change Venue</button>
-    <button id="damage1" style="position:inline;">Damage player 1</button>
-    <button id="damage2" style="position:inline;">Damage player 2</button>
-    <button id="play-video" style="position:inline;">Play Winner Video</button>
-    <br>
+<%= form_for @battle,  url: { action: 'submit_move' }, :method => :POST do |f| %>
+  <%= f.hidden_field :player, :value => 1 %>
+  <li><%= monster.monster.name %> - <%= monster.hp %> 
+    <%= select("move", "monster(#{monster.id})", monster.battle_monster_moves.map {|p| [ "#{p.move.name}, #{p.remaining_uses}", p.id ] }) unless monster.hp < 1 %>
+  <%= select("move", "opponent", @battle.p2_battle_monsters.where("hp > 0").map {|m| [ m.monster.name, m.id] }) unless monster.hp < 1 %>
+  
+  <%= f.submit 'Make move' if monster.hp > 0 && @turn.to_i == current_user.id && @battle.player1_id == current_user.id   %></li>
+<% end %>
+<% end %>
+</ul>
+ <p>Player 2</p>
+<ul>
+<% @battle.p2_battle_monsters.each_with_index do |monster, i| %>
+<script>var m2health<%= i %> = (parseInt('<%= monster.hp.to_f / (monster.monster.hp).to_f * 100 %>')); </script>
+<%= form_for @battle,  url: { action: 'submit_move' }, :method => :POST do |f| %>
+  <%= f.hidden_field :player, :value => 2 %>
+  <li><%= monster.monster.name %> - <%= monster.hp %> 
+    <%= select("move", "monster(#{monster.id})", monster.battle_monster_moves.map {|p| [ "#{p.move.name}, #{p.remaining_uses}", p.id ] }) unless monster.hp < 1 %>
+  <%= select("move", "opponent", @battle.p1_battle_monsters.where("hp > 0").map {|m| [ m.monster.name, m.id] }) unless monster.hp < 1 %>
+  
+  <%= f.submit 'Make move' if monster.hp > 0 && @turn.to_i == current_user.id && @battle.player2_id == current_user.id %></li>
+<% end %>
+<% end %>
+</ul>
+<script type="text/javascript">healthbar_update();</script>
 
 
 
-<!-- ________________MAIN GAME CONTROLS -->
-
-
-
-    <p>Player 1 - <%= "Battle #{@battle.id}" %></p>
-
-    <h2>FIGHT</h2>
-    <%# binding.pry;'' %>
-    <%= "Battle #{@battle.id}" %>
-    <%= "Turn #{@turn}" %>
-    <% if @turn.to_i == current_user.id %>
-    YOUR TURN
-    <% else %>
-    OPPONENTS TURN
-    <% end %>
-    <p>Player 1</p>
-
-    <ul>
-    <% @battle.p1_battle_monsters.each do |monster| %>
-    <%= form_for @battle,  url: { action: 'submit_move' }, :method => :POST do |f| %>
-      <%= f.hidden_field :player, :value => 1 %>
-      <li><%= monster.monster.name %> - <%= monster.hp %> 
-        <%= select("move", "monster(#{monster.id})", monster.battle_monster_moves.map {|p| [ "#{p.move.name}, #{p.remaining_uses}", p.id ] }) unless monster.hp < 1 %>
-      <%= select("move", "opponent", @battle.p2_battle_monsters.where("hp > 0").map {|m| [ m.monster.name, m.id] }) unless monster.hp < 1 %>
-      
-      <%= f.submit 'Make move' if monster.hp > 0 && @turn.to_i == current_user.id && @battle.player1_id == current_user.id   %></li>
-    <% end %>
-    <% end %>
-    </ul>
-    <!-- <p>Player 2</p>
-    <ul>
-    <% @battle.p2_battle_monsters.each do |monster| %>
-    <%= form_for @battle,  url: { action: 'submit_move' }, :method => :POST do |f| %>
-      <%= f.hidden_field :player, :value => 2 %>
-      <li><%= monster.monster.name %> - <%= monster.hp %> 
-        <%= select("move", "monster(#{monster.id})", monster.battle_monster_moves.map {|p| [ "#{p.move.name}, #{p.remaining_uses}", p.id ] }) unless monster.hp < 1 %>
-      <%= select("move", "opponent", @battle.p1_battle_monsters.where("hp > 0").map {|m| [ m.monster.name, m.id] }) unless monster.hp < 1 %>
-      
-      <%= f.submit 'Make move' if monster.hp > 0 && @turn.to_i == current_user.id && @battle.player2_id == current_user.id %></li>
-    <% end %>
-    <% end %>
-    </ul> -->
-
-
-    </div>
-
-
-
-<!-- __________________END OF MAIN GAME CONTROLS -->
-
-
-
-<!-- _________________USER AVATARS   -->
-
-    <div class="avatar1">
-        <img class="trainer-avatar" src="http://cdn.bulbagarden.net/upload/thumb/6/61/Black_2_White_2_Nate.png/200px-Black_2_White_2_Nate.png">
-    </div>
-
-     <div class="avatar2">
-        <img class="trainer-avatar" src="http://cdn.bulbagarden.net/upload/f/f7/Ruby_Sapphire_May.png">
-    </div>
-
-<!-- ______________VIDEO WRAPPER AND CONTAINER -->
-
-    <div class="videoWrapper" id="wrapper">
-    <%= video_tag( asset_path("/videos/charizard.mp4"), height: '480', width: '854', id: 'vid1', controls: false, autoplay: true) %>
-
-        <!-- <video id="vid1" autoplay> -->
-            <!-- <source src="videos/charizard-flame.mp4"> -->
-            <!-- <source src="videos/vid1.ogv"> -->
-        <!-- </video> -->
-    </div>
-
-
-
-</div>
+<%= render partial: 'graeme_foot' %>
