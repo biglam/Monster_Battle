@@ -3,7 +3,6 @@ class BattlesController < ApplicationController
 
   def index
     @battles = Battle.all
-    # render @battles, layout: false if request.xhr?
   end
 
   def new
@@ -11,7 +10,6 @@ class BattlesController < ApplicationController
   end
 
   def create
-    # binding.pry;''
     @battle = Battle.create(battle_params)
     @battle.player1.played += 1
     @battle.player2.played += 1
@@ -70,7 +68,6 @@ class BattlesController < ApplicationController
 
     def submit_move
       @battle = Battle.find(params[:id])
-      # binding.pry;''
       attacking_monster_id = params['move'].map { |k,v| k[/\d+/] }[0].to_i
       #get attacking move
       attacking_move_id = params['move'].map { |k,v| v }[0].to_i
@@ -79,7 +76,6 @@ class BattlesController < ApplicationController
         attacker = @battle.p1_battle_monsters.find(attacking_monster_id)
         reciever = @battle.p2_battle_monsters.find(params['move']['opponent'].to_i)
       elsif params['battle']['player'] == "2"
-        # binding.pry;''
         attacker = @battle.p2_battle_monsters.find(attacking_monster_id)
         reciever = @battle.p1_battle_monsters.find(params['move']['opponent'].to_i)
       end
@@ -98,14 +94,10 @@ class BattlesController < ApplicationController
       if reciever.hp < 1
         reciever.hp = 0
       end
-      # binding.pry;''
-      
-      # binding.pry;''
       #take 1 from remaining moves
       #save
       reciever.save
       #redirect after checking damage
-      # binding.pry;''
       if game_won 
         flash[:notice] = "WINNER"
         redirect_to(battle_path(@battle))
@@ -122,7 +114,6 @@ class BattlesController < ApplicationController
     end
 
     def game_won
-      # binding.pry;'' 
       if (@battle.p1_battle_monsters.map {|x| x.hp }.inject{|sum, x| sum + x} < 1 )
         @battle.winner_id = @battle.player2_id 
         @battle.player2.wins += 1
@@ -144,6 +135,11 @@ class BattlesController < ApplicationController
 
     def show
       @battle = Battle.find(params[:id])
+    end
+
+    def league_table
+      @battles = Battle.all
+      @users = User.order('points DESC').all
     end
 
     private
