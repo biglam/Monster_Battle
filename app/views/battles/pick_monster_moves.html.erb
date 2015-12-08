@@ -1,24 +1,25 @@
 <%# binding.pry;'' %>
-<h2>Select your moves</h2>
-<%= form_for @battle do |f| %>
-<%= f.hidden_field :battle_id, :value => @battle.id %>
-<%= f.hidden_field :page, :value =>'moves' %>
-<% @battle.p1_battle_monsters.each do |p1_monster| %>
-<%= p1_monster.monster.name %> - <%# binding.pry;'' %>
-<% 4.times do |m| %>
-  <%= select_tag("p1_battle_monsters[#{p1_monster.id}][#{m}]", options_from_collection_for_select(p1_monster.monster.moves, :id, :name) ) %>
-<% end %> <br>
+<% if @battle.state == "Player 2 selected monsters" && @battle.player1 == current_user %>
+  <h2>Select your moves</h2>
+  <%= render partial: 'pick_moves', :locals => {:player => "p1"} %>
 <% end %>
 
-<h2>Player 2</h2>
-
-<% @battle.p2_battle_monsters.each do |p2_monster| %>
-<%= p2_monster.monster.name %> - <%# binding.pry;'' %>
-<% 4.times do |m| %>
-  <%= select_tag("p2_battle_monsters[#{p2_monster.id}][#{m}]", options_from_collection_for_select(p2_monster.monster.moves, :id, :name) ) %>
-<% end %> <br>
+<% if @battle.state == "Player 1 selected moves" && @battle.player2 == current_user %>
+  <h2>Select your moves</h2>
+  <%= render partial: 'pick_moves', :locals => {:player => "p2"} %>
 <% end %>
 
+<% if @battle.state == "Player 2 selected monsters" && @battle.player2 == current_user %>
+  <p>Please wait for Player 1</p>
+  <%= link_to("refresh", monster_moves_battle_path(@battle)) %>
+<% end %>
 
-<%= f.submit %>
+<% if @battle.state == "Player 1 selected moves" && @battle.player1 == current_user %>
+  <p>Please wait for Player 2</p>
+  <%= link_to("refresh", monster_moves_battle_path(@battle)) %>
+<% end %>
+
+<% if @battle.state == "Player 2 selected moves" && @battle.player1 == current_user %>
+  <p>FIGHTU!!!</p>
+  <%= link_to("Go!", edit_battle_path(@battle)) %>
 <% end %>

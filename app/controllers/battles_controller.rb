@@ -14,6 +14,8 @@ class BattlesController < ApplicationController
     @battle = Battle.create(battle_params)
     @battle.state = "Battle Initialized"
     @battle.player1.played += 1
+    turn = [@battle.player1.id, @battle.player2.id]
+    @battle.turn = turn.shuffle.join(' ')
     @battle.save
     redirect_to(select_monsters_battle_path(@battle))
     # if params[:p1_monsters]
@@ -63,7 +65,7 @@ class BattlesController < ApplicationController
       @battle.player1.save
       redirect_to(select_monsters_battle_path(@battle))
     when "Player 1 selected monsters"
-      binding.pry;''
+      # binding.pry;''
       if @battle.player2 == current_user
         set_monsters("p2", params[:monsters])
         @battle.state = "Player 2 selected monsters"
@@ -72,6 +74,23 @@ class BattlesController < ApplicationController
         redirect_to(monster_moves_battle_path(@battle))
       else
         redirect_to(select_monsters_battle_path(@battle))
+      end
+    when "Player 2 selected monsters"
+      if @battle.player1 == current_user
+        # binding.pry;''
+        set_moves("p1", params[:monster_moves])
+        @battle.state = "Player 1 selected moves"
+        @battle.save
+      end
+      redirect_to(monster_moves_battle_path(@battle))
+    when "Player 1 selected moves"
+      if @battle.player2 == current_user
+        set_moves("p2", params[:monster_moves])
+        @battle.state = "Player 2 selected moves"
+        @battle.save
+        redirect_to(edit_battle_path(@battle))
+      else
+      redirect_to(monster_moves_battle_path(@battle))
       end
     else
       puts 'fuuuuuck!!'
@@ -107,12 +126,27 @@ class BattlesController < ApplicationController
     end
 
     def set_monsters(player, mlist)
+      binding.pry;''
         mlist.each { |x, y|  
           @battle.send("#{player}_battle_monsters").create monster: (Monster.find(y)), hp: Monster.find(y).hp
         }
     end
 
+    def set_moves(player, mlist)
+      # binding.pry;''
+      @battle.send("#{player}_battle_monsters").each do |monster|
+        mid = monster.id
+        mlist[mid.to_s].each do |k, v|
+          # binding.pry;''
+          bmove = Move.find(v)
+          monster.battle_monster_moves.create move: bmove, remaining_uses: bmove.remaining_uses
+          monster.save
+        end
+      end
+    end
+
     def submit_move
+      # binding.pry;''
       @battle = Battle.find(params[:id])
       attacking_monster_id = params['move'].map { |k,v| k[/\d+/] }[0].to_i
       #get attacking move
