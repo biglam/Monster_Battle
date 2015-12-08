@@ -1,0 +1,10 @@
+<%= form_for @battle do |f| %>
+  <%= f.hidden_field :battle_id, :value => @battle.id %>
+  <% @battle.send("#{player}_battle_monsters").each do |b_mon| %>
+    <%= b_mon.monster.name %> - 
+    <% 4.times do |m| %>
+      <%= select_tag("monster_moves[#{b_mon.id}][#{m}]", options_from_collection_for_select(b_mon.monster.moves, :id, :name ) ) %>
+    <% end %> <br>
+  <% end %>
+  <%= f.submit %>
+<% end %>

@@ -1,0 +1,9 @@
+<%= form_for @battle do |f| %>
+
+<p>Select your monsters <%= player %>: -</p>
+<% 4.times do |x| %>
+<%= select("monsters", x, Monster.all.collect {|p| [ p.name, p.id ] }) %>
+  <br>
+<%end %>
+<%= f.submit 'FIGHT!' %>
+<% end %>

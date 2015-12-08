@@ -7,26 +7,42 @@ class BattlesController < ApplicationController
 
   def new
     @battle = Battle.new
+    @battle.player1 = current_user
   end
 
   def create
     @battle = Battle.create(battle_params)
-
+    @battle.state = "Battle Initialized"
     @battle.player1.played += 1
-    @battle.player2.played += 1
     turn = [@battle.player1.id, @battle.player2.id]
     @battle.turn = turn.shuffle.join(' ')
-    @battle.player1.save
-    @battle.player2.save
-    params[:p1_monsters].each { |x, y|  
-      @battle.p1_battle_monsters.create monster: (Monster.find(y)), hp: Monster.find(y).hp
-    }
-    params[:p2_monsters].each { |x, y|  
-      @battle.p2_battle_monsters.create monster: (Monster.find(y)), hp: Monster.find(y).hp
-    }
     @battle.save
-    # binding.pry;''
-    redirect_to(monster_moves_battle_path(@battle))
+    redirect_to(select_monsters_battle_path(@battle))
+    # if params[:p1_monsters]
+    #   params[:p1_monsters].each { |x, y|  
+    #     @battle.p1_battle_monsters.create monster: (Monster.find(y)), hp: Monster.find(y).hp
+    #   }
+    #   @battle.state = "Player 1 selected monsters"
+    #   @battle.save
+    #   @battle.player1.save
+    # end
+
+    # if params[:p2_monsters]
+    #   params[:p2_monsters].each { |x, y|  
+    #     @battle.p2_battle_monsters.create monster: (Monster.find(y)), hp: Monster.find(y).hp
+    #   }
+    #   @battle.player2.played += 1
+    #   @battle.state = "Player @ selected monsters"
+    #   @battle.player2.save
+    # end
+    # turn = [@battle.player1.id, @battle.player2.id]
+    # @battle.turn = turn.shuffle.join(' ')
+    # @battle.save
+    # redirect_to(monster_moves_battle_path(@battle))
+  end
+
+  def select_monsters
+    @battle = Battle.find(params[:id])
   end
 
   def pick_monster_moves
@@ -40,36 +56,97 @@ class BattlesController < ApplicationController
   end
 
   def update
-    
-    if  params['battle']['page'] == "moves"
-
-      @battle = Battle.find(params['battle']['battle_id'].to_i)
-      @battle.p1_battle_monsters.each do |monster|
-        mid = monster.id
-        params['p1_battle_monsters'][mid.to_s].each do |k, v|
-          bmove = Move.find(v)
-          monster.battle_monster_moves.create move: bmove, remaining_uses: bmove.remaining_uses
-
-        end
+    @battle = Battle.find(params[:id])
+    case @battle.state
+    when "Battle Initialized"
+      set_monsters("p1", params[:monsters])
+      @battle.state = "Player 1 selected monsters"
+      @battle.save
+      @battle.player1.save
+      redirect_to(select_monsters_battle_path(@battle))
+    when "Player 1 selected monsters"
+      # binding.pry;''
+      if @battle.player2 == current_user
+        set_monsters("p2", params[:monsters])
+        @battle.state = "Player 2 selected monsters"
+        @battle.save
+        @battle.player2.save
+        redirect_to(monster_moves_battle_path(@battle))
+      else
+        redirect_to(select_monsters_battle_path(@battle))
       end
-      @battle.p2_battle_monsters.each do |monster|
-        mid = monster.id
-        params['p2_battle_monsters'][mid.to_s].each do |k, v|
-          bmove = Move.find(v)
-          monster.battle_monster_moves.create move: bmove, remaining_uses: bmove.remaining_uses
-        end
+    when "Player 2 selected monsters"
+      if @battle.player1 == current_user
+        # binding.pry;''
+        set_moves("p1", params[:monster_moves])
+        @battle.state = "Player 1 selected moves"
+        @battle.save
       end
-    end
-    if params["p2_monstermoves0"]
-      @battle.p2_battle_monsters.each_with_index { |monster, i|
-        params["p2_monstermoves#{i}"].map { |x, y| 
-          monster.battle_monster_moves.create move: Move.find(y) }
-        }
+      redirect_to(monster_moves_battle_path(@battle))
+    when "Player 1 selected moves"
+      if @battle.player2 == current_user
+        set_moves("p2", params[:monster_moves])
+        @battle.state = "Player 2 selected moves"
+        @battle.save
+        redirect_to(edit_battle_path(@battle))
+      else
+      redirect_to(monster_moves_battle_path(@battle))
       end
+    else
+      puts 'fuuuuuck!!'
+      binding.pry;''
       redirect_to(edit_battle_path(@battle))
+    end
+    # if  params['battle']['page'] == "moves"
+
+    #   @battle = Battle.find(params['battle']['battle_id'].to_i)
+    #   @battle.p1_battle_monsters.each do |monster|
+    #     mid = monster.id
+    #     params['p1_battle_monsters'][mid.to_s].each do |k, v|
+    #       bmove = Move.find(v)
+    #       monster.battle_monster_moves.create move: bmove, remaining_uses: bmove.remaining_uses
+
+    #     end
+    #   end
+    #   @battle.p2_battle_monsters.each do |monster|
+    #     mid = monster.id
+    #     params['p2_battle_monsters'][mid.to_s].each do |k, v|
+    #       bmove = Move.find(v)
+    #       monster.battle_monster_moves.create move: bmove, remaining_uses: bmove.remaining_uses
+    #     end
+    #   end
+    # end
+    # if params["p2_monstermoves0"]
+    #   @battle.p2_battle_monsters.each_with_index { |monster, i|
+    #     params["p2_monstermoves#{i}"].map { |x, y| 
+    #       monster.battle_monster_moves.create move: Move.find(y) }
+    #     }
+    #   end
+      # 
+    end
+
+    def set_monsters(player, mlist)
+      binding.pry;''
+        mlist.each { |x, y|  
+          @battle.send("#{player}_battle_monsters").create monster: (Monster.find(y)), hp: Monster.find(y).hp
+        }
+    end
+
+    def set_moves(player, mlist)
+      # binding.pry;''
+      @battle.send("#{player}_battle_monsters").each do |monster|
+        mid = monster.id
+        mlist[mid.to_s].each do |k, v|
+          # binding.pry;''
+          bmove = Move.find(v)
+          monster.battle_monster_moves.create move: bmove, remaining_uses: bmove.remaining_uses
+          monster.save
+        end
+      end
     end
 
     def submit_move
+      # binding.pry;''
       @battle = Battle.find(params[:id])
       attacking_monster_id = params['move'].map { |k,v| k[/\d+/] }[0].to_i
       #get attacking move

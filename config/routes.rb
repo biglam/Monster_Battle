@@ -17,6 +17,7 @@ Rails.application.routes.draw do
        member do
         get 'monster_moves', to: 'battles#pick_monster_moves'
         post 'submit_move', to: 'battles#submit_move'
+        get 'select_monsters', to: 'battles#select_monsters'
       end
       collection do
       get 'league', to: 'battles#league_table'
