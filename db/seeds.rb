@@ -8,26 +8,58 @@ User.create!(email: "pichu@example.example", password:"password", name:"pichu")
 
 #nevin - can you please add the rest of the data in this way?--
 ## -- ELEMENTS
-noelem = Element.create!(name: 'non-elemental', strong_to: '', weak_to: '', neutral: '', immune: '')
-# fire = Element.create!(name: 'fire', strong_to: 'ice', weak_to: 'water', neutral: '', immune: 'fire')
-# ice = Element.create!(name: 'ice', strong_to: 'water', weak_to: 'fire', neutral: '', immune: 'ice')
-# lightning = Element.create!(name: 'lightning', strong_to: 'fire', weak_to: 'water', neutral: '', immune: 'lightning')
-energy = Element.create!(name: 'energy' 'non-elemental', strong_to: 'metal', weak_to: 'water', neutral: '', immune: '')
-fire = Element.create!(name: 'fire', strong_to: ['fire', 'water', 'earth'], weak_to: ['ice', 'air', 'metal'], neutral: '', immune: '')
-water = Element.create!(name: 'water', strong_to: ['water', 'earth'], weak_to: ['energy', 'fire'], neutral: '', immune: '')
-wood = Element.create!(name: 'wood', strong_to: 'metal', weak_to: 'earth', neutral: '', immune: '')
-lightning = Element.create!(name: 'lightning', strong_to: 'air', weak_to: 'earth', neutral: '', immune: '')
-ice = Element.create!(name: 'ice', strong_to: 'ice', weak_to: 'fire', neutral: '', immune: '')
+noelem = Element.create!(name: 'non-elemental', weak_to: '', strong_to: '', neutral: '', immune: '')
+# fire = Element.create!(name: 'fire', weak_to: 'ice', weak_to: 'water', neutral: '', immune: 'fire')
+# ice = Element.create!(name: 'ice', weak_to: 'water', weak_to: 'fire', neutral: '', immune: 'ice')
+# lightning = Element.create!(name: 'lightning', weak_to: 'fire', weak_to: 'water', neutral: '', immune: 'lightning')
+energy = Element.create!(name: 'energy' 'non-elemental', weak_to: 'metal', strong_to: 'water', neutral: '', immune: '')
+fire = Element.create!(name: 'fire', weak_to: ['fire', 'water', 'earth'], strong_to: ['ice', 'air', 'metal'], neutral: '', immune: '')
+water = Element.create!(name: 'water', weak_to: ['water', 'earth'], strong_to: ['energy', 'fire'], neutral: '', immune: '')
+wood = Element.create!(name: 'wood', weak_to: 'metal', strong_to: 'earth', neutral: '', immune: '')
+lightning = Element.create!(name: 'lightning', weak_to: 'air', strong_to: 'earth', neutral: '', immune: '')
+ice = Element.create!(name: 'ice', weak_to: 'ice', strong_to: 'fire', neutral: '', immune: '')
 
-earth = Element.create!(name: 'earth', strong_to: ['wood', 'lightning', 'earth'], weak_to: ['fire', 'water', 'metal'], neutral: '', immune: '')
+earth = Element.create!(name: 'earth', weak_to: ['wood', 'lightning', 'earth'], strong_to: ['fire', 'water', 'metal'], neutral: '', immune: '')
 
-air = Element.create!(name: 'air', strong_to: ['fire', 'metal'], weak_to: ['lightning', 'earth'], neutral: '', immune: '')
-death = Element.create!(name: 'death', strong_to: ['energy', 'light'], weak_to: ['metal', 'life'], neutral: '', immune: '')
-dark = Element.create!(name: 'dark', strong_to: 'dark', weak_to: 'light', neutral: '', immune: '')
-metal = Element.create!(name: 'metal', strong_to: 'fire', weak_to: 'wood', neutral: '', immune: '')
-light = Element.create!(name: 'light', strong_to: 'death', weak_to: 'dark', neutral: '', immune: '')
-life = Element.create!(name: 'life', strong_to: 'life', weak_to: 'death', neutral: '', immune: '')
+air = Element.create!(name: 'air', weak_to: ['fire', 'metal'], strong_to: ['lightning', 'earth'], neutral: '', immune: '')
+death = Element.create!(name: 'death', weak_to: ['energy', 'light'], strong_to: ['metal', 'life'], neutral: '', immune: '')
+dark = Element.create!(name: 'dark', weak_to: 'dark', strong_to: 'light', neutral: '', immune: '')
+metal = Element.create!(name: 'metal', weak_to: 'fire', strong_to: 'wood', neutral: '', immune: '')
+light = Element.create!(name: 'light', weak_to: 'death', strong_to: 'dark', neutral: '', immune: '')
+life = Element.create!(name: 'life', weak_to: 'life', strong_to: 'death', neutral: '', immune: '')
 
+#boss = Element.create!(name: 'boss', weak_to: '', strong_to: ['energy', 'fire', 'water', 'wood', 'lightning', 'ice', 'earth', 'air', 'death', 'dark', 'metal', 'light', 'life'], neutral: '', immune: '')
+
+#Bane Strike=Move.create!(name: 'Bane Strike', strength: 10, special: false, remaining_uses: 10)
+#Bane Strike.element= energy
+#Bane Strike.save
+#Barrage Mash=Move.create!(name: 'Barrage Mash', strength: 20, special: false, remaining_uses: 9)
+#Barrage Mash.element = energy
+#Barrage Mash.save
+#Bash Blast=Move.create!(name: 'Bash Blast', strength: 30, special: false, remaining_uses: 8)
+#Bash Blast.element = energy
+#Bash Blast.save
+#Blasting Smasher=Move.create!(name: 'Blasting Smasher', strength: 40, special: false, remaining_uses: 7)
+#Blasting Smasher.element = energy
+#Blasting Smasher.save
+#Crazed Crasher=Move.create!(name: 'Crazed Crasher', strength: 50, special: false, remaining_uses: 6)
+#Crazed Crasher.element = energy
+#Crazed Crasher.save
+#Crushing Blast=Move.create!(name: 'Crushing Blast', strength: 60, special: false, remaining_uses: 5)
+#Crushing Blast.element = energy
+#Crushing Blast.save
+#Fusion Smasher=Move.create!(name: 'Fusion Smasher', strength: 70, special: false, remaining_uses: 4)
+#Fusion Smasher.element = energy
+#Fusion Smasher.save
+#Mashing Basher=Move.create!(name: 'Mashing Basher', strength: 80, special: false, remaining_uses: 3)
+#Mashing Basher.element = energy
+#Mashing Basher.save
+#Omni Crusher=Move.create!(name: 'Omni Crusher', strength: 90, special: false, remaining_uses: 2)
+#Omni Crusher.element = energy
+#Omni Crusher.save
+#Smashing Bash=Move.create!(name: 'Smashing Bash', strength: 100, special: false, remaining_uses: 1)
+#Smashing Bash.element= energy
+#Smashing Bash.save
 
 AtomBane=Move.create!(name: 'Atom Bane', strength: 10, special: false, remaining_uses: 10)
 AtomBane.element= energy
@@ -507,3 +539,8 @@ zap = Monster.create!(name: 'zapdos', image_front: nil, image_back: nil, strike_
 zap.element = energy
 zap.moves << [AtomBane, BattlerReaction, BlastLance, BlastingReactor, CrashingReaction, ForceAssault, FusionBlast, NeutronFusion, ReactionFusion, WayStrike]
 zap.save
+
+#mew2 = Monster.create!(name: 'mewtwo', image_front: nil, image_back: nil, strike_sound: nil, hurt_sound: nil)
+#mew2.element = boss
+#mew2.moves << [Bane Strike, Barrage Mash, Bash Blast, Blasting Smasher, Crazed Crasher, Crushing Blast, Fusion Smasher, Mashing Basher, Omni Crusher, Smashing Bash]
+#mew2.save
