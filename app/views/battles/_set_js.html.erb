@@ -6,4 +6,11 @@ var <%= "monster#{i+1}" %> = {name: "<%= monster.monster.name %>", hp: "<%= mons
 <% @battle.p2_battle_monsters.each_with_index do |monster, i| %>
 var <%= "monster#{i+5}" %> = {name: "<%= monster.monster.name %>", hp: "<%= monster.hp %>", max_hp: "<%= monster.monster.hp %>", image_front: "<%= monster.monster.name %>/front.gif", image_back: "<%= monster.monster.name %>/back.gif", image_large: "<%= monster.monster.name %>/large.png",  }
 <% end %>
+<% (1..8).each do |i| %>
+ $('#monster<%=i%>-name').text(monster<%= i %>["name"] + ":");
+ $('#monster<%=i%>-heathnum').text(monster<%= i %>["hp"]);
+ $('#health2').attr('max', monster<%= i %>["max_hp"]);
+ $('#health2').attr('value', monster<%= i %>["hp"]);
+ // 
+<% end %>
 </script>
