@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-
-  devise_for :users
+  devise_for :users, controllers: { registrations: "registrations" }
+  # devise_for :users
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       collection do
       get 'league', to: 'battles#league_table'
       get 'challenges', to: 'battles#challenges'
+      get 'test', to: 'battles#test'
       end
     end
 

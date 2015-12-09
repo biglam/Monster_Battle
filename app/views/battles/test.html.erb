@@ -1,0 +1,10 @@
+<table>
+  <% Monster.all.each do |monster| %>
+  <tr>
+    <td><%= monster.name %></td>
+    <td><img src="/images/monsters/<%=monster.name%>/front.gif"></td>
+    <td><img src="/images/monsters/<%=monster.name%>/back.gif"></td>
+    <td><img src="/images/monsters/<%=monster.name%>/large.png"></td>
+  </tr>
+  <% end %>
+</table>
