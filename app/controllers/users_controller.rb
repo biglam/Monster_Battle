@@ -21,10 +21,7 @@ class UsersController < ApplicationController
     redirect_to(user_path)
 
    end
-  def create
-    @user = User.find(params[:id])
-    redirect_to(user_edit_path)
-  end
+ 
 
 
 
