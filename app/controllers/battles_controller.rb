@@ -117,6 +117,11 @@ class BattlesController < ApplicationController
     reciever.hp -= damage
     if reciever.hp < 1
       reciever.hp = 0
+      @battle.state = "#{reciever.id} dead"
+      @battle.save
+    else
+      @battle.state = "#{reciever.id} hurt"
+      @battle.save
     end
     reciever.save
     if game_won 
@@ -140,12 +145,14 @@ class BattlesController < ApplicationController
       @battle.player2.wins += 1
       @battle.player2.points += 3
       @battle.player2.save
+      @battle.state = "Finished"
       @battle.save
       return true
     elsif (@battle.p2_battle_monsters.map {|x| x.hp }.inject{|sum, x| sum + x} < 1)
       @battle.winner_id = @battle.player1_id
       @battle.player1.wins += 1
       @battle.player1.points += 3
+      @battle.state = "Finished"
       @battle.player1.save
       @battle.save
       return true

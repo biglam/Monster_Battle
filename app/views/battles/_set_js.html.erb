@@ -1,24 +1,50 @@
 <script>
-// var monster0 = {type:"p", model:"500", color:"white"};
 <% @battle.p1_battle_monsters.each_with_index do |monster, i| %>
-var <%= "monster#{i+1}" %> = {name: "<%= monster.monster.name %>", hp: "<%= monster.hp %>", max_hp: "<%= monster.monster.hp %>", image_front: "/images/monsters/<%= monster.monster.name %>/front.gif", image_back: "/images/monsters/<%= monster.monster.name %>/back.gif", image_large: "/images/monsters/<%= monster.monster.name %>/large.png",  }
+  var <%= "monster#{i+1}" %> = {name: "<%= monster.monster.name %>", hp: "<%= monster.hp %>", max_hp: "<%= monster.monster.hp %>", image_front: "/images/monsters/<%= monster.monster.name %>/front.gif", image_back: "/images/monsters/<%= monster.monster.name %>/back.gif", image_large: "/images/monsters/<%= monster.monster.name %>/large.png", id: "<%= monster.id %>" }
 <% end %>
 <% @battle.p2_battle_monsters.each_with_index do |monster, i| %>
-var <%= "monster#{i+5}" %> = {name: "<%= monster.monster.name %>", hp: "<%= monster.hp %>", max_hp: "<%= monster.monster.hp %>", image_front: "/images/monsters/<%= monster.monster.name %>/front.gif", image_back: "/images/monsters/<%= monster.monster.name %>/back.gif", image_large: "/images/monsters/<%= monster.monster.name %>/large.png",  }
+  var <%= "monster#{i+5}" %> = {name: "<%= monster.monster.name %>", hp: "<%= monster.hp %>", max_hp: "<%= monster.monster.hp %>", image_front: "/images/monsters/<%= monster.monster.name %>/front.gif", image_back: "/images/monsters/<%= monster.monster.name %>/back.gif", image_large: "/images/monsters/<%= monster.monster.name %>/large.png", id: "<%= monster.id %>"  }
 <% end %>
 <% (1..8).each do |i| %>
- $('#monster<%=i%>-name').text(monster<%= i %>["name"] + ":");
- $('#monster<%=i%>-heathnum').text(monster<%= i %>["hp"]);
- $('#health<%=i%>').attr('max', monster<%= i %>["max_hp"]);
- $('#health<%=i%>').attr('value', monster<%= i %>["hp"]);
- $('#large<%=i%>').attr('src', monster<%=i%>["image_large"]);
+   $('#monster<%=i%>-name').text(monster<%= i %>["name"] + ":");
+   $('#monster<%=i%>-heathnum').text(monster<%= i %>["hp"]);
+   $('#health<%=i%>').attr('max', monster<%= i %>["max_hp"]);
+   $('#health<%=i%>').attr('value', monster<%= i %>["hp"]);
+   $('#large<%=i%>').attr('src', monster<%=i%>["image_large"]);
 <% end %>
 <% (1..4).each do |i| %>
-$('#anim<%=i%>').attr('src', monster<%=i%>["image_back"]);
-$('#anim<%=i+4%>').attr('src', monster<%=i%>["image_front"]);
+  $('#anim<%=i%>').attr('src', monster<%=i%>["image_back"]);
+  $('#anim<%=i+4%>').attr('src', monster<%=i%>["image_front"]);
+  if (monster<%=i%>["hp"] == 0) {
+      $('#anim<%=i%>').hide();
+  }
 <% end %>
-
-
 </script>
 
-<!-- $('body').css("background-image", "url('/assets/blastoise/back.gif"); -->
+<% if @battle.state.include? "dead" %>
+
+<% dead = @battle.state.to_i %>
+<script>var deadid = <%= dead %>
+<% (1..8).each do |i| %>
+  if (monster<%=i%>["id"] == deadid) {
+    $('#anim<%=i%>').show();
+    $('#anim<%=i%>').fadeOut(3000);
+  }
+<% end %>
+<% end %>
+</script>
+
+<% if @battle.state.include? "hurt" %>
+
+<% hurt = @battle.state.to_i %>
+<script>var hurtid = <%= hurt %>
+<% (1..8).each do |i| %>
+  if (monster<%=i%>["id"] == hurtid) {
+    setTimeout(function(){
+        $('#anim<%=i%>').effect("shake");
+    }, 500)
+    
+  }
+<% end %>
+<% end %>
+</script>
