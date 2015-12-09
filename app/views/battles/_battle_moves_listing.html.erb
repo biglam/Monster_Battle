@@ -1,5 +1,5 @@
 <ul>
-<% @battle.send("p#{player}_battle_monsters").each_with_index do |monster, i| %>
+<% @battle.send("p#{player}_battle_monsters").sort.each_with_index do |monster, i| %>
 <script>var m1health<%= i + counter %> = (parseInt('<%= monster.hp.to_f / (monster.monster.hp).to_f * 100 %>')); </script>
 
 <%= form_for @battle,  url: { action: 'submit_move' }, :method => :POST do |f| %>

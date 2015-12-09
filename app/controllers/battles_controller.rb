@@ -26,12 +26,14 @@ class BattlesController < ApplicationController
 
   def pick_monster_moves
     @battle = Battle.find(params[:id])
-
   end
 
   def edit
     @battle = Battle.find(params[:id])
     @turn = @battle.turn.split[0].to_i
+    if @battle.state == "Finished"
+      redirect_to(battle_path(@battle))
+    end
   end
 
   def update
@@ -69,14 +71,17 @@ class BattlesController < ApplicationController
       else
         redirect_to(monster_moves_battle_path(@battle))
       end
+    when "Finished"
+      # binding.pry;''
+      redirect_to(battle_path(@battle))
     else
       redirect_to(edit_battle_path(@battle))
-    end
-
   end
 
-  def set_monsters(player, mlist)
-    mlist.each { |x, y|  
+end
+
+def set_monsters(player, mlist)
+  mlist.each { |x, y|  
       # binding.pry;''
       @battle.send("#{player}_battle_monsters").create monster: (Monster.find(y)), hp: Monster.find(y).hp, position: x
     }
@@ -117,6 +122,11 @@ class BattlesController < ApplicationController
     reciever.hp -= damage
     if reciever.hp < 1
       reciever.hp = 0
+      @battle.state = "#{reciever.id} dead"
+      @battle.save
+    else
+      @battle.state = "#{reciever.id} hurt"
+      @battle.save
     end
     reciever.save
     if game_won 
@@ -140,12 +150,14 @@ class BattlesController < ApplicationController
       @battle.player2.wins += 1
       @battle.player2.points += 3
       @battle.player2.save
+      @battle.state = "Finished"
       @battle.save
       return true
     elsif (@battle.p2_battle_monsters.map {|x| x.hp }.inject{|sum, x| sum + x} < 1)
       @battle.winner_id = @battle.player1_id
       @battle.player1.wins += 1
       @battle.player1.points += 3
+      @battle.state = "Finished"
       @battle.player1.save
       @battle.save
       return true
