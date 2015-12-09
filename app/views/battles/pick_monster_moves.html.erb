@@ -11,11 +11,22 @@
 
 <% if @battle.state == "Player 2 selected monsters" && @battle.player2 == current_user %>
   <p>Please wait for Player 1</p>
+  <script>
+  setTimeout(function(){
+     window.location.reload(1);
+  }, 5000)
+  </script>
+
   <%= link_to("refresh", monster_moves_battle_path(@battle)) %>
 <% end %>
 
 <% if @battle.state == "Player 1 selected moves" && @battle.player1 == current_user %>
   <p>Please wait for Player 2</p>
+  <script>
+  setTimeout(function(){
+     window.location.reload(1);
+  }, 5000)
+  </script>
   <%= link_to("refresh", monster_moves_battle_path(@battle)) %>
 <% end %>
 
