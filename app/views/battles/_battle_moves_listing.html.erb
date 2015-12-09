@@ -8,7 +8,8 @@
     <%= select("move", "monster(#{monster.id})", monster.battle_monster_moves.map {|p| [ "#{p.move.name}, #{p.remaining_uses}", p.id ] }) unless monster.hp < 1 %>
   <%= select("move", "opponent", @battle.send("p#{opponent}_battle_monsters").where("hp > 0").map {|m| [ m.monster.name, m.id] }) unless monster.hp < 1 %>
   
-  <%= f.submit 'Make move' if monster.hp > 0 && @turn.to_i == current_user.id && @battle.send("player#{player}_id") == current_user.id   %></li>
+  <%= f.submit 'Make move' if monster.hp > 0 && @turn.to_i == current_user.id && @battle.send("player#{player}_id") == current_user.id   %>
+  </li>
 <% end %>
 <% end %>
 </ul>
