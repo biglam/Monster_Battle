@@ -224,13 +224,32 @@ position: absolute;
     
 }
 
+.notice {
+        width: 274px;
+      height: 144px;
+      background-color: black;
+      position: absolute;
+      top: 163px;
+      left: 472px;
+      display:inline;
+      text-align: center;
+      float: left;
+      z-index: 1;
+}
+
+p.notice {
+    color: red;
+    font-size: 3em;
+}
+
 .screen {
+    z-index: 0;
 	    width: 274px;
     height: 144px;
     background-color: black;
     position: absolute;
-    top: 59px;
-    left: 464px;
+    top: 163px;
+    left: 472px;
     display:inline;
     text-align: center;
     /*padding: 10px;*/
