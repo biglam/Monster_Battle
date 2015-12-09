@@ -1,4 +1,11 @@
-<h1>Leaderboard</h1>
+<div id="bg-leaderboard">
+        <%= image_tag("backgrounds/trophy-wallpaper.jpg") %>
+</div>
+
+
+
+
+<h1 class="leaderheading">Leaderboard</h1>
 <table class="leadertable">
   <tr>
     <th><h3>Name</h3></th>
@@ -10,7 +17,7 @@
   <tr>
     <td class='leaderboard'><h4><span><%= user.name %></h4></span></td>
     <td class='leaderboard'><h4><span class="lb-number"><%= user.played %></h4></span></td>
-    <td class='leaderboard'><h4><span class="lb-number"><%= user.won %></h4></span></td>
+    <td class='leaderboard'><h4><span class="lb-number"><%= user.wins %></h4></span></td>
     <td class='leaderboard'><h4><span class="lb-number"><%= user.points %></h4></span></td>
   </tr>
   <% end %>

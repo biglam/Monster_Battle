@@ -15,7 +15,7 @@
  *= require jquery-ui
  */
 
- h1 {
+ /*.leadertable h1 {
   text-align: center;
   font-family: 'PokemonA.ttf';
   color: rgba(255, 255, 255, 1);
@@ -23,31 +23,53 @@
   margin: 5px;
  }
 
- h2 {
+ .leadertable h2 {
   text-align: center;
   font-family: 'PokemonB.ttf';
   color: rgba(255, 255, 255, 1);
   font-size: 4em;
   margin: 5px;
  }
-
- h3 {
+*/
+/* .leadertable h3 {
   font-family: 'PokemonC.ttf';
   color: rgba(255, 255, 255, 1);
   font-size: 3em;
   margin: 10px;
- }
+ }*/
 
- h4 {
+ /*.leadertable h4 {
   font-family: 'PokemonD.ttf';
   color: rgba(255, 255, 255, 1);
   font-size: 2em;
+ }*/
+
+.leaderheading {
+  color: white;
+  font-family: PokemonA;
+    text-shadow: 2px 2px black;
+    font-size: 32px;
+}
+
+ #bg-leaderboard {
+   position: fixed; 
+   top: -50%; 
+   left: -50%; 
+   width: 200%; 
+   height: 200%;
+   z-index: -1;
+ }
+ #bg-leaderboard img {
+   position: absolute; 
+   top: 0; 
+   left: 0; 
+   right: 0; 
+   bottom: 0; 
+   margin: auto; 
+   min-width: 50%;
+   min-height: 50%;
  }
 
- body {
-  background-image: url("tropy-wallpaper.jpg");
-  background-size: cover;
- }
 
  .leaderboard h4 {
    margin: 10px;
@@ -61,6 +83,14 @@
  .leadertable {
    margin-right: auto;
    margin-left: auto;
+   font-family: PokemonA;
+ }
+
+ .leadertable h3 {
+  font-family: PokemonA;
+  color: white;
+    text-shadow: 2px 2px black;
+  
  }
 
 
