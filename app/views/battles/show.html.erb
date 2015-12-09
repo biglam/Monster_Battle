@@ -1,1 +1,10 @@
 <h1>THE WINNER IS <%= @battle.winner_id %> - <%= User.find(@battle.winner_id).name %></h1>
+
+<div class="videoWrapper" id="wrapper">
+<%= video_tag(["/videos/charizard.mp4"], height: '480', width: '854', id: 'vid1', :controls => false, :autoplay => true) %>
+
+    <!-- <video id="vid1" autoplay> -->
+        <!-- <source src="videos/charizard-flame.mp4"> -->
+        <!-- <source src="videos/vid1.ogv"> -->
+    <!-- </video> -->
+</div>
