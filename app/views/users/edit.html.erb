@@ -11,7 +11,13 @@
   <%= f.email_field :email, class: 'form-control' %>
   <br>
 
-
+  <div class="field">
+   <h3 style="display:inline;">Avatar</h3>  <br>
+   <% User.avatars.each_with_index do |avatar, i| %>
+    <%= f.radio_button :avatar, i %> 
+    <img class='avatarselect' src='<%= avatar %>'>
+   <% end %>
+  </div>
   <%#= f.label :gender %>
   <%#= f.text_field :gender, required: true, class: 'form-control' %>
   <%#= f.select :gender, %w{Male Female}, :prompt => 'Select', required: true, placeholder: 'Gender', class: 'form-control' %>

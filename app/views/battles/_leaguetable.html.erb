@@ -9,14 +9,13 @@
 <table class="leadertable">
   <tr>
     <th><h3>Name</h3></th>
-    <th><h3>Games Played</h3></th>
     <th><h3>Games Won</h3></th>
     <th><h3>Points</h3></th>
   </tr>
   <% @users.each do |user| %>
   <tr>
-    <td class='leaderboard'><h4><span><%= user.name %></h4></span></td>
-    <td class='leaderboard'><h4><span class="lb-number"><%= user.played %></h4></span></td>
+    <td class='leaderboard'><h4><span><%= link_to(user.name, user_path(user)) %></h4></span></td>
+
     <td class='leaderboard'><h4><span class="lb-number"><%= user.wins %></h4></span></td>
     <td class='leaderboard'><h4><span class="lb-number"><%= user.points %></h4></span></td>
   </tr>

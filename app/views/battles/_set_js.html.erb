@@ -18,6 +18,7 @@ $(".notice").fadeOut(5000);
   <% end %>
 <% end %>
 
+
 $('#player1-name').text("<%= @battle.player1.name %>");
 $('#player2-name').text("<%= @battle.player2.name %>");
 
@@ -80,9 +81,13 @@ $('#player2-name').text("<%= @battle.player2.name %>");
 setTimeout(function(){
   $('.notice').fadeOut();
 }, 5000)
-</script>
 
-<script>
+
+var p1_avatar = "<%= User.avatars[@battle.player1.avatar] %>";
+var p2_avatar = "<%= User.avatars[@battle.player2.avatar] %>";
+$('#trainer1').attr('src', p1_avatar);
+$('#trainer2').attr('src', p2_avatar);
+
 var checkState = function(){
   var rubystate = "<%= @battle.state %>";
   jsondata = $.get( "edit.json", function( data ) {
