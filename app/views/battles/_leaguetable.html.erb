@@ -1,16 +1,17 @@
-<table>
+<h1>Leaderboard</h1>
+<table class="leadertable">
   <tr>
-    <th>Name</th>
-    <th>Games Played</th>
-    <th>Games Won</th>
-    <th>Points</th>
+    <th><h3>Name</h3></th>
+    <th><h3>Games Played</h3></th>
+    <th><h3>Games Won</h3></th>
+    <th><h3>Points</h3></th>
   </tr>
   <% @users.each do |user| %>
   <tr>
-    <td><%= user.name %></td>
-    <td><%= user.played %></td>
-    <td><%= user.wins %></td>
-    <td><%= user.points %></td>
+    <td class='leaderboard'><h4><span><%= user.name %></h4></span></td>
+    <td class='leaderboard'><h4><span class="lb-number"><%= user.played %></h4></span></td>
+    <td class='leaderboard'><h4><span class="lb-number"><%= user.won %></h4></span></td>
+    <td class='leaderboard'><h4><span class="lb-number"><%= user.points %></h4></span></td>
   </tr>
   <% end %>
 </table>

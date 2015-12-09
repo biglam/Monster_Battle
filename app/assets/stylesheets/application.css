@@ -13,3 +13,57 @@
  *= require_tree .
  *= require_self
  */
+
+ h1 {
+  text-align: center;
+  font-family: 'PokemonA.ttf';
+  color: rgba(255, 255, 255, 1);
+  font-size: 5em;
+  margin: 5px;
+ }
+
+ h2 {
+  text-align: center;
+  font-family: 'PokemonB.ttf';
+  color: rgba(255, 255, 255, 1);
+  font-size: 4em;
+  margin: 5px;
+ }
+
+ h3 {
+  font-family: 'PokemonC.ttf';
+  color: rgba(255, 255, 255, 1);
+  font-size: 3em;
+  margin: 10px;
+ }
+
+ h4 {
+  font-family: 'PokemonD.ttf';
+  color: rgba(255, 255, 255, 1);
+  font-size: 2em;
+ }
+
+ body {
+  background-image: url("tropy-wallpaper.jpg");
+  background-size: cover;
+ }
+
+ .leaderboard h4 {
+   margin: 10px;
+ }
+
+ .lb-number {
+   font-family: "PokemonA.ttf";
+   font-size: 1.5em;
+ }
+
+ .leadertable {
+   margin-right: auto;
+   margin-left: auto;
+ }
+
+
+ .alert {
+   margin-top: 100px;
+   text-align: center;
+ }
