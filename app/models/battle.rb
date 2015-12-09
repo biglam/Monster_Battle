@@ -2,8 +2,8 @@ class Battle < ActiveRecord::Base
 
   belongs_to :player1, class_name: 'User'
   belongs_to :player2, class_name: 'User'
-  has_many :p1_battle_monsters, -> { where(player: 'player1') }, class_name: 'BattleMonster'
-  has_many :p2_battle_monsters, -> { where(player: 'player2') }, class_name: 'BattleMonster'
+  has_many :p1_battle_monsters, -> { where(player: 'player1').order(:position) }, class_name: 'BattleMonster'
+  has_many :p2_battle_monsters, -> { where(player: 'player2').order(:position)  }, class_name: 'BattleMonster'
   # belongs_to :battle_monsters
 
   def cl_setup(p1_id, p2_id) #command line only

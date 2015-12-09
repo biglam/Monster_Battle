@@ -231,7 +231,7 @@ position: absolute;
       position: absolute;
       top: 163px;
       left: 472px;
-      display:inline;
+      display:none;
       text-align: center;
       float: left;
       z-index: 1;
