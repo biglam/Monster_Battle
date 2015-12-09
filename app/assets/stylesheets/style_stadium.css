@@ -8,13 +8,13 @@ body {
 	font-family: pokemonA; src: url('PokemonA.ttf'); 
 } 
 @font-face { 
-	font-family: pokemonB; src: url('fonts/PokemonB.ttf'); 
+	font-family: pokemonB; src: url('PokemonB.ttf'); 
 } 
 @font-face { 
-	font-family: pokemonC; src: url('fonts/PokemonC.ttf'); 
+	font-family: pokemonC; src: url('PokemonC.ttf'); 
 } 
 @font-face { 
-	font-family: pokemonD; src: url('fonts/PokemonD.ttf'); 
+	font-family: pokemonD; src: url('PokemonD.ttf'); 
 } 
 
 
@@ -380,11 +380,22 @@ h1, h2, h3, h4 {
 	font-family: PokemonA;
 }
 
+h4 {
+    display: inline;
+    font-size: 14px;
+    color: white;
+    font-family: PokemonC;
+    letter-spacing: 4px;
+    text-shadow: 2px 2px black;
+}
+
 .player1-name {
     color: white;
 	position: absolute;
 	top: -5px;
     left: 31px;
+    text-shadow: 2px 2px black;
+    
 
 }
 
@@ -393,6 +404,8 @@ h1, h2, h3, h4 {
 	position: absolute;
 	top: -5px;
     right: 31px;
+    text-shadow: 2px 2px black;
+
 
 }
 
@@ -414,7 +427,75 @@ p {
     top: 55px;
     left: 174px;
     background-color: none;
-    opacity: 0;
+    opacity: 1;
     z-index: 12;
     display: none;
+}
+
+.monster1-info {
+    position:absolute;
+    left: 147px;
+    top: 117px;
+    display: inline;
+    z-index:11;
+}
+
+.monster2-info {
+    position:absolute;
+    left: 147px;
+    top: 247px;
+    display: inline;
+    z-index:11;
+
+}
+
+.monster3-info {
+    position:absolute;
+    left: 147px;
+    top: 377px;
+    display: inline;
+    z-index:11;
+
+}
+.monster4-info {
+    position:absolute;
+    left: 147px;
+    top: 507px;
+    display: inline;
+    z-index:11;
+
+}
+
+.monster5-info {
+    position:absolute;
+    right: 147px;
+    top: 117px;
+    display: inline;
+    z-index:11;
+}
+
+.monster6-info {
+    position:absolute;
+    right: 147px;
+    top: 247px;
+    display: inline;
+    z-index:11;
+
+}
+
+.monster7-info {
+    position:absolute;
+    right: 147px;
+    top: 377px;
+    display: inline;
+    z-index:11;
+
+}
+.monster8-info {
+    position:absolute;
+    right: 147px;
+    top: 507px;
+    display: inline;
+    z-index:11;
+
 }

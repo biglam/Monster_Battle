@@ -3,17 +3,19 @@
 
 
 
-    </div>
+    
 
     <div class="avatar1">
-        <img class="trainer-avatar" src="http://cdn.bulbagarden.net/upload/thumb/6/61/Black_2_White_2_Nate.png/200px-Black_2_White_2_Nate.png">
+      <%= image_tag("trainers/girls/Ace.png", class: 'trainer-avatar') %>
+
     </div>
 
      <div class="avatar2">
-        <img class="trainer-avatar" src="http://cdn.bulbagarden.net/upload/f/f7/Ruby_Sapphire_May.png">
+      <%= image_tag("trainers/boys/Nate.png", class: 'trainer-avatar') %>     
     </div>
+    
     <div class="videoWrapper" id="wrapper">
-    <%= video_tag(asset_path("/videos/charizard.mp4"), height: '480', width: '854', id:'vid1', controls: false, autoplay: true) %>
+    <%= video_tag(["/videos/charizard.mp4"], height: '480', width: '854', id: 'vid1', :controls => false, :autoplay => true) %>
 
         <!-- <video id="vid1" autoplay> -->
             <!-- <source src="videos/charizard-flame.mp4"> -->
