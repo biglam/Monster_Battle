@@ -1,22 +1,14 @@
 
 <%= render partial: 'graeme_head' %>
 
-<p><%= "Battle #{@battle.id}" %></p>
 
-<h2>FIGHT</h2>
-<%= "Battle #{@battle.id}" %>
-<%= "Turn #{@turn}" %>
-<% if @turn.to_i == current_user.id %>
-YOUR TURN
-<% else %>
-OPPONENTS TURN
-<% end %>
-
+<div class="controller" id="controller">
 <% if @battle.player1_id == current_user.id %>
 <%= render partial: 'battle_moves_listing' , :locals => {:player => 1, :opponent => 2, :counter => 0 }%>
 <% elsif @battle.player2_id == current_user.id %>
 <%= render partial: 'battle_moves_listing' , :locals => {:player => 2, :opponent => 1, :counter => 4 }%>
 <% end %>
+</div>
 <script type="text/javascript">healthbar_update();</script>
 <!-- Set javascrip attributes with seperate partial? -->
 

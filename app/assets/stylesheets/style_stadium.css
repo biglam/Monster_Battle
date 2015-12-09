@@ -232,6 +232,8 @@ position: absolute;
     top: 59px;
     left: 464px;
     display:inline;
+    text-align: center;
+    /*padding: 10px;*/
 }
 
 .p2-damage {
@@ -389,13 +391,15 @@ h4 {
     text-shadow: 2px 2px black;
 }
 
+
+
 .player1-name {
     color: white;
 	position: absolute;
 	top: -5px;
     left: 31px;
     text-shadow: 2px 2px black;
-    
+
 
 }
 
@@ -498,4 +502,10 @@ p {
     display: inline;
     z-index:11;
 
+}
+
+.controller {
+    position: absolute;
+    bottom: 20px;
+    left: 350px;
 }

@@ -164,15 +164,25 @@
 
      <div class="screen">
       <%#= image_tag("UI/logo2.png", width: '260', height: 'auto') %>
+      <h3 style="color:white;">FIGHTU!!</h3>
+      <h4><%= "Battle #{@battle.id}" %><h4>
+      <br>
+      <h4><%= "Turn #{@turn}" %><h4>
+      <br>
+      <% if @turn.to_i == current_user.id %>
+      <h3 style="color:white">YOUR TURN</h3>
+      <% else %>
+      <h3 style="color:white;">OPPONENTS TURN</h3>
+      <% end %>
 
     </div>
 
     <div class="menu">
-   <!--  <button id="style" style="position:inline;">Change Venue</button>
-    <button id="damage1" style="position:inline;">Damage player 1</button>
-    <button id="damage2" style="position:inline;">Damage player 2</button>
-    <button id="play-video" style="position:inline;">Play Winner Video</button>
-    <br> -->
+   <% if @turn.to_i == current_user.id %>
+   <h3 style="color:black">YOUR TURN</h3>
+   <% else %>
+   <h3 style="color:black;">OPPONENTS TURN</h3>
+   <% end %>
     </div>
 
     <!-- ____________________MOSTER DETAILS -->
