@@ -4,20 +4,22 @@ $(".notice").fadeOut(5000);
 
 <% if @battle.player1.gender != nil %>
   <% if @battle.player1.gender == "Male" %>
-  $('#trainer1').attr('src', '/images/trainers/boys/brendan.png')
+  $('#trainer1').attr('src', '/images/trainers/boys/brendan.png');
   <% elsif @battle.player1.gender == "Female" %>
-  $('#trainer1').attr('src', '/images/trainers/girls/psy.png')
+  $('#trainer1').attr('src', '/images/trainers/girls/psy.png');
   <% end %>
 <% end %>
 
 <% if @battle.player2.gender != nil %>
   <% if @battle.player2.gender == "Male" %>
-  $('#trainer2').attr('src', '/images/trainers/boys/scott.png')
+  $('#trainer2').attr('src', '/images/trainers/boys/scott.png');
   <% elsif @battle.player2.gender == "Female" %>
-  $('#trainer2').attr('src', '/images/trainers/girls/jess.png')
+  $('#trainer2').attr('src', '/images/trainers/girls/jess.png');
   <% end %>
 <% end %>
 
+$('#player1-name').text("<%= @battle.player1.name %>");
+$('#player2-name').text("<%= @battle.player2.name %>");
 
 <% @battle.p1_battle_monsters.sort.each_with_index do |monster, i| %>
   var <%= "monster#{i+1}" %> = {name: "<%= monster.monster.name %>", hp: "<%= monster.hp %>", max_hp: "<%= monster.monster.hp %>", image_front: "/images/monsters/<%= monster.monster.name %>/front.gif", image_back: "/images/monsters/<%= monster.monster.name %>/back.gif", image_large: "/images/monsters/<%= monster.monster.name %>/large.png", id: "<%= monster.id %>" }

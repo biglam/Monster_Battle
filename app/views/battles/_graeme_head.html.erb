@@ -1,7 +1,7 @@
 <div class="main-container" id="background">
  <% (1..8).each do |i| %>
  <div class="monster<%= i %>-info">
-   <h4 id="monster<%= i %>-name">MONSTER <%= i %> :</h4><h4 id="monster<%= i %>-heathnum">100</h4><br>
+   <h4 id="monster<%= i %>-name"></h4><h4 id="monster<%= i %>-heathnum"></h4><br>
    <progress id='health<%= i%>' value="100" max="100" style="color:green; border: 2px solid black;"></progress>
  </div>
  <% end %> 
@@ -59,9 +59,9 @@
 <div class="screen">
   <%#= image_tag("UI/logo2.png", width: '260', height: 'auto') %>
   <h3 style="color:white;">FIGHTU!!</h3>
-  <h4><%= "Battle #{@battle.id}" %><h4>
+  <h4><%= "Battle Number#{@battle.id}" %><h4>
     <br>
-    <h4><%= "Turn #{@turn}" %><h4>
+    <h4><%= @battle.player1.name if @turn.to_i == @battle.player1.id %><%= @battle.player2.name if @turn.to_i == @battle.player2.id %><h4>
       <br>
       <% if @turn.to_i == current_user.id %>
       <h3 style="color:white">YOUR TURN</h3>
