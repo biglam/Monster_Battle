@@ -1,4 +1,24 @@
 <script>
+$(".notice").show();
+$(".notice").fadeOut(5000);
+
+<% if @battle.player1.gender != nil %>
+  <% if @battle.player1.gender == "Male" %>
+  $('#trainer1').attr('src', '/images/trainers/boys/brendan.png')
+  <% elsif @battle.player1.gender == "Female" %>
+  $('#trainer1').attr('src', '/images/trainers/girls/psy.png')
+  <% end %>
+<% end %>
+
+<% if @battle.player2.gender != nil %>
+  <% if @battle.player2.gender == "Male" %>
+  $('#trainer2').attr('src', '/images/trainers/boys/scott.png')
+  <% elsif @battle.player2.gender == "Female" %>
+  $('#trainer2').attr('src', '/images/trainers/girls/jess.png')
+  <% end %>
+<% end %>
+
+
 <% @battle.p1_battle_monsters.sort.each_with_index do |monster, i| %>
   var <%= "monster#{i+1}" %> = {name: "<%= monster.monster.name %>", hp: "<%= monster.hp %>", max_hp: "<%= monster.monster.hp %>", image_front: "/images/monsters/<%= monster.monster.name %>/front.gif", image_back: "/images/monsters/<%= monster.monster.name %>/back.gif", image_large: "/images/monsters/<%= monster.monster.name %>/large.png", id: "<%= monster.id %>" }
 <% end %>
@@ -37,14 +57,17 @@
 <% end %>
 </script>
 
+
 <% if @battle.state.include? "hurt" %>
 
 <% hurt = @battle.state.to_i %>
 <script>var hurtid = <%= hurt %>
 <% (1..8).each do |i| %>
   if (monster<%=i%>["id"] == hurtid) {
+    var audio = new Audio('/kick.wav');
     setTimeout(function(){
         $('#anim<%=i%>').effect("shake");
+        audio.play();
     }, 500)
     
   }

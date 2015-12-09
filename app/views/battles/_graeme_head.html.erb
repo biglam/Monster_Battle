@@ -1,13 +1,9 @@
-
 <div class="main-container" id="background">
-
  <% (1..8).each do |i| %>
-
  <div class="monster<%= i %>-info">
    <h4 id="monster<%= i %>-name">MONSTER <%= i %> :</h4><h4 id="monster<%= i %>-heathnum">100</h4><br>
    <progress id='health<%= i%>' value="100" max="100" style="color:green; border: 2px solid black;"></progress>
  </div>
-
  <% end %> 
 
  <div class="player1-name">
@@ -80,6 +76,11 @@
      <h3 style="color:black">YOUR TURN</h3>
      <% else %>
      <h3 style="color:black;">OPPONENTS TURN</h3>
+     <script>
+     setTimeout(function(){
+        window.location.reload(1);
+     }, 5000)
+     </script>
      <% end %>
    </div>
 
