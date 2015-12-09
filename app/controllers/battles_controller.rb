@@ -80,6 +80,10 @@ class BattlesController < ApplicationController
 
 end
 
+def test
+
+  end
+
 def set_monsters(player, mlist)
   mlist.each { |x, y|  
       # binding.pry;''

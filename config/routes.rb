@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       collection do
       get 'league', to: 'battles#league_table'
       get 'challenges', to: 'battles#challenges'
+      get 'test', to: 'battles#test'
       end
     end
 
