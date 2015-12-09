@@ -2,6 +2,10 @@
 <%= render partial: 'graeme_head' %>
 
 
+
+<%= render partial: 'set_js' %>
+
+
 <div class="controller" id="controller">
 <% if @battle.player1_id == current_user.id %>
 <%= render partial: 'battle_moves_listing' , :locals => {:player => 1, :opponent => 2, :counter => 0 }%>
