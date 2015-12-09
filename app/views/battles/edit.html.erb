@@ -1,20 +1,10 @@
-
 <%= render partial: 'graeme_head' %>
-
-
-
 <%= render partial: 'set_js' %>
-
-
 <div class="controller" id="controller">
-<% if @battle.player1_id == current_user.id %>
-<%= render partial: 'battle_moves_listing' , :locals => {:player => 1, :opponent => 2, :counter => 0 }%>
-<% elsif @battle.player2_id == current_user.id %>
-<%= render partial: 'battle_moves_listing' , :locals => {:player => 2, :opponent => 1, :counter => 4 }%>
-<% end %>
+  <% if @battle.player1_id == current_user.id %>
+    <%= render partial: 'battle_moves_listing' , :locals => {:player => 1, :opponent => 2, :counter => 0 }%>
+  <% elsif @battle.player2_id == current_user.id %>
+    <%= render partial: 'battle_moves_listing' , :locals => {:player => 2, :opponent => 1, :counter => 4 }%>
+  <% end %>
 </div>
-<script type="text/javascript">healthbar_update();</script>
-<!-- Set javascrip attributes with seperate partial? -->
-
-
 <%= render partial: 'graeme_foot' %>
