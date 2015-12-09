@@ -1,5 +1,6 @@
 <% if @battle.player1 == current_user && @battle.state == "Player 1 selected monsters" %>
 <p>Waiting for player 2</p>
+<%= render 'update_on_state' %>
 <%=link_to("Refresh", select_monsters_battle_path(@battle))%>
 <% elsif @battle.state == "Player 2 selected monsters" %>
   <%=link_to("Pick your moves", monster_moves_battle_path(@battle))%>
