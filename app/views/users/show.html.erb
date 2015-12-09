@@ -1,14 +1,24 @@
-<h1> This is the user profile page </h1>
+<div class="user-info">
+<%=link_to("Edit User Profile", edit_user_path(current_user))%>
 
-<%= current_user.name %>
+<h2> Name: <%= current_user.name %></h2>
 <br>
-<%= current_user.email %>
+<h3> Email: <%= current_user.email %></h3>
 <br>
-<%= current_user.played %>
+<h3> Gender: <%= current_user.gender %></h3>
 <br>
-<%= current_user.wins %>
+<h3> Played: <%= current_user.played %></h3>
 <br>
-<%=  %>
-<%= current_user.avatar %>
+<h3> Wins: <%= current_user.wins %></h3>
+<br>
+<% if @user.gender == "Male" %>
+<%= image_tag("trainers/boys/Nate.png", class: 'trainer-avatar') %> 
+<% else %>
+<%= image_tag("trainers/girls/Ace.png", class: 'trainer-avatar') %>
+<% end %>
+<br>
+
+</div>
+
 
 
