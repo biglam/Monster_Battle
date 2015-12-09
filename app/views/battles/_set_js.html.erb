@@ -1,8 +1,8 @@
 <script>
-<% @battle.p1_battle_monsters.each_with_index do |monster, i| %>
+<% @battle.p1_battle_monsters.sort.each_with_index do |monster, i| %>
   var <%= "monster#{i+1}" %> = {name: "<%= monster.monster.name %>", hp: "<%= monster.hp %>", max_hp: "<%= monster.monster.hp %>", image_front: "/images/monsters/<%= monster.monster.name %>/front.gif", image_back: "/images/monsters/<%= monster.monster.name %>/back.gif", image_large: "/images/monsters/<%= monster.monster.name %>/large.png", id: "<%= monster.id %>" }
 <% end %>
-<% @battle.p2_battle_monsters.each_with_index do |monster, i| %>
+<% @battle.p2_battle_monsters.sort.each_with_index do |monster, i| %>
   var <%= "monster#{i+5}" %> = {name: "<%= monster.monster.name %>", hp: "<%= monster.hp %>", max_hp: "<%= monster.monster.hp %>", image_front: "/images/monsters/<%= monster.monster.name %>/front.gif", image_back: "/images/monsters/<%= monster.monster.name %>/back.gif", image_large: "/images/monsters/<%= monster.monster.name %>/large.png", id: "<%= monster.id %>"  }
 <% end %>
 <% (1..8).each do |i| %>
@@ -17,6 +17,9 @@
   $('#anim<%=i+4%>').attr('src', monster<%=i%>["image_front"]);
   if (monster<%=i%>["hp"] == 0) {
       $('#anim<%=i%>').hide();
+  }
+  if (monster<%=i+4%>["hp"] == 0) {
+      $('#anim<%=i+4%>').hide();
   }
 <% end %>
 </script>

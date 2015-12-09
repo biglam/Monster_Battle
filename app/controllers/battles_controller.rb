@@ -26,12 +26,14 @@ class BattlesController < ApplicationController
 
   def pick_monster_moves
     @battle = Battle.find(params[:id])
-
   end
 
   def edit
     @battle = Battle.find(params[:id])
     @turn = @battle.turn.split[0].to_i
+    if @battle.state == "Finished"
+      redirect_to(battle_path(@battle))
+    end
   end
 
   def update
@@ -69,14 +71,17 @@ class BattlesController < ApplicationController
       else
         redirect_to(monster_moves_battle_path(@battle))
       end
+    when "Finished"
+      # binding.pry;''
+      redirect_to(battle_path(@battle))
     else
       redirect_to(edit_battle_path(@battle))
-    end
-
   end
 
-  def set_monsters(player, mlist)
-    mlist.each { |x, y|  
+end
+
+def set_monsters(player, mlist)
+  mlist.each { |x, y|  
       # binding.pry;''
       @battle.send("#{player}_battle_monsters").create monster: (Monster.find(y)), hp: Monster.find(y).hp, position: x
     }
