@@ -1,173 +1,71 @@
 
 <div class="main-container" id="background">
 
-   
-         <div class="player1health1" id="player1health1">
-         <progress id="health1" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
-         </div>
-         <div class="player1health2" id="player1health2">
-         <progress id="health2" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
-         </div>
-         <div class="player1health3" id="player1health3">
-         <progress id="health3" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
-         </div>
-         <div class="player1health4" id="player1health4">
-         <progress id="health4" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
-         </div>
-         <div class="player2health1" id="player2health1">
-         <progress id="health5" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
-         </div>
-         <div class="player2health2" id="player2health2">
-         <progress id="health6" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
-         </div>
-         <div class="player2health3" id="player2health3">
-         <progress id="health7" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
-         </div>
-         <div class="player2health4" id="player2health4">
-         <progress id="health8" value="100" max="100" style="color:green; border: 2px solid black;"></progress>
-         </div>
+ <% (1..8).each do |i| %>
 
-         <div class="monster1-info">
-             <h4 id="monster1-name">MONSTER 1 :</h4><h4 id="monster1-heathnum">100</h4>
-         </div>
-         <div class="monster2-info">
-             <h4 id="monster2-name">MONSTER 2 :</h4><h4 id="monster2-heathnum">100</h4>
-         </div>
-         <div class="monster3-info">
-             <h4 id="monster3-name">MONSTER 3 :</h4><h4 id="monster3-heathnum">100</h4>
-         </div>
-         <div class="monster4-info">
-             <h4 id="monster4-name">MONSTER 4 :</h4><h4 id="monster4-heathnum">100</h4>
-         </div>
-         <div class="monster5-info">
-             <h4 id="monster5-name">MONSTER 5 :</h4><h4 id="monster5-heathnum">100</h4>
-         </div>
-         <div class="monster6-info">
-             <h4 id="monster6-name">MONSTER 6 :</h4><h4 id="monster6-heathnum">100</h4>
-         </div>
-         <div class="monster7-info">
-             <h4 id="monster7-name">MONSTER 7 :</h4><h4 id="monster7-heathnum">100</h4>
-         </div>
-         <div class="monster8-info">
-             <h4 id="monster8-name">MONSTER 8 :</h4><h4 id="monster8-heathnum">100</h4>
-         </div>
-         
-   
+ <div class="monster<%= i %>-info">
+   <h4 id="monster<%= i %>-name">MONSTER <%= i %> :</h4><h4 id="monster<%= i %>-heathnum">100</h4><br>
+   <progress id='health<%= i%>' value="100" max="100" style="color:green; border: 2px solid black;"></progress>
+ </div>
 
-    
+ <% end %> 
 
-    <div class="player1-name">
-        <h2 id="player1-name">Player 1</h2>
-    </div>
+ <div class="player1-name">
+  <h2 id="player1-name">Player 1</h2>
+</div>
 
-      <div class="player2-name">
-        <h2 id="player2-name">Player 2</h2>
-    </div>
+<div class="player2-name">
+  <h2 id="player2-name">Player 2</h2>
+</div>
+
+<% (1..4).each do |i| %>
+<div class="big-monster big-monster-left<%= i %>" id="big-1-<%= i %>">
+<%= image_tag("monsters/charizard/large.png", :id => "large#{i}") %>
+</div>
+<div class="anim-monster anim-monster-left<%= i %>
+  " id="monster1-<%= i %>
+  ">
+  <%= image_tag("monsters/charizard/back.gif", :id => "anim#{i}") %>
+</div>
+<div class="sphere-left sphere-left<%= i %>">
+  <%= image_tag("UI/sphere.png") %>
+</div>
+<% end %>
 
 
+<% (1..4).each do |i| %>
+<div class="big-monster big-monster-right<%= i %>" id="big-2-<%= i %>">
+  <%= image_tag("monsters/blastoise/large.png", :id => "large#{i+4}") %>
+</div>
+<div class="anim-monster anim-monster-right<%= i %>" id="monster2-<%= i %>">
+  <%= image_tag("monsters/blastoise/front.gif", :id => "anim#{i+4}") %>
+</div>
+<div class="sphere-right sphere-right<%= i %>">
+  <%= image_tag("UI/sphere.png") %>
+</div>
+<% end %>
+
+<div class="attack" id="attack">
+
+</div>
+
+<div class="p2-damage" id="p2-damage">
+
+</div>
+
+<div class="p1-damage" id="p2-damage">
+
+</div>
+
+</div>
 
 
-    <div class="big-monster big-monster-left1" id="big-1-1">
-        <%= image_tag("monsters/charizard/large.png") %>
-    </div>
-    <div class="big-monster big-monster-left2" id="big-1-2">
-        <%= image_tag("monsters/charizard/large.png") %>
-    </div>
-    <div class="big-monster big-monster-left3" id="big-1-3">
-        <%= image_tag("monsters/charizard/large.png") %>
-    </div>
-    <div class="big-monster big-monster-left4" id="big-1-4">
-        <%= image_tag("monsters/charizard/large.png") %>
-    </div>
-
-     <div class="big-monster big-monster-right1" id="big-2-1">
-      <%= image_tag("monsters/blastoise/large.png") %>
-    </div>
-
-     <div class="big-monster big-monster-right2" id="big-2-2">
-      <%= image_tag("monsters/blastoise/large.png") %>
-    </div>
-
-     <div class="big-monster big-monster-right3" id="big-2-3">
-      <%= image_tag("monsters/blastoise/large.png") %>
-    </div>
-
-     <div class="big-monster big-monster-right4" id="big-2-4">
-      <%= image_tag("monsters/blastoise/large.png") %>
-    </div>
-
-
-
-    <div class="anim-monster anim-monster-left1" id="monster1-1">
-      <%= image_tag("monsters/charizard/back.gif") %>
-    </div>
-    <div class="anim-monster anim-monster-left2" id="monster1-2">
-      <%= image_tag("monsters/tyranitar/back.gif") %>
-    </div>
-    <div class="anim-monster anim-monster-left3" id="monster1-3">
-      <%= image_tag("monsters/lucario/back.gif") %>
-    </div>
-    <div class="anim-monster anim-monster-left4" id="monster1-4">
-      <%= image_tag("monsters/latios/back.gif") %>
-    </div>
-
-    <div class="anim-monster anim-monster-right1" id="monster2-1">
-      <%= image_tag("monsters/blastoise/front.gif") %>
-    </div>
-    <div class="anim-monster anim-monster-right2" id="monster2-2">
-      <%= image_tag("monsters/zapdos/front.gif") %>
-    </div>
-    <div class="anim-monster anim-monster-right3" id="monster2-3">
-      <%= image_tag("monsters/dragonite/front.gif") %>
-    </div>
-    <div class="anim-monster anim-monster-right4" id="monster2-4">
-      <%= image_tag("monsters/mew/front.gif") %>
-    </div>
-
-    <div class="attack" id="attack">
-       
-    </div>
-
-    <div class="p2-damage" id="p2-damage">
-        
-    </div>
-
-    <div class="p1-damage" id="p2-damage">
-        
-    </div>
-
-     <div class="sphere-left sphere-left1">
-      <%= image_tag("UI/sphere.png") %>
-    </div>
-     <div class="sphere-left sphere-left2">
-      <%= image_tag("UI/sphere.png") %>
-    </div>
-     <div class="sphere-left sphere-left3">
-      <%= image_tag("UI/sphere.png") %>
-    </div>
-     <div class="sphere-left sphere-left4">
-      <%= image_tag("UI/sphere.png") %>
-    </div>
-
-     <div class="sphere-right sphere-right1">
-      <%= image_tag("UI/sphere.png") %> 
-    </div>
-     <div class="sphere-right sphere-right2">
-      <%= image_tag("UI/sphere.png") %> 
-    </div>
-     <div class="sphere-right sphere-right3">
-      <%= image_tag("UI/sphere.png") %> 
-    </div>
-     <div class="sphere-right sphere-right4">
-      <%= image_tag("UI/sphere.png") %> 
-    </div>
-
-     <div class="screen">
-      <%#= image_tag("UI/logo2.png", width: '260', height: 'auto') %>
-      <h3 style="color:white;">FIGHTU!!</h3>
-      <h4><%= "Battle #{@battle.id}" %><h4>
-      <br>
-      <h4><%= "Turn #{@turn}" %><h4>
+<div class="screen">
+  <%#= image_tag("UI/logo2.png", width: '260', height: 'auto') %>
+  <h3 style="color:white;">FIGHTU!!</h3>
+  <h4><%= "Battle #{@battle.id}" %><h4>
+    <br>
+    <h4><%= "Turn #{@turn}" %><h4>
       <br>
       <% if @turn.to_i == current_user.id %>
       <h3 style="color:white">YOUR TURN</h3>
@@ -178,17 +76,17 @@
     </div>
 
     <div class="menu">
-   <% if @turn.to_i == current_user.id %>
-   <h3 style="color:black">YOUR TURN</h3>
-   <% else %>
-   <h3 style="color:black;">OPPONENTS TURN</h3>
-   <% end %>
-    </div>
+     <% if @turn.to_i == current_user.id %>
+     <h3 style="color:black">YOUR TURN</h3>
+     <% else %>
+     <h3 style="color:black;">OPPONENTS TURN</h3>
+     <% end %>
+   </div>
 
-    <!-- ____________________MOSTER DETAILS -->
+   <!-- ____________________MOSTER DETAILS -->
 
    
 
 
 
-<!-- ____________________________________MAIN GAME CONTROLS -->
+   <!-- ____________________________________MAIN GAME CONTROLS -->
