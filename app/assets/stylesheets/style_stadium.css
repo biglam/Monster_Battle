@@ -87,8 +87,8 @@ position: absolute;
 }
 
 .anim-monster-left1 {
-	 left: 417px;
-    bottom: 235px;
+	left: 419px;
+        bottom: 264px;
 	z-index:1;
 }
 
@@ -111,8 +111,8 @@ position: absolute;
 }
 
 .anim-monster-right1 {
-     right: 417px;
-    bottom: 235px;
+    right: 447px;
+        bottom: 265px;
     z-index:1;
 }
 
@@ -248,8 +248,8 @@ p.notice {
     height: 144px;
     background-color: black;
     position: absolute;
-    top: 163px;
-    left: 472px;
+    top: 59px;
+    left: 464px;
     display:inline;
     text-align: center;
     /*padding: 10px;*/

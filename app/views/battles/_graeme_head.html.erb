@@ -16,7 +16,7 @@
 
 <% (1..4).each do |i| %>
 <div class="big-monster big-monster-left<%= i %>" id="big-1-<%= i %>">
-<%= image_tag("monsters/charizard/large.png", :id => "large#{i}") %>
+  <%= image_tag("monsters/charizard/large.png", :id => "large#{i}") %>
 </div>
 <div class="anim-monster anim-monster-left<%= i %>
   " id="monster1-<%= i %>
@@ -53,7 +53,7 @@
 
 </div>
 
-</div>
+
 
 
 <div class="screen">
@@ -77,9 +77,9 @@
      <% else %>
      <h3 style="color:black;">OPPONENTS TURN</h3>
      <script>
-     setTimeout(function(){
+       setTimeout(function(){
         window.location.reload(1);
-     }, 5000)
+      }, 5000)
      </script>
      <% end %>
    </div>
