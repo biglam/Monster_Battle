@@ -8,3 +8,11 @@
   </tr>
   <% end %>
 </table>
+<table>
+<% User.avatars.each_with_index do |avatar, i| %>
+<tr>
+  <td><%= i %></td>
+  <td><img src="<%=avatar%>"></td>
+</tr>
+<% end %>
+</table>

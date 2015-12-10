@@ -6,6 +6,26 @@
 </div>
 
 <div class="user-info">
+<<<<<<< HEAD
+=======
+<%=link_to("Edit User Profile", edit_user_path(current_user))%>
+
+<h2> Name: <%= current_user.name %></h2>
+<br>
+<h3> Email: <%= current_user.email %></h3>
+<br>
+<h3> Gender: <%= current_user.gender %></h3>
+<br>
+
+<h3> Wins: <%= current_user.wins %></h3>
+<br>
+<% if @user.gender == "Male" %>
+<%= image_tag("trainers/boys/Nate.png", class: 'trainer-avatar') %> 
+<% else %>
+<%= image_tag("trainers/girls/Ace.png", class: 'trainer-avatar') %>
+<% end %>
+<br>
+>>>>>>> cbd9e6394e71409c01cf778e7f59af6952e12b0b
 
   <div class="user-screen-left solid">
     <%=link_to("Edit User Profile", edit_user_path(current_user))%>

@@ -42,6 +42,14 @@
   </div>
   <br>
 
+  <div class="field">
+   <h3 style="display:inline;">Avatar</h3>  <br>
+   <% User.avatars.each_with_index do |avatar, i| %>
+    <%= f.radio_button :avatar, i %> 
+    <img class='avatarselect' src='<%= avatar %>'>
+   <% end %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

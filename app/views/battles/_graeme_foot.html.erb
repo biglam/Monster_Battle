@@ -24,3 +24,7 @@
     </div>
 
 </div>
+<script>var p1_avatar = "<%= User.avatars[@battle.player1.avatar] %>";
+var p2_avatar = "<%= User.avatars[@battle.player2.avatar] %>";
+$('#trainer1').attr('src', p1_avatar);
+$('#trainer2').attr('src', p2_avatar);</script>
