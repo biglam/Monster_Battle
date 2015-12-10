@@ -5,6 +5,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @battle = Battle.new
+    @battle.player1 = current_user
+    # @battles = Battle.where("Player2_id = #{current_user.id}")
+    @battles = Battle.all.limit(8)
+    @users = User.order('points DESC').all
+
   end
 
   def edit
