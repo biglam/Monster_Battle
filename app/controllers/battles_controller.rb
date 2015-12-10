@@ -72,6 +72,7 @@ class BattlesController < ApplicationController
         if @battle.player2 == current_user
           set_moves("p2", params[:monster_moves])
           @battle.state = "Player 2 selected moves"
+          @battle.battlemsg = "Ready!"
           @battle.save
           redirect_to(edit_battle_path(@battle))
         else
@@ -122,6 +123,8 @@ def set_monsters(player, mlist)
     reciever_element = reciever.monster.element.name
     if move.remaining_uses > 0
       damage = move.move.attack(reciever_element)
+      @battle.battlemsg = move.move.battlemessage
+      @battle.save
       remove_use(attacker, attacking_move_id)
       change_turn
     else
