@@ -27,6 +27,8 @@ background-image: url("backgrounds/stadium1.png");
 width: 1200px;
 height: 600px;
 margin: auto;
+top: 34px;
+border: 5px solid black;
 	/*margin-left: auto;
 	margin-right: auto;*/
 }
@@ -641,6 +643,13 @@ a:hover {
 .alert {
     display: inline;
     position: absolute;
+    right: 39px;
+    text-align: right;
+    top: -82px;
+    color: white;
+    text-shadow: 2px 2px black;
+    letter-spacing: 5px;
+
 }
 
 a {
@@ -649,6 +658,8 @@ a {
     text-decoration: none;
     text-shadow: 2px 2px black;
     font-size: 24px;
+    letter-spacing: 4px;
+
 
 }
 
