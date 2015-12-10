@@ -59,14 +59,12 @@
 <div class="screen">
   <%#= image_tag("UI/logo2.png", width: '260', height: 'auto') %>
   <h3 style="color:white;">FIGHTU!!</h3>
-  <h4><%= "Battle Number#{@battle.id}" %><h4>
+  <h4><%= @battle.battlemsg %><h4>
     <br>
-    <h4><%= @battle.player1.name if @turn.to_i == @battle.player1.id %><%= @battle.player2.name if @turn.to_i == @battle.player2.id %><h4>
-      <br>
       <% if @turn.to_i == current_user.id %>
       <h3 style="color:white">YOUR TURN</h3>
       <% else %>
-      <h3 style="color:white;">OPPONENTS TURN</h3>
+      <h3 style="color:white;">RIVAL TURN</h3>
       <% end %>
 
     </div>

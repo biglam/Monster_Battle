@@ -13,6 +13,7 @@ class BattlesController < ApplicationController
   def create
     @battle = Battle.create(battle_params)
     @battle.state = "Battle Initialized"
+    # binding.pry;''
     @battle.player1.played += 1
     turn = [@battle.player1.id, @battle.player2.id]
     @battle.turn = turn.shuffle.join(' ')
@@ -55,6 +56,7 @@ class BattlesController < ApplicationController
         if @battle.player2 == current_user
           set_monsters("p2", params[:monsters])
           @battle.state = "Player 2 selected monsters"
+          @battle.player2.played += 1
           @battle.save
           @battle.player2.save
           redirect_to(monster_moves_battle_path(@battle))
@@ -72,6 +74,7 @@ class BattlesController < ApplicationController
         if @battle.player2 == current_user
           set_moves("p2", params[:monster_moves])
           @battle.state = "Player 2 selected moves"
+          @battle.battlemsg = "Ready!"
           @battle.save
           redirect_to(edit_battle_path(@battle))
         else
@@ -122,6 +125,8 @@ def set_monsters(player, mlist)
     reciever_element = reciever.monster.element.name
     if move.remaining_uses > 0
       damage = move.move.attack(reciever_element)
+      @battle.battlemsg = move.move.battlemessage
+      @battle.save
       remove_use(attacker, attacking_move_id)
       change_turn
     else
