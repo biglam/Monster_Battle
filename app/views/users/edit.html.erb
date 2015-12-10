@@ -1,38 +1,52 @@
-<h1> This is the edit page for the user data </h1>
+<div id="bg">
+  <%= image_tag("backgrounds/gothic.png") %>
+</div>
+<div class="header">
+  <%= render partial: 'layouts/menu' %>
+</div>
 
-<%= form_for(@user) do |f| %>
-<%#= render 'shared/error_messages' %>
+<div class="user-info" style="padding-bottom:15px; text-align:center; height:auto;">
+
+<h1 style="color:red; font-family:PokemonC; font-size:28px; text-shadow: 1px 1px black; letter-spacing:3px;"> Change your profile information </h1>
+
+  <%= form_for(@user) do |f| %>
+  <%#= render 'shared/error_messages' %>
 
 
-  <%= f.label :name %>
+  <h3 style="display:inline; color:black; font-family:PokemonC; font-size:28px; letter-spacing:3px;"><%= f.label :name %>: </h3>
   <%= f.text_field :name, required: true, class: 'form-control' %>
   <br>
-  <%= f.label :email %>
+  <h3 style="display:inline; color:black; font-family:PokemonC; font-size:28px; letter-spacing:3px;"><%= f.label :email %>: </h3>
   <%= f.email_field :email, class: 'form-control' %>
   <br>
 
+
   <div class="field">
-   <h3 style="display:inline;">Avatar</h3>  <br>
+   <h3 style="display:inline; color:black; font-family:PokemonC; font-size:28px; letter-spacing:3px;">Choose your Avatar :</h3>  
+   <br>
+   <br>
    <% User.avatars.each_with_index do |avatar, i| %>
-    <%= f.radio_button :avatar, i, :id=>"rb#{i}" %> 
-    <img class='trainer-avatar' id='<%= "img#{i}" %>' src='<%= avatar %>'>
+   <%= f.radio_button :avatar, i, :id=>"rb#{i}" %> 
+   <img class='trainer-avatar' id='<%= "img#{i}" %>' src='<%= avatar %>'>
    <% end %>
-  </div>
+ </div>
 
-  <script>
+ <script>
   <% User.avatars.each_with_index do |img, i| %>
-    $('#img<%= i %>').click(function() {
-      $("#rb<%= i %>").prop("checked", true)
-    });
+  $('#img<%= i %>').click(function() {
+    $("#rb<%= i %>").prop("checked", true)
+  });
   <% end %>
-  </script>
-  <%#= f.label :gender %>
-  <%#= f.text_field :gender, required: true, class: 'form-control' %>
-  <%#= f.select :gender, %w{Male Female}, :prompt => 'Select', required: true, placeholder: 'Gender', class: 'form-control' %>
-  <br>
+</script>
+<%#= f.label :gender %>
+<%#= f.text_field :gender, required: true, class: 'form-control' %>
+<%#= f.select :gender, %w{Male Female}, :prompt => 'Select', required: true, placeholder: 'Gender', class: 'form-control' %>
+<br>
 
-  <%= f.submit "Save changes" %>
-  <% end %>
-  
+<%= f.submit "Save changes" %>
+<% end %>
+
+</div>
+
 
 
