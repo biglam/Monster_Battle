@@ -3,9 +3,12 @@ Monster.delete_all
 Element.delete_all
 Move.delete_all
 
-User.create!(email: "pikachu@example.example", password:"password", name:"pikachu")
+User.create!(email: "pikachu@example.example", password:"password", name:"pikachu", wins: 10, played: 12, points: 30, avatar: 3)
 User.create!(email: "pichu@example.example", password:"password", name:"pichu")
-
+User.create!(email: "pikachu2@example.example", password:"password", name:"Pavlord", wins: 0, played: 124, points: 0, avatar: 2)
+User.create!(email: "pikachu3@example.example", password:"password", name:"Mewtwo", wins: 13, played: 15, points: 39, avatar: 13)
+User.create!(email: "pikachu4@example.example", password:"password", name:"Giraffe", wins: 4, played: 12, points: 12, avatar: 7)
+User.create!(email: "pikachu5@example.example", password:"password", name:"Storm", wins: 15, played: 18, points: 45, avatar: 15)
 #nevin - can you please add the rest of the data in this way?--
 ## -- ELEMENTS
 noelem = Element.create!(name: 'non-elemental', strong_to: '', strong_to: '', neutral: '', immune: '')
