@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
     ['/images/trainers/boys/Brendan.png',
       '/images/trainers/boys/Calem.png',
       '/images/trainers/boys/Craig.png',
-      '/images/trainers/boys/dark1.jpg',
+      '/images/trainers/boys/pavlord.png',
       '/images/trainers/boys/Lucas.png',
       '/images/trainers/boys/Nate.png',
       '/images/trainers/boys/Roza.png',
