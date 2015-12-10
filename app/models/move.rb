@@ -19,7 +19,7 @@ class Move < ActiveRecord::Base
 
   def attack_strength(accuracy)
     randomizer = rand(100)
-    if randomizer < accuracy/4
+    if randomizer < (accuracy/4)
       @battlemessage += " MISSED!!! "
       return 0
     elsif randomizer > 95
