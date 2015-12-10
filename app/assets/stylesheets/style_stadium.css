@@ -442,17 +442,25 @@ p {
 	font-family: PokemonC;
 	font-size: 12pt;
 }
+.full {
+    position:relative;
+    width:100%;
+    height:100%;
+    text-align:center;
+}
 
 .videoWrapper {
 	position: absolute;
     width: 854px;
     height: 480px;
-    top: 55px;
-    left: 174px;
+   top: -137px;
+       left: 205px;
     background-color: none;
     opacity: 1;
     z-index: 12;
-    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    /*display: none;*/
 }
 
 .monster1-info {

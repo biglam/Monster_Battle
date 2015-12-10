@@ -15,7 +15,7 @@
     </div>
     
     <div class="videoWrapper" id="wrapper">
-    <%#= video_tag(["/videos/charizard.mp4"], height: '480', width: '854', id: 'vid1', :controls => false, :autoplay => true) %>
+    <%= video_tag(["/videos/Audience-intro-stadium.mp4"], height: '480', width: '854', id: 'vid1', :controls => false, :autoplay => true) %>
 
         <!-- <video id="vid1" autoplay> -->
             <!-- <source src="videos/charizard-flame.mp4"> -->
@@ -27,4 +27,17 @@
 <script>var p1_avatar = "<%= User.avatars[@battle.player1.avatar] %>";
 var p2_avatar = "<%= User.avatars[@battle.player2.avatar] %>";
 $('#trainer1').attr('src', p1_avatar);
-$('#trainer2').attr('src', p2_avatar);</script>
+$('#trainer2').attr('src', p2_avatar);
+
+  
+$('video').on('ended',function(){ 
+    $(this).hide();
+     $('#wrapper').hide();
+  });
+
+  
+
+
+
+
+</script>
