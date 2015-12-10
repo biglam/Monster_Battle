@@ -23,7 +23,7 @@ body {
 .main-container {
 /*background-color: grey;*/
 position: relative;
-background-image: url("backgrounds/stadium1.png");
+background-image: url("http://www.techiteasy.org.uk/monsters/images/backgrounds/stadium1.png");
 width: 1200px;
 height: 600px;
 margin: auto;
@@ -32,8 +32,8 @@ margin: auto;
 }
 
 .trainer-avatar {
-width: 131px;
-height: auto;
+width: auto;
+height: 185px;
 }
 
 .big-monster-left1 {
@@ -442,25 +442,17 @@ p {
 	font-family: PokemonC;
 	font-size: 12pt;
 }
-.full {
-    position:relative;
-    width:100%;
-    height:100%;
-    text-align:center;
-}
 
 .videoWrapper {
 	position: absolute;
     width: 854px;
     height: 480px;
-   top: -137px;
-       left: 205px;
+    top: 55px;
+    left: 174px;
     background-color: none;
     opacity: 1;
     z-index: 12;
-    margin-left: auto;
-    margin-right: auto;
-    /*display: none;*/
+    display: none;
 }
 
 .monster1-info {
@@ -766,7 +758,7 @@ input  {
    font-size: 45px;
    width: 268px;
    padding: 5px;
-   height: 67px;
+   height: 37px;
 
 
    }
