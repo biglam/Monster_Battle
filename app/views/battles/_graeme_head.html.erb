@@ -1,7 +1,7 @@
 <div class="main-container" id="background">
  <% (1..8).each do |i| %>
  <div class="monster<%= i %>-info">
-   <h4 id="monster<%= i %>-name">MONSTER <%= i %> :</h4><h4 id="monster<%= i %>-heathnum">100</h4><br>
+   <h4 id="monster<%= i %>-name"></h4><h4 id="monster<%= i %>-heathnum"></h4><br>
    <progress id='health<%= i%>' value="100" max="100" style="color:green; border: 2px solid black;"></progress>
  </div>
  <% end %> 
@@ -16,7 +16,7 @@
 
 <% (1..4).each do |i| %>
 <div class="big-monster big-monster-left<%= i %>" id="big-1-<%= i %>">
-<%= image_tag("monsters/charizard/large.png", :id => "large#{i}") %>
+  <%= image_tag("monsters/charizard/large.png", :id => "large#{i}") %>
 </div>
 <div class="anim-monster anim-monster-left<%= i %>
   " id="monster1-<%= i %>
@@ -53,33 +53,31 @@
 
 </div>
 
-</div>
+
 
 
 <div class="screen">
   <%#= image_tag("UI/logo2.png", width: '260', height: 'auto') %>
   <h3 style="color:white;">FIGHTU!!</h3>
-  <h4><%= "Battle #{@battle.id}" %><h4>
+  <h4><%= @battle.battlemsg %><h4>
     <br>
-    <h4><%= "Turn #{@turn}" %><h4>
-      <br>
       <% if @turn.to_i == current_user.id %>
       <h3 style="color:white">YOUR TURN</h3>
       <% else %>
-      <h3 style="color:white;">OPPONENTS TURN</h3>
+      <h3 style="color:white;">RIVAL TURN</h3>
       <% end %>
 
     </div>
 
-    <div class="menu">
+    <div class="menu" st>
      <% if @turn.to_i == current_user.id %>
      <h3 style="color:black">YOUR TURN</h3>
      <% else %>
      <h3 style="color:black;">OPPONENTS TURN</h3>
      <script>
-     setTimeout(function(){
-        window.location.reload(1);
-     }, 5000)
+        window.setInterval(function(){
+          checkState();
+        }, 2000);
      </script>
      <% end %>
    </div>

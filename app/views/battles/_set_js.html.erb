@@ -4,20 +4,23 @@ $(".notice").fadeOut(5000);
 
 <% if @battle.player1.gender != nil %>
   <% if @battle.player1.gender == "Male" %>
-  $('#trainer1').attr('src', '/images/trainers/boys/brendan.png')
+  $('#trainer1').attr('src', '/images/trainers/boys/brendan.png');
   <% elsif @battle.player1.gender == "Female" %>
-  $('#trainer1').attr('src', '/images/trainers/girls/psy.png')
+  $('#trainer1').attr('src', '/images/trainers/girls/psy.png');
   <% end %>
 <% end %>
 
 <% if @battle.player2.gender != nil %>
   <% if @battle.player2.gender == "Male" %>
-  $('#trainer2').attr('src', '/images/trainers/boys/scott.png')
+  $('#trainer2').attr('src', '/images/trainers/boys/scott.png');
   <% elsif @battle.player2.gender == "Female" %>
-  $('#trainer2').attr('src', '/images/trainers/girls/jess.png')
+  $('#trainer2').attr('src', '/images/trainers/girls/jess.png');
   <% end %>
 <% end %>
 
+
+$('#player1-name').text("<%= @battle.player1.name %>");
+$('#player2-name').text("<%= @battle.player2.name %>");
 
 <% @battle.p1_battle_monsters.sort.each_with_index do |monster, i| %>
   var <%= "monster#{i+1}" %> = {name: "<%= monster.monster.name %>", hp: "<%= monster.hp %>", max_hp: "<%= monster.monster.hp %>", image_front: "/images/monsters/<%= monster.monster.name %>/front.gif", image_back: "/images/monsters/<%= monster.monster.name %>/back.gif", image_large: "/images/monsters/<%= monster.monster.name %>/large.png", id: "<%= monster.id %>" }
@@ -34,7 +37,7 @@ $(".notice").fadeOut(5000);
 <% end %>
 <% (1..4).each do |i| %>
   $('#anim<%=i%>').attr('src', monster<%=i%>["image_back"]);
-  $('#anim<%=i+4%>').attr('src', monster<%=i%>["image_front"]);
+  $('#anim<%=i+4%>').attr('src', monster<%=i+4%>["image_front"]);
   if (monster<%=i%>["hp"] == 0) {
       $('#anim<%=i%>').hide();
   }
@@ -78,4 +81,20 @@ $(".notice").fadeOut(5000);
 setTimeout(function(){
   $('.notice').fadeOut();
 }, 5000)
+
+
+var p1_avatar = "<%= User.avatars[@battle.player1.avatar] %>";
+var p2_avatar = "<%= User.avatars[@battle.player2.avatar] %>";
+$('#trainer1').attr('src', p1_avatar);
+$('#trainer2').attr('src', p2_avatar);
+
+var checkState = function(){
+  var rubystate = "<%= @battle.state %>";
+  jsondata = $.get( "edit.json", function( data ) {
+    console.log("no change");
+    if (jsondata.responseJSON.state != rubystate) {
+      window.location.reload(1);
+    };
+  });
+};
 </script>

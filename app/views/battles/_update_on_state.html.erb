@@ -1,0 +1,16 @@
+<script>
+var checkState = function(){
+  var rubystate = "<%= @battle.state %>";
+  jsondata = $.get( "edit.json", function( data ) {
+    console.log("no change");
+    if (jsondata.responseJSON.state != rubystate) {
+      window.location.reload(1);
+    };
+  });
+};
+</script>
+<script>
+   window.setInterval(function(){
+     checkState();
+   }, 2000);
+</script>

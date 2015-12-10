@@ -31,18 +31,26 @@
   margin: 5px;
  }
 */
+<<<<<<< HEAD
  .leadertable h3 {
+=======
+/* .leadertable h3 {
+>>>>>>> d97447a933f1958ec6024fb28d2fd62137730b57
   font-family: 'PokemonC.ttf';
   color: rgba(255, 255, 255, 1);
   font-size: 3em;
   margin: 10px;
- }
+ }*/
 
+<<<<<<< HEAD
  .leadertable h4 {
+=======
+ /*.leadertable h4 {
+>>>>>>> d97447a933f1958ec6024fb28d2fd62137730b57
   font-family: 'PokemonD.ttf';
   color: rgba(255, 255, 255, 1);
   font-size: 2em;
- }
+ }*/
 
 .leaderheading {
   color: white;
@@ -97,4 +105,9 @@
  .alert {
    margin-top: 100px;
    text-align: center;
+ }
+
+ .avatarselect {
+  height: 30%;
+  width: 30%;
  }

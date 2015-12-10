@@ -1,5 +1,5 @@
 class BattlesController < ApplicationController
-  respond_to :html, :js
+  respond_to :html, :js, :json,  :xml
 
   def index
     @battles = Battle.all
@@ -13,9 +13,11 @@ class BattlesController < ApplicationController
   def create
     @battle = Battle.create(battle_params)
     @battle.state = "Battle Initialized"
+    # binding.pry;''
     @battle.player1.played += 1
     turn = [@battle.player1.id, @battle.player2.id]
     @battle.turn = turn.shuffle.join(' ')
+    @battle.player1.save
     @battle.save
     redirect_to(select_monsters_battle_path(@battle))
   end
@@ -31,54 +33,60 @@ class BattlesController < ApplicationController
   def edit
     @battle = Battle.find(params[:id])
     @turn = @battle.turn.split[0].to_i
+    respond_to do |format|
+      format.html 
+      format.json { render json: @battle }
+    end
+
     if @battle.state == "Finished"
       redirect_to(battle_path(@battle))
     end
   end
 
   def update
-    @battle = Battle.find(params[:id])
-    case @battle.state
-    when "Battle Initialized"
-      set_monsters("p1", params[:monsters])
-      @battle.state = "Player 1 selected monsters"
-      @battle.save
-      @battle.player1.save
-      redirect_to(select_monsters_battle_path(@battle))
-    when "Player 1 selected monsters"
-      if @battle.player2 == current_user
-        set_monsters("p2", params[:monsters])
-        @battle.state = "Player 2 selected monsters"
+      @battle = Battle.find(params[:id])
+      case @battle.state
+      when "Battle Initialized"
+        set_monsters("p1", params[:monsters])
+        @battle.state = "Player 1 selected monsters"
         @battle.save
-        @battle.player2.save
-        redirect_to(monster_moves_battle_path(@battle))
-      else
+        @battle.player1.save
         redirect_to(select_monsters_battle_path(@battle))
-      end
-    when "Player 2 selected monsters"
-      if @battle.player1 == current_user
-        set_moves("p1", params[:monster_moves])
-        @battle.state = "Player 1 selected moves"
-        @battle.save
-      end
-      redirect_to(monster_moves_battle_path(@battle))
-    when "Player 1 selected moves"
-      if @battle.player2 == current_user
-        set_moves("p2", params[:monster_moves])
-        @battle.state = "Player 2 selected moves"
-        @battle.save
-        redirect_to(edit_battle_path(@battle))
-      else
+      when "Player 1 selected monsters"
+        if @battle.player2 == current_user
+          set_monsters("p2", params[:monsters])
+          @battle.state = "Player 2 selected monsters"
+          @battle.player2.played += 1
+          @battle.save
+          @battle.player2.save
+          redirect_to(monster_moves_battle_path(@battle))
+        else
+          redirect_to(select_monsters_battle_path(@battle))
+        end
+      when "Player 2 selected monsters"
+        if @battle.player1 == current_user
+          set_moves("p1", params[:monster_moves])
+          @battle.state = "Player 1 selected moves"
+          @battle.save
+        end
         redirect_to(monster_moves_battle_path(@battle))
-      end
-    when "Finished"
-      # binding.pry;''
-      redirect_to(battle_path(@battle))
-    else
-      redirect_to(edit_battle_path(@battle))
-  end
-
-end
+      when "Player 1 selected moves"
+        if @battle.player2 == current_user
+          set_moves("p2", params[:monster_moves])
+          @battle.state = "Player 2 selected moves"
+          @battle.battlemsg = "Ready!"
+          @battle.save
+          redirect_to(edit_battle_path(@battle))
+        else
+          redirect_to(monster_moves_battle_path(@battle))
+        end
+      when "Finished"
+        # binding.pry;''
+        redirect_to(battle_path(@battle))
+      else
+        redirect_to(edit_battle_path(@battle))
+    end
+    end
 
 def test
 
@@ -117,6 +125,8 @@ def set_monsters(player, mlist)
     reciever_element = reciever.monster.element.name
     if move.remaining_uses > 0
       damage = move.move.attack(reciever_element)
+      @battle.battlemsg = move.move.battlemessage
+      @battle.save
       remove_use(attacker, attacking_move_id)
       change_turn
     else

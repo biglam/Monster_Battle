@@ -1,3 +1,6 @@
+<%= render partial: 'layouts/menu' %>
+
+
 <h2>Users</h2>
 
 <table>
@@ -11,10 +14,10 @@
 
 <% @users.each do |user| %>
 <tr>
-  <td>user.name</td>
-  <td>user.email</td>
-  <td>user.played</td>
-  <td>user.last_sign_in_at</td>
+  <td><%=  user.name%> </td>
+  <td><%=user.email%></td>
+  <td><%=user.played%></td>
+  <td><%=user.last_sign_in_at%></td>
   <td><%=link_to("edit/delete", edit_user_registration_path(user))%></td>
 </tr>
 <% end %>

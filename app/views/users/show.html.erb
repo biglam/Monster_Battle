@@ -1,26 +1,100 @@
-<%= render partial: 'layouts/menu' %>
+<div id="bg">
+  <%= image_tag("backgrounds/gothic.png") %>
+</div>
+<div class="header">
+  <%= render partial: 'layouts/menu' %>
+</div>
 
 <div class="user-info">
-<%=link_to("Edit User Profile", edit_user_path(current_user))%>
 
-<h2> Name: <%= current_user.name %></h2>
-<br>
-<h3> Email: <%= current_user.email %></h3>
-<br>
-<h3> Gender: <%= current_user.gender %></h3>
-<br>
-<h3> Played: <%= current_user.played %></h3>
-<br>
-<h3> Wins: <%= current_user.wins %></h3>
-<br>
-<% if @user.gender == "Male" %>
-<%= image_tag("trainers/boys/Nate.png", class: 'trainer-avatar') %> 
-<% else %>
-<%= image_tag("trainers/girls/Ace.png", class: 'trainer-avatar') %>
-<% end %>
-<br>
 
-</div>
+  <div class="user-screen-left solid">
+    <%=link_to("Edit User Profile", edit_user_path(current_user))%>
+    <br>
+    <h4 style="color:black; text-shadow: 1px 1px white;"> Name: <%= current_user.name %></h4>
+    <br>
+    <h4 style="color:black; text-shadow: 1px 1px white;"> Email: <%= current_user.email %></h4>
+    <br>
+    <h4 style="color:black; text-shadow: 1px 1px white;"> Played: <%= current_user.played %></h4>
+    <br>
+    <h4 style="color:black; text-shadow: 1px 1px white;"> Wins: <%= current_user.wins %></h4>
+    <br>
+    <img id='useravatarimage' class='trainer-avatar' src="/images/monsters/trainers/Brendan.png">
+    <script>var avatar = "<%= User.avatars[current_user.avatar] %>"
+    $('#useravatarimage').attr('src', avatar);</script>
+  </div>
+
+  <div class="user-screen-center solid">
+
+    <h4 style="color:red; text-shadow: 1px 1px black;">Players who have challenged you: </h4>
+
+    <table style="margin-left:auto; margin-right:auto;">
+      <tr>
+        <th><h4 style="color:black; text-shadow: 1px 1px white;">Challenger</h4></th>
+        <!-- <th><h4 style="color:black; text-shadow: 1px 1px white;">Date Issued</h4></th> -->
+        <th><h4 style="color:black; text-shadow: 1px 1px white;">Accept?</h4></th>
+      </tr>
+      <% @battles.each do |bat| %>
+      <tr>
+        <td><h4 style="color:black; text-shadow: 1px 1px white;"><%= bat.player1.name unless bat.player1 == nil %></h4></td>
+        <!-- <td><%#= bat.created_at %></td> -->
+        <td><% if bat.winner_id == nil %>
+          <%= link_to('FIGHTU!', select_monsters_battle_path(bat.id)) %>
+          <% else %>
+          Fin
+          <% end %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+
+    <div class="challenge">
+
+      <h4 style="color:red; text-shadow: 1px 1px black; display:inline; font-size: 36px;">Challenge
+        <%= form_for @battle do |f| %>
+        <%= f.hidden_field :player1_id, :value => current_user.id %>
+        <%#= f.label :player2_id %>
+
+        <div class="styled-select">
+
+          <%= f.collection_select :player2_id, User.where.not(id: current_user.id), :id, :name, :selected => params['player2_id'] %> </div>
+
+          to 
+
+          <%= f.submit 'FIGHTUUUUU!', class: "fight-button" %>
+        </h4>
+        <% end %>
+
+      </div>
+
+
+
+      <div class="user-screen-right solid">
+
+        <table class="leadertable">
+          <tr style="color:black; text-shadow: 1px 1px white;">
+            <th><h4 style="color:red; text-shadow: 1px 1px black;">Name</h4></th>
+            <th><h4 style="color:red; text-shadow: 1px 1px black;">Played</h4></th>
+            <th><h4 style="color:red; text-shadow: 1px 1px black;">Won</h4></th>
+            <th><h4 style="color:red; text-shadow: 1px 1px black;">Points</h4></th>
+          </tr>
+          <% @users.each do |user| %>
+          <tr>
+            <td class='leaderboard'><h4 style="color:black; text-shadow: 1px 1px white;"><span><%= user.name %></h4></span></td>
+            <td class='leaderboard'><h4 style="color:black; text-shadow: 1px 1px white;"><span class="lb-number"><%= user.played %></h4></span></td>
+            <td class='leaderboard'><h4 style="color:black; text-shadow: 1px 1px white;"><span class="lb-number"><%= user.wins %></h4></span></td>
+            <td class='leaderboard'><h4 style="color:black; text-shadow: 1px 1px white;"><span class="lb-number"><%= user.points %></h4></span></td>
+          </tr>
+          <% end %>
+        </table>
+
+      </div>
+
+      <div class="versus">
+        <h1> V</h1>
+      </div>
+
+    </div>
 
 
 

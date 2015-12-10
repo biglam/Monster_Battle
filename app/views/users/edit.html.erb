@@ -11,10 +11,24 @@
   <%= f.email_field :email, class: 'form-control' %>
   <br>
 
+  <div class="field">
+   <h3 style="display:inline;">Avatar</h3>  <br>
+   <% User.avatars.each_with_index do |avatar, i| %>
+    <%= f.radio_button :avatar, i, :id=>"rb#{i}" %> 
+    <img class='trainer-avatar' id='<%= "img#{i}" %>' src='<%= avatar %>'>
+   <% end %>
+  </div>
 
-  <%= f.label :gender %>
+  <script>
+  <% User.avatars.each_with_index do |img, i| %>
+    $('#img<%= i %>').click(function() {
+      $("#rb<%= i %>").prop("checked", true)
+    });
+  <% end %>
+  </script>
+  <%#= f.label :gender %>
   <%#= f.text_field :gender, required: true, class: 'form-control' %>
-  <%= f.select :gender, %w{Male Female}, :prompt => 'Select', required: true, placeholder: 'Gender', class: 'form-control' %>
+  <%#= f.select :gender, %w{Male Female}, :prompt => 'Select', required: true, placeholder: 'Gender', class: 'form-control' %>
   <br>
 
   <%= f.submit "Save changes" %>

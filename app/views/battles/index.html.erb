@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <title>Signup for Monster Battle</title>
 </head>
 <body>
-  <table>
-    <tr>
-    <th><h3>ID</h3></th>
-    <th><h3>Player1</h3></th>
-    <th><h3>player2</h3></th>
-    <th><h3>Open</h3></th>
-    <th><h3>Delete</h3></th>
-    <th><h3>Edit</h3></th>
-  </tr>
-  <% @battles.each do |battle| %>
-  <tr>
-    <td><%= battle.id %></td>
-    <td><%=(battle.player1_id)%></td>
-    <td><%=battle.player2_id%></td>
-    <td><%= link_to "Open", edit_battle_path(battle) %></td>
-  </tr>
-  <% end %>
-</table>
+<h1 style="font-family: PokemonD; font-size: 54px;">Monster Mash</h1>
+<%#= render partial: 'layouts/menu' %>
+
+<%= link_to("Sign in", new_user_session_path) %>
+<%= link_to("Sign up", new_user_registration_path) %>
+ 
+    
+  <%# @battles.each do |battle| %>
+<!--   <tr>
+    <td><%#= battle.id %></td>
+    <td><%#=(battle.player1_id)%></td>
+    <td><%#=battle.player2_id%></td>
+    <td><%#= link_to "Open", edit_battle_path(battle) %></td>
+  </tr> -->
+  <%# end %>
+
 </body>
 </html>

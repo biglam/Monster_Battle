@@ -1,6 +1,14 @@
-<h1>Leaderboard</h1>
-<table class="leadertable">
+<!-- <div id="bg-leaderboard">
+        <%#= image_tag("backgrounds/trophy-wallpaper.jpg") %>
+</div> -->
+
+
+
+
+<!-- <h1 class="leaderheading">Leaderboard</h1> -->
+<table>
   <tr>
+<<<<<<< HEAD
     <th class='leadertable'><h3>Name</h3></th>
     <th class='leadertable'><h3>Games Played</h3></th>
     <th class='leadertable'><h3>Games Won</h3></th>
@@ -12,6 +20,25 @@
     <td class='leadertable'><h4><span class="lb-number"><%= user.played %></h4></span></td>
     <td class='leadertable'><h4><span class="lb-number"><%= user.won %></h4></span></td>
     <td class='leadertable'><h4><span class="lb-number"><%= user.points %></h4></span></td>
+=======
+<<<<<<< HEAD
+    <th><h4>Name</h4></th>
+    <th><h4>Played</h4></th>
+    <th><h4>Won</h4></th>
+    <th><h4>Points</h4></th>
+=======
+    <th><h3>Name</h3></th>
+    <th><h3>Games Won</h3></th>
+    <th><h3>Points</h3></th>
+>>>>>>> cbd9e6394e71409c01cf778e7f59af6952e12b0b
+  </tr>
+  <% @users.each do |user| %>
+  <tr>
+    <td class='leaderboard'><h4><span><%= link_to(user.name, user_path(user)) %></h4></span></td>
+
+    <td class='leaderboard'><h4><span class="lb-number"><%= user.wins %></h4></span></td>
+    <td class='leaderboard'><h4><span class="lb-number"><%= user.points %></h4></span></td>
+>>>>>>> d97447a933f1958ec6024fb28d2fd62137730b57
   </tr>
   <% end %>
 </table>

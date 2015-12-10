@@ -1,3 +1,4 @@
+<%= "CHROME" if (request.env['HTTP_USER_AGENT']).include?"Chrome" %>
 <table>
   <% Monster.all.each do |monster| %>
   <tr>
@@ -7,4 +8,12 @@
     <td><img src="/images/monsters/<%=monster.name%>/large.png"></td>
   </tr>
   <% end %>
+</table>
+<table>
+<% User.avatars.each_with_index do |avatar, i| %>
+<tr>
+  <td><%= i %></td>
+  <td><img src="<%=avatar%>"></td>
+</tr>
+<% end %>
 </table>

@@ -31,7 +31,21 @@
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
+  <div class="field">
+   <h3 style="display:inline;">Avatar</h3>  <br>
+   <% User.avatars.each_with_index do |avatar, i| %>
+    <%= f.radio_button :avatar, i, :id=>"rb#{i}" %> 
+    <img class='trainer-avatar' id='<%= "img#{i}" %>' src='<%= avatar %>'>
+   <% end %>
+  </div>
 
+  <script>
+  <% User.avatars.each_with_index do |img, i| %>
+    $('#img<%= i %>').click(function() {
+      $("#rb<%= i %>").prop("checked", true)
+    });
+  <% end %>
+  </script>
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
