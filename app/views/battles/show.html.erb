@@ -1,10 +1,16 @@
-<h1>THE WINNER IS <%= @battle.winner_id %> - <%= User.find(@battle.winner_id).name %></h1>
+
+<div id="bg">
+  <%= image_tag("backgrounds/stadium1.png") %>
+</div>
+
+<div class="user-info" style="width:800px; height:auto; text-align:center; padding-bottom:15px;">
+
+
+<h2 style="color:red; font-family:PokemonC; font-size: 48px; letter-spacing: 4px; text-shadow:2px 2px black;"><%= User.find(@battle.winner_id).name %> WINS!! </h2>
+
+</div>
 
 <div class="videoWrapper" id="wrapper">
 <%= video_tag(["/videos/charizard.mp4"], height: '480', width: '854', id: 'vid1', :controls => false, :autoplay => true) %>
 
-    <!-- <video id="vid1" autoplay> -->
-        <!-- <source src="videos/charizard-flame.mp4"> -->
-        <!-- <source src="videos/vid1.ogv"> -->
-    <!-- </video> -->
 </div>

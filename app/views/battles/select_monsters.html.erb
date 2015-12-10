@@ -1,3 +1,10 @@
+<div id="bg">
+  <%= image_tag("backgrounds/stadium1.png") %>
+</div>
+
+<div class="user-info" style="text-align:center; width:400px; height:auto; padding-bottom:15px;">
+
+
 <% if @battle.player1 == current_user && @battle.state == "Player 1 selected monsters" %>
 <p>Waiting for player 2</p>
 <%= render 'update_on_state' %>
@@ -5,5 +12,9 @@
 <% elsif @battle.state == "Player 2 selected monsters" %>
   <%=link_to("Pick your moves", monster_moves_battle_path(@battle))%>
 <% else %>
+<div class="styled-select">
 <%= render partial: 'select_monsters', :locals => {:player => current_user.name} %>
 <% end %>
+</div>
+
+</div>

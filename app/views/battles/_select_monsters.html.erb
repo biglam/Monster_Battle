@@ -5,5 +5,6 @@
 <%= select("monsters", x, Monster.all.collect {|p| [ p.name, p.id ] }) %>
   <br>
 <%end %>
+<br>
 <%= f.submit 'FIGHT!' %>
 <% end %>

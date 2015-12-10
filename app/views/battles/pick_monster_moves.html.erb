@@ -1,4 +1,14 @@
 <%# binding.pry;'' %>
+
+<div id="bg">
+  <%= image_tag("backgrounds/stadium1.png") %>
+</div>
+
+<div class="user-info" style="width:800px; height:auto; text-align:center; padding-bottom:15px;">
+<!-- <div class="screen"> -->
+
+
+
 <% if @battle.state == "Player 2 selected monsters" && @battle.player1 == current_user %>
   <h2>Select your moves</h2>
   <%= render partial: 'pick_moves', :locals => {:player => "p1"} %>
@@ -27,3 +37,4 @@
   <p>FIGHTU!!!</p>
   <%= link_to("Go!", edit_battle_path(@battle)) %>
 <% end %>
+</div>
