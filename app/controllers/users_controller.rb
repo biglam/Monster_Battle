@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(params[:user].permit(:name,:email, :gender))
+    @user.update(params[:user].permit(:name,:email, :gender, :avatar))
     redirect_to(user_path)
 
    end
