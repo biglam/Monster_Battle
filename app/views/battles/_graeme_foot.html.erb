@@ -1,44 +1,23 @@
-<!-- ________________________END OF MAIN GAME CONTROLS -->
-
-
-
-
-    
-
-    <div class="avatar1">
-      <%= image_tag("trainers/girls/Ace.png", class: 'trainer-avatar', id: 'trainer1') %>
-
-    </div>
-
-     <div class="avatar2">
-      <%= image_tag("trainers/boys/Nate.png", class: 'trainer-avatar', id: 'trainer2') %>     
-    </div>
-    <% if @battle.state == "Player 2 selected moves" && ((request.env['HTTP_USER_AGENT']).include?"Chrome") %>
-
-    <div class="videoWrapper" id="wrapper">
-    <%= video_tag(["/videos/Audience-intro-stadium.mp4"], height: '480', width: '854', id: 'vid1', :controls => false, :autoplay => true) %>
-
-        <!-- <video id="vid1" autoplay> -->
-            <!-- <source src="videos/charizard-flame.mp4"> -->
-            <!-- <source src="videos/vid1.ogv"> -->
-        <!-- </video> -->
-    </div>
-    <% end %>
+<div class="avatar1">
+  <%= image_tag("trainers/girls/Ace.png", class: 'trainer-avatar', id: 'trainer1') %>
+</div>
+<div class="avatar2">
+  <%= image_tag("trainers/boys/Nate.png", class: 'trainer-avatar', id: 'trainer2') %>     
+</div>
+<% if @battle.state == "Player 2 selected moves" && ((request.env['HTTP_USER_AGENT']).include?"Chrome") %>
+<div class="videoWrapper" id="wrapper">
+  <%= video_tag(["/videos/Audience-intro-stadium.mp4"], height: '480', width: '854', id: 'vid1', :controls => false, :autoplay => true) %>
+</div>
+<script>
+  $('video').on('ended',function(){ 
+    $(this).hide();
+    $('#wrapper').hide();
+  });
+  <% end %>
+</script>
 </div>
 <script>var p1_avatar = "<%= User.avatars[@battle.player1.avatar] %>";
-var p2_avatar = "<%= User.avatars[@battle.player2.avatar] %>";
-$('#trainer1').attr('src', p1_avatar);
-$('#trainer2').attr('src', p2_avatar);
-
-  
-$('video').on('ended',function(){ 
-    $(this).hide();
-     $('#wrapper').hide();
-  });
-
-  
-
-
-
-
+  var p2_avatar = "<%= User.avatars[@battle.player2.avatar] %>";
+  $('#trainer1').attr('src', p1_avatar);
+  $('#trainer2').attr('src', p2_avatar);
 </script>
