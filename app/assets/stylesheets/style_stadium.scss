@@ -17,7 +17,11 @@ body {
 	font-family: pokemonD; src: font-url('PokemonD.ttf'); 
 } 
 
-
+.mon_name {
+    display:inline; 
+    color:red; 
+    font-size: 22px;
+}
 
 
 .main-container {
@@ -441,6 +445,11 @@ p {
 	font-size: 12pt;
 }
 
+.index_heading {
+    font-family: PokemonD; 
+    font-size: 54px;
+}
+
 .videoWrapper {
 	position: absolute;
     width: 854px;
@@ -563,6 +572,11 @@ p {
   min-height: 50%;
 }
 
+.healthbar {
+    color:green; 
+    border: 2px solid black;
+}
+
 .user-info {
     position: relative;
     width: 1200px;
@@ -577,6 +591,28 @@ p {
     border-radius: 25px;
     opacity:0.8;
     top: 50px;
+}
+
+#moves_select {
+    width:800px; 
+    height:auto; 
+    text-align:center; 
+    padding-bottom:15px;
+}
+
+#monsters_select{
+    text-align:center; 
+    width:400px; 
+    height:auto; 
+    padding-bottom:15px;
+}
+
+#winner-name {
+    color:red; 
+    font-family:PokemonC; 
+    font-size: 48px; 
+    letter-spacing: 4px; 
+    text-shadow:2px 2px black;
 }
 .left-login {
     position:absolute;

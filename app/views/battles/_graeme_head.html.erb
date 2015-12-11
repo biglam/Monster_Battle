@@ -1,91 +1,65 @@
 <div class="main-container" id="background">
- <% (1..8).each do |i| %>
- <div class="monster<%= i %>-info">
-   <h4 id="monster<%= i %>-name"></h4><h4 id="monster<%= i %>-heathnum"></h4><br>
-   <progress id='health<%= i%>' value="100" max="100" style="color:green; border: 2px solid black;"></progress>
- </div>
- <% end %> 
+  <% (1..8).each do |i| %>
+  <div class="monster<%= i %>-info">
+    <h4 id="monster<%= i %>-name"></h4><h4 id="monster<%= i %>-heathnum"></h4><br>
+    <progress id='health<%= i%>' class="healthbar" value="100" max="100"></progress>
+  </div>
+  <% end %> 
 
- <div class="player1-name">
-  <h2 id="player1-name">Player 1</h2>
-</div>
+  <div class="player1-name">
+    <h2 id="player1-name">Player 1</h2>
+  </div>
+  <div class="player2-name">
+    <h2 id="player2-name">Player 2</h2>
+  </div>
 
-<div class="player2-name">
-  <h2 id="player2-name">Player 2</h2>
-</div>
-
-<% (1..4).each do |i| %>
-<div class="big-monster big-monster-left<%= i %>" id="big-1-<%= i %>">
-  <%= image_tag("monsters/charizard/large.png", :id => "large#{i}") %>
-</div>
-<div class="anim-monster anim-monster-left<%= i %>
-  " id="monster1-<%= i %>
-  ">
-  <%= image_tag("monsters/charizard/back.gif", :id => "anim#{i}") %>
-</div>
-<div class="sphere-left sphere-left<%= i %>">
-  <%= image_tag("UI/sphere.png") %>
-</div>
-<% end %>
-
-
-<% (1..4).each do |i| %>
-<div class="big-monster big-monster-right<%= i %>" id="big-2-<%= i %>">
-  <%= image_tag("monsters/blastoise/large.png", :id => "large#{i+4}") %>
-</div>
-<div class="anim-monster anim-monster-right<%= i %>" id="monster2-<%= i %>">
-  <%= image_tag("monsters/blastoise/front.gif", :id => "anim#{i+4}") %>
-</div>
-<div class="sphere-right sphere-right<%= i %>">
-  <%= image_tag("UI/sphere.png") %>
-</div>
-<% end %>
-
-<div class="attack" id="attack">
-
-</div>
-
-<div class="p2-damage" id="p2-damage">
-
-</div>
-
-<div class="p1-damage" id="p2-damage">
-
-</div>
+  <% (1..4).each do |i| %>
+  <div class="big-monster big-monster-left<%= i %>" id="big-1-<%= i %>">
+    <%= image_tag("monsters/charizard/large.png", :id => "large#{i}") %>
+  </div>
+  <div class="anim-monster anim-monster-left<%= i %>
+    " id="monster1-<%= i %>
+    ">
+    <%= image_tag("monsters/charizard/back.gif", :id => "anim#{i}") %>
+  </div>
+  <div class="sphere-left sphere-left<%= i %>">
+    <%= image_tag("UI/sphere.png") %>
+  </div>
+  <% end %>
 
 
+  <% (1..4).each do |i| %>
+  <div class="big-monster big-monster-right<%= i %>" id="big-2-<%= i %>">
+    <%= image_tag("monsters/blastoise/large.png", :id => "large#{i+4}") %>
+  </div>
+  <div class="anim-monster anim-monster-right<%= i %>" id="monster2-<%= i %>">
+    <%= image_tag("monsters/blastoise/front.gif", :id => "anim#{i+4}") %>
+  </div>
+  <div class="sphere-right sphere-right<%= i %>">
+    <%= image_tag("UI/sphere.png") %>
+  </div>
+  <% end %>
 
-
-<div class="screen">
-  <%#= image_tag("UI/logo2.png", width: '260', height: 'auto') %>
-  <h3 style="color:white;">FIGHTU!!</h3>
-  <h4><%= @battle.battlemsg %><h4>
-    <br>
+  <div class="screen">
+    <h3 style="color:white;">FIGHTU!!</h3>
+    <h4><%= @battle.battlemsg %><h4>
+      <br>
       <% if @turn.to_i == current_user.id %>
       <h3 style="color:white">YOUR TURN</h3>
       <% else %>
       <h3 style="color:white;">RIVAL TURN</h3>
       <% end %>
-
     </div>
 
     <div class="menu" st>
-     <% if @turn.to_i == current_user.id %>
-     <h3 style="color:black">YOUR TURN</h3>
-     <% else %>
-     <h3 style="color:black;">OPPONENTS TURN</h3>
-     <script>
-        window.setInterval(function(){
-          checkState();
-        }, 2000);
-     </script>
-     <% end %>
-   </div>
-
-   <!-- ____________________MOSTER DETAILS -->
-
-   
-
-
-
-   <!-- ____________________________________MAIN GAME CONTROLS -->
+      <% if @turn.to_i == current_user.id %>
+      <h3 style="color:black">YOUR TURN</h3>
+      <% else %>
+      <h3 style="color:black;">OPPONENTS TURN</h3>
+      <% end %>
+    </div>
+    <script>
+      window.setInterval(function(){
+        checkState();
+      }, 2000);
+    </script>

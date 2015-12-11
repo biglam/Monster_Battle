@@ -1,13 +1,10 @@
-<%# binding.pry;'' %>
-
 <div id="bg">
   <%= image_tag("backgrounds/stadium1.png") %>
 </div>
 
 <%= render partial: 'layouts/menu' %>
 
-<div class="user-info" style="width:800px; height:auto; text-align:center; padding-bottom:15px;">
-<!-- <div class="screen"> -->
+<div class="user-info" id='moves_select'>
 
 
 
@@ -23,7 +20,6 @@
 
 <% if @battle.state == "Player 2 selected monsters" && @battle.player2 == current_user %>
   <p>Please wait for Player 1</p>
-
   <%= render 'update_on_state' %>
 
   <%= link_to("refresh", monster_moves_battle_path(@battle)) %>
