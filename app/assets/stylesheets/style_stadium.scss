@@ -553,6 +553,10 @@ p {
 
 }
 
+#useravatarimage {
+   height:300px;
+}
+
 #bg {
   position: fixed; 
   top: -50%; 
@@ -570,6 +574,11 @@ p {
   margin: auto; 
   min-width: 50%;
   min-height: 50%;
+}
+
+.user_heading {
+    color:red; 
+    text-shadow: 1px 1px black;
 }
 
 .healthbar {
@@ -613,6 +622,11 @@ p {
     font-size: 48px; 
     letter-spacing: 4px; 
     text-shadow:2px 2px black;
+}
+
+.user_profile_info {
+    color:black; 
+    text-shadow: 1px 1px white;
 }
 .left-login {
     position:absolute;
