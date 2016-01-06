@@ -92,13 +92,15 @@
             <th><h4 class="user_heading">Won</h4></th>
             <th><h4 class="user_heading">Points</h4></th>
           </tr>
-          <% @users.each do |user| %>
+          <% @users.each_with_index do |user, index| %>
+          <% if index <= 14 %>
           <tr>
             <td class='leaderboard'><h4 class="user_profile_info"><span><%= user.name %></h4></span></td>
             <td class='leaderboard'><h4 class="user_profile_info"><span class="lb-number"><%= user.played %></h4></span></td>
             <td class='leaderboard'><h4 class="user_profile_info"><span class="lb-number"><%= user.wins %></h4></span></td>
             <td class='leaderboard'><h4 class="user_profile_info"><span class="lb-number"><%= user.points %></h4></span></td>
           </tr>
+          <% end %>
           <% end %>
         </table>
 
