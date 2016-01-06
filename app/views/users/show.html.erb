@@ -112,5 +112,19 @@
 
     </div>
 
+<script>
+    var lastbattle = <%= current_user.battles_as_p2.last.id %>;
+    window.setInterval(function(){
+       jsondata = $.get( "<%= current_user.id %>.json", function( data ) {
+         console.log((lastbattle == jsondata.responseJSON));
+         if (lastbattle != jsondata.responseJSON) {
+           window.location.reload(1);
+         }
+        });
 
+
+
+    }, 2000);
+
+</script>
 
