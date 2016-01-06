@@ -33,13 +33,12 @@ class BattlesController < ApplicationController
   def edit
     @battle = Battle.find(params[:id])
     @turn = @battle.turn.split[0].to_i
+    if @battle.state == "Finished"
+      redirect_to(battle_path(@battle)) and return
+    end
     respond_to do |format|
       format.html 
       format.json { render json: @battle }
-    end
-
-    if @battle.state == "Finished"
-      redirect_to(battle_path(@battle))
     end
   end
 
@@ -81,7 +80,6 @@ class BattlesController < ApplicationController
           redirect_to(monster_moves_battle_path(@battle))
         end
       when "Finished"
-        # binding.pry;''
         redirect_to(battle_path(@battle))
       else
         redirect_to(edit_battle_path(@battle))

@@ -4,22 +4,12 @@
 </div>
 
 <div class="user-info" id="moves_select">
+  <% if current_user.id == @battle.winner_id %>
+  <h3>Congratulations!</h3>
+  <% else %>
+  <h3>Unlucky!</h3>
+  <% end %>
   <h2 id='winner-name'><%= User.find(@battle.winner_id).name %> WINS!! </h2>
 </div>
 
-<div class="full">
-  <div class="videoWrapper" id="wrapper">
-    <%= video_tag(["/videos/charizard.mp4"], height: '480', width: '854', id: 'vid1', :controls => false, :autoplay => true) %>
-  </div>
-</div>
-
 <%= render partial: 'layouts/menu' %>
-
-
-<script type="text/javascript">
-  
-  $('video').on('ended',function(){ 
-    $(this).hide();
-     $('#wrapper').hide();
-  });
-</script>
