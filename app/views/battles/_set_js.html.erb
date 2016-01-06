@@ -67,7 +67,7 @@ $('#player2-name').text("<%= @battle.player2.name %>");
 <script>var hurtid = <%= hurt %>
 <% (1..8).each do |i| %>
   if (monster<%=i%>["id"] == hurtid) {
-    var audio = new Audio('/kick.wav');
+    var audio = new Audio('/magic2.wav');
     setTimeout(function(){
         $('#anim<%=i%>').effect("shake");
         audio.play();
@@ -90,11 +90,19 @@ $('#trainer2').attr('src', p2_avatar);
 
 var checkState = function(){
   var rubystate = "<%= @battle.state %>";
+
   jsondata = $.get( "edit.json", function( data ) {
-    console.log("no change");
+    // console.log("ajax - " + jsondata.responseJSON.state);
+    // console.log("ruby - " + rubystate);
+    // console.log("statement is " + (jsondata.responseJSON == undefined));
+    // console.log(" ");
+    if (jsondata.responseJSON == undefined) {
+      window.location.reload(1);
+    };
     if (jsondata.responseJSON.state != rubystate) {
       window.location.reload(1);
     };
+
   });
 };
 </script>

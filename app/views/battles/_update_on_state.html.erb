@@ -2,7 +2,9 @@
 var checkState = function(){
   var rubystate = "<%= @battle.state %>";
   jsondata = $.get( "edit.json", function( data ) {
-    console.log("no change");
+    console.log("ajax - " + jsondata.responseJSON.state);
+    console.log("ruby - " + rubystate);
+    console.log(" ");
     if (jsondata.responseJSON.state != rubystate) {
       window.location.reload(1);
     };
